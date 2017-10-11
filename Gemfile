@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby  '2.3.3'
+
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
@@ -48,6 +50,18 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+# setup Cucumber, RSpec, autotest support
+group :test do
+  gem 'rspec-rails', '2.14'
+  gem 'simplecov', :require => false
+  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails-training-wheels' # basic imperative step defs
+  gem 'database_cleaner' # required by Cucumber
+  gem 'autotest-rails'
+  gem 'factory_girl_rails' # if using FactoryGirl
+  gem 'metric_fu'        # collect code metrics
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
