@@ -1,5 +1,5 @@
 class RemoveSchedule < ActiveRecord::Migration[5.1]
   def change
-    drop_table :schedules
+    remove_column :preferences, :schedule
   end
 end
