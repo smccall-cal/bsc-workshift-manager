@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20171019063853) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "shift"
+    t.string "schedule"
   end
 
 end
