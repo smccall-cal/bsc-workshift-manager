@@ -1,6 +1,10 @@
 class PreferencesController < ApplicationController
   before_action :set_preference, only: [:show, :edit, :update]
 
+  def no
+    flash[:notice] = "No preferences."
+  end
+
   # GET /preferences/1
   # GET /preferences/1.json
   def show
@@ -53,6 +57,7 @@ class PreferencesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def preference_params
-      params.fetch(:preference, {})
+      params.require(:shift)
+      params.require(:schedule).permit(Preference.days)
     end
 end
