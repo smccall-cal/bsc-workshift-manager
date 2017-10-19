@@ -54,7 +54,10 @@ end
 
 # setup Cucumber, RSpec, autotest support
 group :test do
-  gem 'rspec-rails', '2.14'
+  gem 'rspec-rails', '~>3.6'
+  gem 'test-unit'
+  gem 'minitest'
+  gem 'shoulda-matchers', '3', :require => false
   gem 'simplecov', :require => false
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels' # basic imperative step defs
