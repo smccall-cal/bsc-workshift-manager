@@ -41,19 +41,13 @@ RSpec.describe PreferencesController, type: :controller do
   # PreferencesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "returns a success response" do
-      preference = Preference.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(response).to be_success
-    end
-  end
-
   describe "GET #show" do
     it "returns a success response" do
       preference = Preference.create! valid_attributes
       get :show, params: {id: preference.to_param}, session: valid_session
       expect(response).to be_success
+    end
+    it "calls model method to fetch the preferences" do
     end
   end
 
@@ -120,21 +114,6 @@ RSpec.describe PreferencesController, type: :controller do
         put :update, params: {id: preference.to_param, preference: invalid_attributes}, session: valid_session
         expect(response).to be_success
       end
-    end
-  end
-
-  describe "DELETE #destroy" do
-    it "destroys the requested preference" do
-      preference = Preference.create! valid_attributes
-      expect {
-        delete :destroy, params: {id: preference.to_param}, session: valid_session
-      }.to change(Preference, :count).by(-1)
-    end
-
-    it "redirects to the preferences list" do
-      preference = Preference.create! valid_attributes
-      delete :destroy, params: {id: preference.to_param}, session: valid_session
-      expect(response).to redirect_to(preferences_url)
     end
   end
 
