@@ -1,12 +1,5 @@
 class PreferencesController < ApplicationController
-  before_action :set_preference, only: [:show, :edit, :update, :destroy]
-  belongs_to :user # would be replaced with the true user resources name
-
-  # GET /preferences
-  # GET /preferences.json
-  def index
-    @preferences = Preference.all
-  end
+  before_action :set_preference, only: [:show, :edit, :update]
 
   # GET /preferences/1
   # GET /preferences/1.json
@@ -49,16 +42,6 @@ class PreferencesController < ApplicationController
         format.html { render :edit }
         format.json { render json: @preference.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /preferences/1
-  # DELETE /preferences/1.json
-  def destroy
-    @preference.destroy
-    respond_to do |format|
-      format.html { redirect_to preferences_url, notice: 'Preference was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
