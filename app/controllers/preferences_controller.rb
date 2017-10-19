@@ -1,5 +1,6 @@
 class PreferencesController < ApplicationController
   before_action :set_preference, only: [:show, :edit, :update, :destroy]
+  belongs_to :user # would be replaced with the true user resources name
 
   # GET /preferences
   # GET /preferences.json
