@@ -4,8 +4,8 @@ class Preference < ApplicationRecord
     validate :shift_schedule_keys
     
     @@shifts = %i{a b c} # TODO: fill this or load from file
-    @@days = %i{a}
-    @@times = %i{b}
+    @@days = %i{Monday Tueday Wednesday Thursday Friday Saturday Sunday}
+    @@times = (8..23).map {|t| "#{t%12}#{(t < 12)? 'am' : 'pm' }"}
     
     def shift_schedule_keys
         errors.add(:shift, "must contain all and only the shifts as keys") if shift && shift_hash.keys != @@shifts

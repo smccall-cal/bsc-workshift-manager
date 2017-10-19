@@ -5,12 +5,12 @@
     <%= label_tag "shift[#{sh}]", sh %>
     <%= select_tag "shift[#{sh}]", options_for_select(Array 0..5) %>
   <% end %>
-  <br>
   <% Preference.days.each do |d| %>
+    <br>
     <%= d %>
     <% Preference.times.each do |t| %>
       <%= label_tag "schedule[#{d}][#{t}]", t %>
-      <%= select_tag "schedule[#{d}][#{t}]", options_for_select(["+", "-", "x", "?"]) %>
+      <%= select_tag "schedule[#{d}][#{t}]", options_for_select(["+", "-", "x", "?", " "]) %>
     <% end %>
   <% end %>
   <br>
