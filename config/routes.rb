@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  resources :preferences, :except => [:index, :destroy] do
-    collection do
-      get "/no" , :to => "preferences#no", :as => "no"
+
+    root :to => "user#index"
+    #FIXME with proper controller path
+
+    resources :users do
+        resources :preferences, :except => [:index, :destroy]
+        get "preferences/none" , :to => "preferences#no", :as => "no_preferences"
     end
-  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
