@@ -9,7 +9,7 @@ class Preference < ApplicationRecord
     
     File.open("app/models/shifts", "r") do |f|
       f.each_line do |line|
-        @@shifts.push(line.to_sym)
+        @@shifts.push(line.gsub("\n","").to_sym)
       end
     end
     

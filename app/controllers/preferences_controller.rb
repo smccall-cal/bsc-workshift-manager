@@ -57,6 +57,7 @@ class PreferencesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def preference_params
-      {:shift=>params[:shift], :schedule=>params[:schedule]}
+      {:shift=>params[:preference][:shift], :schedule=>params[:preference][:schedule]}
+      # params.require(:preference).permit(:shift, :schedule)
     end
 end
