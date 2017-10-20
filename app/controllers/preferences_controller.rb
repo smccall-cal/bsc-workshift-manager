@@ -23,7 +23,7 @@ class PreferencesController < ApplicationController
   # POST /preferences.json
   def create
     @preference = Preference.new(preference_params)
-
+    
     respond_to do |format|
       if @preference.save
         format.html { redirect_to @preference, notice: 'Preference was successfully created.' }
@@ -57,7 +57,6 @@ class PreferencesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def preference_params
-      params.require(:shift)
-      params.require(:schedule).permit(Preference.days)
+      {:shift=>params[:shift], :schedule=>params[:schedule]}
     end
 end

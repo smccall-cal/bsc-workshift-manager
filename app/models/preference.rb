@@ -5,6 +5,8 @@ class Preference < ApplicationRecord
     
     @@shifts = []
     
+    # temporarily use file to load shift names
+    
     File.open("app/models/shifts", "r") do |f|
       f.each_line do |line|
         @@shifts.push(line.to_sym)
@@ -20,6 +22,7 @@ class Preference < ApplicationRecord
         errors.add(:shift, "must contain all and only the shifts as keys") if shift && shift_hash.keys != @@shifts
         errors.add(:schedule, "must contain all and only the days as keys") if schedule && schedule_hash.keys != @@days
         errors.add(:schedule, "inner day hash must contain all and only the times as keys") if schedule && schedule_hash.values.inject(false) {|res, time| res = res || (time.keys != @@times)}
+        p errors
     end
     
     def self.shifts
@@ -38,10 +41,10 @@ class Preference < ApplicationRecord
     # So call the following function to get a hash versoin of them. (e.g. in controller)
     
     def shift_hash
-        eval(shift)
+        eval(shift).symbolize_keys
     end
     
     def schedule_hash
-        eval(schedule)
+        eval(schedule).symbolize_keys
     end
 end
