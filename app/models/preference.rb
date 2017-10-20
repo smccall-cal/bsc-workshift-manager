@@ -3,7 +3,16 @@ class Preference < ApplicationRecord
     validates :shift, :schedule, :presence => true
     validate :shift_schedule_keys
     
-    @@shifts = %i{a b c} # TODO: fill this or load from file
+    @@shifts = []
+    
+    File.open("app/models/shifts", "r") do |f|
+      f.each_line do |line|
+        @@shifts.push(line.to_sym)
+      end
+    end
+    
+    # TODO: change shifts source to api from another rescource Shift
+    
     @@days = %i{Monday Tueday Wednesday Thursday Friday Saturday Sunday}
     @@times = (8..23).map {|t| "#{t%12}#{(t < 12)? 'am' : 'pm' }"}
     
