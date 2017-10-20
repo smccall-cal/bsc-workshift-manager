@@ -16,7 +16,7 @@ Scenario: A correct login will send me to my page
     When I select in "Foo" from "Username"
     And fill in "Password" with "Bar"
     And press "Login"
-    Then I should be on the personal page
+    Then I should be on the personal page for "Foo"
 
 Scenario: An incorrect login will send me nowhere
 
