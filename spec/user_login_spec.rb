@@ -5,35 +5,34 @@ require 'digest'
 describe User do
 
     before(:each) do
-        a = "Username of some sort"
-        b = "Password of some sort"
-        h = Digest::SHA256.digest b
+        @user = "Username of some sort"
+        @pass = "Password of some sort"
+        @hash = Digest::SHA256.hexdigest @pass
     end
 
     it "accepts a username and password" do
         expect(User).to receive(:create)
-        User.init(a, b)
+        User.init(@user, @pass)
     end
 
     it "correctly hides the password" do
-        expect(User).to receive(:create).with(a, h)
-        User.init(a, b)
+        expect(User).to receive(:create).with(username: @user, hashed_pass: @hash)
+        User.init(@user, @pass)
     end
 
-    describe LoggingOn do
+    it "properly saves" do
+        v = User.init(@user, @pass)
+        expect(v).to eq(true)
+    end
 
-        before(:each) do
-            User.create(a, h)
-        end
+    it "validates a valid user" do
+        User.create(username: @user, hashed_pass: @hash)
+        expect(User.validate(@user, @pass)).to eq(true)
+    end
 
-        it "validates in a valid user" do
-            expect(User.validate(a, b)).to eq(true)
-        end
-
-        it "invalidates in an invalid user" do
-            expect(User.validate(a, "rubyistheworst")).to eq(false)
-        end
-
+    it "invalidates an invalid user" do
+        User.create(username: @user, hashed_pass: @hash)
+        expect(User.validate(@user, "rubyistheworst")).to eq(false)
     end
 
 end

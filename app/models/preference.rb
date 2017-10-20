@@ -1,5 +1,5 @@
 class Preference < ApplicationRecord
-    # belongs_to :user # would be replaced with the true user resources name
+    belongs_to :user
     validates :shift, :schedule, :presence => true
     validate :shift_schedule_keys
 
