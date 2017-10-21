@@ -1,30 +1,22 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/helpers/application_helper.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/helpers/preferences_helper.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/helpers/preferences_helper.rb": [
         1,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/controllers/preferences_controller.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/controllers/preferences_controller.rb": [
         1,
         1,
         1,
+        1,
         null,
         1,
         null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        1,
-        0,
         null,
         null,
         null,
@@ -32,6 +24,15 @@
         null,
         null,
         null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
         null,
         1,
         0,
@@ -65,7 +66,6 @@
         null,
         1,
         0,
-        null,
         null,
         1,
         0,
@@ -78,12 +78,12 @@
         null,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/controllers/application_controller.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/controllers/application_controller.rb": [
         1,
         1,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/models/User.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/models/User.rb": [
         1,
         1,
         null,
@@ -120,7 +120,7 @@
         null,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/models/preference.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/models/preference.rb": [
         1,
         1,
         1,
@@ -172,24 +172,24 @@
         null,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/models/application_record.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/models/application_record.rb": [
         1,
         1,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/channels/application_cable/channel.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/channels/application_cable/channel.rb": [
         0,
         0,
         0,
         0
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/channels/application_cable/connection.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/channels/application_cable/connection.rb": [
         0,
         0,
         0,
         0
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/controllers/users_controller.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/controllers/users_controller.rb": [
         0,
         0,
         null,
@@ -203,6 +203,9 @@
         0,
         0,
         null,
+        0,
+        0,
+        0,
         0,
         0,
         0,
@@ -243,17 +246,17 @@
         null,
         0
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/jobs/application_job.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/jobs/application_job.rb": [
         0,
         0
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/mailers/application_mailer.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/mailers/application_mailer.rb": [
         0,
         0,
         0,
         0
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/models/user.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/models/user.rb": [
         0,
         0,
         null,
@@ -291,11 +294,11 @@
         0
       ]
     },
-    "timestamp": 1508553509
+    "timestamp": 1508563418
   },
   "Cucumber Features": {
     "coverage": {
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/models/user.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/models/user.rb": [
         1,
         1,
         null,
@@ -332,7 +335,7 @@
         null,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/controllers/users_controller.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/controllers/users_controller.rb": [
         1,
         1,
         null,
@@ -389,49 +392,36 @@
         null,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/controllers/application_controller.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/controllers/application_controller.rb": [
         1,
         1,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/helpers/application_helper.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/helpers/preferences_helper.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/helpers/preferences_helper.rb": [
         1,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/channels/application_cable/channel.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/channels/application_cable/channel.rb": [
         0,
         0,
         0,
         0
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/channels/application_cable/connection.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/channels/application_cable/connection.rb": [
         0,
         0,
         0,
         0
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/controllers/preferences_controller.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/controllers/preferences_controller.rb": [
         0,
         0,
         0,
-        null,
         0,
-        0,
-        null,
-        null,
-        null,
-        0,
-        0,
-        null,
-        null,
-        0,
-        0,
-        0,
-        null,
         null,
         0,
         0,
@@ -441,20 +431,20 @@
         0,
         0,
         null,
+        null,
         0,
         0,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
+        null,
+        null,
         0,
         0,
         null,
         null,
         null,
         0,
+        0,
+        null,
         0,
         0,
         0,
@@ -466,12 +456,25 @@
         0,
         0,
         null,
+        null,
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
         0,
         null,
         0,
         0,
         0,
-        null,
         0,
         0,
         0,
@@ -483,22 +486,22 @@
         0,
         0
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/jobs/application_job.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/jobs/application_job.rb": [
         0,
         0
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/mailers/application_mailer.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/mailers/application_mailer.rb": [
         0,
-        0,
-        0,
-        0
-      ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/models/application_record.rb": [
         0,
         0,
         0
       ],
-      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/models/preference.rb": [
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/models/application_record.rb": [
+        0,
+        0,
+        0
+      ],
+      "/Users/xinqin/Desktop/bsc-workshift-manager/app/models/preference.rb": [
         0,
         0,
         0,
@@ -551,6 +554,6 @@
         0
       ]
     },
-    "timestamp": 1508554884
+    "timestamp": 1508559381
   }
 }
