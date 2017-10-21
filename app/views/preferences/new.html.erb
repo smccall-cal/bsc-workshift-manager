@@ -21,7 +21,6 @@
           <%= d %>
           </div>
           <% Preference.times.each do |t| %>
-            <!--<%= label_tag "preference[schedule][#{d}][#{t}]", t %>-->
             <div class="td">
             <%= select_tag "preference[schedule][#{d}][#{t}]", options_for_select(["+", "-", "x", "?", " "]) %>
             </div>

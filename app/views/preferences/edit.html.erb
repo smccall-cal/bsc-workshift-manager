@@ -2,7 +2,7 @@
 
 <%= form_tag user_preference_path(@user, @preference), :method => "put", :id => "preference" do %>
   <% Preference.shifts.each do |sh| %>
-    <%= select_tag "preference[shift][#{sh}]", options_for_select(Array 0..5) %>
+    <%= select_tag "preference[shift][#{sh}]", options_for_select((Array 0..5), :selected => @preference.shift_hash[sh]) %>
     <%= label_tag "preference[shift][#{sh}]", sh %>
     <br>
   <% end %>
@@ -21,9 +21,8 @@
           <%= d %>
           </div>
           <% Preference.times.each do |t| %>
-            <!--<%= label_tag "preference[schedule][#{d}][#{t}]", t %>-->
             <div class="td">
-            <%= select_tag "preference[schedule][#{d}][#{t}]", options_for_select(["+", "-", "x", "?", " "]) %>
+            <%= select_tag "preference[schedule][#{d}][#{t}]", options_for_select(["+", "-", "x", "?", " "], :selected =>  @preference.schedule_hash[d][t]) %>
             </div>
           <% end %>
         </div>

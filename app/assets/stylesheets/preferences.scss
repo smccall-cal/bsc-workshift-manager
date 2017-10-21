@@ -1,9 +1,22 @@
 // Place all the styles related to the Preferences controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-form#preference{
-    label {
+#preference{
+    label{
         display: inline;
+    }
+    .data{
+        @extend label;
+        text-align: right;
+    }
+    .shift{
+        @extend .data;
+        border: gray solid 1px;
+        padding-left: 2vw;
+        margin-right: 1vw;
+    }
+    .schedule{
+        @extend .data;
     }
     .table{
         display: table;
@@ -22,4 +35,7 @@ form#preference{
         display:table-cell;
         padding: 0.5vw;
     }
+}
+#mes {
+    color: green;
 }
