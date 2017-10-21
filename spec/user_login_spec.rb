@@ -16,7 +16,7 @@ describe User do
     end
 
     it "correctly hides the password" do
-        expect(User).to receive(:create).with(username: @user, hashed_pass: @hash)
+        expect(User).to receive(:create).with(username: @user, hashed_pass: @hash, session_id: Integer)
         User.init(@user, @pass)
     end
 

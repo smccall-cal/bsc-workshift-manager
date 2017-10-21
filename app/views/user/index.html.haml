@@ -1,0 +1,7 @@
+= form_tag users_path, :method => :get, :id => 'login_form' do
+  Include:
+  = select_tag username
+    Include:
+    - @all_users.each do |user|
+
+  = submit_tag 'Login', :id => 'login_submit'
