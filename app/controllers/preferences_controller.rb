@@ -40,7 +40,7 @@ class PreferencesController < ApplicationController
         format.html { redirect_to user_preference_path(@user, @preference), notice: 'Preference was successfully created.' }
         format.json { render :show, status: :created, location: @preference }
       else
-        format.html { render :new }
+        format.html { redirect_to new_user_preference_path(@user), alert: @preference.errors[:schedule][0] }
         format.json { render json: @preference.errors, status: :unprocessable_entity }
       end
     end
@@ -49,12 +49,14 @@ class PreferencesController < ApplicationController
   # PATCH/PUT /preferences/1
   # PATCH/PUT /preferences/1.json
   def update
+    
     respond_to do |format|
-      if  @user.preferences.update(preference_params)
+      @preference = @user.preferences.update(preference_params)[0]
+      if @preference.valid?
         format.html { redirect_to user_preference_path(@user, @preference), notice: 'Preference was successfully updated.' }
         format.json { render :show, status: :ok, location: @preference }
       else
-        format.html { render :edit }
+        format.html { redirect_to edit_user_preference_path(@user, @preference), alert: @preference.errors[:schedule][0] }
         format.json { render json: @preference.errors, status: :unprocessable_entity }
       end
     end
