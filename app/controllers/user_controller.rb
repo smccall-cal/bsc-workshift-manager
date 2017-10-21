@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-    before_action :logged_in, :except[:index]
+    before_action :logged_in, except: [:index]
 
     def user_params
       params.permit(:session_id, :username, :password)
