@@ -14,12 +14,15 @@ class UsersController < ApplicationController
     def index #Login Page
         @users = User.all()
         if logged_in
-            redirect_to(@current.id)
+            redirect_to user_path(@current.id)
         elsif params[:username] != nil && params[:password] != nil
             if User.validate(params[:username], params[:password])
                 @current = User.find_by(username: params[:username])
                 session[:session_id] = @current.session_id
                 redirect_to user_path(@current.id)
+            else
+                flash[:notice] = "Incorrect Username or Password"
+                redirect_to users_path
             end
         end
     end
