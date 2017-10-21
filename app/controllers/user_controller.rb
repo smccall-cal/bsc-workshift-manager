@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-    before_action :logged_in
+    before_action :logged_in, :except[:index]
 
     def user_params
       params.permit(:session_id, :username, :password)
@@ -9,6 +9,13 @@ class UserController < ApplicationController
         session_id = params[:session_id] || session[:session_id]
         @current = User.find_by(session_id: session_id)
         return session_id != nil && @current != nil
+    end
+
+    def index #Login Page
+        if logged_in
+            @current.id
+            redirect_to user_path(id)
+        end
     end
 
     def show

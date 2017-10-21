@@ -7,10 +7,6 @@ class User < ActiveRecord::Base
     has_many :preferences #, :dependencies => :destroy
     @@cipher = OpenSSL::Cipher::AES.new(256, :CFB) #Will implement encryption for sensitive data
 
-    def username
-        return self.username
-    end
-
     def self.init(username, password)
         hashed_pass = Digest::SHA256.hexdigest password
         id = User.new_session_id
@@ -30,9 +26,9 @@ class User < ActiveRecord::Base
     end
 
     def self.new_session_id
-        id = rand(2**256)
+        id = rand(2**16)
         while User.find_by(session_id: id) != nil
-            id = rand(2**256)
+            id = rand(2**16)
         end
         return id
     end

@@ -13,14 +13,14 @@ Background: there exists some user "Foo"
 
 Scenario: A correct login will send me to my page
 
-    When I select in "Foo" from "Username"
+    When I select "Foo" from "Username"
     And fill in "Password" with "Bar"
     And press "Login"
     Then I should be on the personal page for "Foo"
 
 Scenario: An incorrect login will send me nowhere
 
-    When I select in "Foo" from "Username"
+    When I select "Foo" from "Username"
     And fill in "Password" with "Agileisawful"
     And press "Login"
     Then I should be on the home page
