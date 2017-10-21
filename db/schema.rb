@@ -19,9 +19,7 @@ ActiveRecord::Schema.define(version: 20171020031927) do
     t.string "schedule"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "hashed_pass"
-  end
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'Fixnum' for column 'session_id'
 
 end
