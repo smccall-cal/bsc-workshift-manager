@@ -1,5 +1,6 @@
 class PreferencesController < ApplicationController
   before_action :set_preference, only: [:show, :edit, :update]
+  before_action :set_user
 
   def no
     flash[:notice] = "No preferences."
@@ -22,7 +23,7 @@ class PreferencesController < ApplicationController
   # POST /preferences
   # POST /preferences.json
   def create
-    @preference = Preference.new(preference_params)
+    @preference = @user.preferences.new(preference_params)
     
     respond_to do |format|
       if @preference.save
@@ -52,7 +53,9 @@ class PreferencesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_preference
-      @preference = Preference.find(params[:id])
+      @preference = @user.preferences.find(params[:id])
+    end
+    def set_user
       @user = User.find(params[:user_id])
     end
 
