@@ -1,7 +1,5 @@
 <h1>New Preference</h1>
 
-<%= notice %>
-
 <%= form_tag user_preferences_path(@user), :method => "post" do %>
   <% Preference.shifts.each do |sh| %>
     <%= label_tag "preference[shift][#{sh}]", sh %>

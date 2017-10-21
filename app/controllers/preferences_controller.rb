@@ -1,9 +1,9 @@
 class PreferencesController < ApplicationController
+  before_action :set_user
   before_action :set_preference, only: [:show, :edit, :update]
   before_action :set_user
 
   def no
-    flash[:notice] = "No preferences."
   end
 
   # GET /preferences/1
@@ -27,7 +27,7 @@ class PreferencesController < ApplicationController
     
     respond_to do |format|
       if @preference.save
-        format.html { redirect_to @preference, notice: 'Preference was successfully created.' }
+        format.html { redirect_to user_preference_path(@user, @preference), notice: 'Preference was successfully created.' }
         format.json { render :show, status: :created, location: @preference }
       else
         format.html { render :new }
@@ -40,8 +40,8 @@ class PreferencesController < ApplicationController
   # PATCH/PUT /preferences/1.json
   def update
     respond_to do |format|
-      if @preference.update(preference_params)
-        format.html { redirect_to @preference, notice: 'Preference was successfully updated.' }
+      if  @user.preferences.update(preference_params)
+        format.html { redirect_to user_preference_path(@user, @preference), notice: 'Preference was successfully updated.' }
         format.json { render :show, status: :ok, location: @preference }
       else
         format.html { render :edit }

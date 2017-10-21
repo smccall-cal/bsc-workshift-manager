@@ -1,7 +1,0 @@
-%h1 Login
-
-= form_tag users_path, :method => :get, :id => 'login_form' do
-  Include:
-  = select_tag "Username", options_for_select(@users.collect |user| {user.username, user.username}), :id => 'username'
-  = input "Password", :type=>"text", :id => 'password'
-  = submit_tag "Login", :id => 'login_submit'
