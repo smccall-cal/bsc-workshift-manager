@@ -1,7 +1,14 @@
 class PreferencesController < ApplicationController
   before_action :set_user
   before_action :set_preference, only: [:show, :edit, :update]
-  before_action :set_user
+
+  def index
+    if @user.preferences.length == 0
+      redirect_to no_user_preferences_path(@user)
+    else
+      redirect_to user_preference_path(@user, @user.preferences[0])
+    end
+  end
 
   def no
   end
