@@ -26,7 +26,7 @@ class Preference < ApplicationRecord
     end
     
     def available_time_more_than_5
-        errors.add(:schedule, "Available time should be at least 5 hours.") if schedule && (schedule_hash.values.inject(0) {|coun, d| coun+=d.values.count("+")}) >= 5
+        errors.add(:schedule, "Available time should be at least 5 hours.") if schedule && (schedule_hash.values.inject(0) {|coun, d| coun+=d.values.count("+")}) < 5
     end
 
     def self.shifts
