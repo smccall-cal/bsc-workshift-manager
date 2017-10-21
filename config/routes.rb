@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-    root :to => "user#index"
+    root :to => "users#index"
     #FIXME with proper controller path
 
     resources :users do

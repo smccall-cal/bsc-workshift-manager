@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
     before_action :logged_in, except: [:index]
 
     def user_params
@@ -12,9 +12,15 @@ class UserController < ApplicationController
     end
 
     def index #Login Page
+        @users = User.all()
         if logged_in
-            @current.id
-            redirect_to user_path(id)
+            redirect_to(@current.id)
+        elsif params[:username] != nil && params[:password] != nil
+            if User.validate(params[:username], params[:password])
+                @current = User.find_by(username: params[:username])
+                session[:session_id] = @current.session_id
+                redirect_to user_path(@current.id)
+            end
         end
     end
 
