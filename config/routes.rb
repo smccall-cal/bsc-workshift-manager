@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+    resources :semesters
+    
     root :to => "users#index"
     #FIXME with proper controller path
 
