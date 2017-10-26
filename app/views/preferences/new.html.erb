@@ -1,4 +1,5 @@
 <h1>New Preference</h1>
+<p id="error"><%= alert %></p>
 
 <%= form_tag user_preferences_path(@user), :method => "post", :id => "preference" do %>
   <% Preference.shifts.each do |sh| %>

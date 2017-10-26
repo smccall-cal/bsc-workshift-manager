@@ -1,6 +1,6 @@
 class PreferencesController < ApplicationController
-  before_action :set_user
-  before_action :set_preference, only: [:show, :edit, :update]
+  before_action :set_user, :except => :notlogged
+  before_action :set_preference, :only => [:show, :edit, :update]
 
   def index
     if @user.preferences.length == 0
@@ -11,6 +11,9 @@ class PreferencesController < ApplicationController
   end
 
   def no
+  end
+  
+  def notlogged
   end
 
   # GET /preferences/1
@@ -37,7 +40,7 @@ class PreferencesController < ApplicationController
         format.html { redirect_to user_preference_path(@user, @preference), notice: 'Preference was successfully created.' }
         format.json { render :show, status: :created, location: @preference }
       else
-        format.html { render :new }
+        format.html { redirect_to new_user_preference_path(@user), alert: @preference.errors[:schedule][0] }
         format.json { render json: @preference.errors, status: :unprocessable_entity }
       end
     end
@@ -46,15 +49,26 @@ class PreferencesController < ApplicationController
   # PATCH/PUT /preferences/1
   # PATCH/PUT /preferences/1.json
   def update
+    
     respond_to do |format|
-      if  @user.preferences.update(preference_params)
+      @preference = @user.preferences.update(preference_params)[0]
+      if @preference.valid?
         format.html { redirect_to user_preference_path(@user, @preference), notice: 'Preference was successfully updated.' }
         format.json { render :show, status: :ok, location: @preference }
       else
-        format.html { render :edit }
+        format.html { redirect_to edit_user_preference_path(@user, @preference), alert: @preference.errors[:schedule][0] }
         format.json { render json: @preference.errors, status: :unprocessable_entity }
       end
     end
+  end
+  
+  def logged_in
+      session_id = params[:session_id] || session[:session_id]
+      @user = User.find_by(session_id: session_id)
+      session_id != nil && @user != nil
+      # the following stubs for human test
+      @user = User.find(params[:user_id])
+      true
   end
 
   private
@@ -64,11 +78,11 @@ class PreferencesController < ApplicationController
     end
     def set_user
       @user = User.find(params[:user_id])
+      if not logged_in then redirect_to notlogged_user_preferences_path(params[:user_id]) end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def preference_params
       {:shift=>params[:preference][:shift], :schedule=>params[:preference][:schedule]}
-      # params.require(:preference).permit(:shift, :schedule)
     end
 end
