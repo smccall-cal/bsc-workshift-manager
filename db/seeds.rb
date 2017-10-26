@@ -9,5 +9,5 @@
 users = [{:username => "marry",:password => "123"},{:username => "bob", :password => "456" }]
 
 users.each do |user|
-  User.create!(movie)
+  User.init(user[:username], user[:password])
 end
