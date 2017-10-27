@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171025220740) do
+ActiveRecord::Schema.define(version: 20171026180644) do
 
   create_table "preferences", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 20171025220740) do
     t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "shifts", force: :cascade do |t|
+    t.integer "semester_id"
+    t.string "day"
+    t.time "time"
+    t.string "location"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["semester_id"], name: "index_shifts_on_semester_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-    resources :semesters
+    resources :semesters do
+        resources :shifts, :except => [:index]
+    end
     
     root :to => "users#index"
     #FIXME with proper controller path
