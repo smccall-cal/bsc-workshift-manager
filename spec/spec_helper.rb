@@ -1,5 +1,7 @@
 require 'simplecov'
 require "rack_session_access/capybara"
+require 'simplecov-shield'
+SimpleCov.formatter = SimpleCov::Formatter::ShieldFormatter
 SimpleCov.start 'rails'
 
 
