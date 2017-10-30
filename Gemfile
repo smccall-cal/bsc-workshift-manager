@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'devise'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
@@ -62,7 +63,7 @@ group :test do
   gem 'test-unit'
   gem 'minitest'
   gem 'shoulda-matchers', '3', :require => false
-  gem 'simplecov', :require => false
+  gem 'simplecov', '~> 0.12.0', :require => true
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels' # basic imperative step defs
   gem 'database_cleaner' # required by Cucumber
