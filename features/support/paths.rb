@@ -21,9 +21,9 @@ module NavigationHelpers
         id = User.find_by(username: $1).id
         user_path(id)
 
-    when /^the preferences page for "(.*)$"/
+    when /^the preferences page for "(.*)"$/
         id = User.find_by(username: $1).id
-        user_preference_path(id)
+        no_user_preferences_path(id)
 
     when /^the user creation page$/
         new_user_path

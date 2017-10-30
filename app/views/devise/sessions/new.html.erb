@@ -2,7 +2,7 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
+    <label for="user_email">Name</label><br />
     <%= f.select :email, User.all.collect{ |u| [u.username, u.email] }, include_blank: true %>
   </div>
 

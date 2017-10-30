@@ -12,7 +12,7 @@ class PreferencesController < ApplicationController
 
   def no
   end
-  
+
   def notlogged
   end
 
@@ -34,7 +34,7 @@ class PreferencesController < ApplicationController
   # POST /preferences.json
   def create
     @preference = @user.preferences.new(preference_params)
-    
+
     respond_to do |format|
       if @preference.save
         format.html { redirect_to user_preference_path(@user, @preference), notice: 'Preference was successfully created.' }
@@ -49,7 +49,7 @@ class PreferencesController < ApplicationController
   # PATCH/PUT /preferences/1
   # PATCH/PUT /preferences/1.json
   def update
-    
+
     respond_to do |format|
       @preference = @user.preferences.update(preference_params)[0]
       if @preference.valid?
@@ -61,15 +61,7 @@ class PreferencesController < ApplicationController
       end
     end
   end
-  
-  def logged_in
-      session_id = params[:session_id] || session[:session_id]
-      @user = User.find_by(session_id: session_id)
-      session_id != nil && @user != nil
-      # the following stubs for human test
-      @user = User.find(params[:user_id])
-      true
-  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -77,8 +69,8 @@ class PreferencesController < ApplicationController
       @preference = @user.preferences.find(params[:id])
     end
     def set_user
-      @user = User.find(params[:user_id])
-      if not logged_in then redirect_to notlogged_user_preferences_path(params[:user_id]) end
+      @user = current_user
+      if not user_signed_in? then redirect_to notlogged_user_preferences_path(params[:user_id]) end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

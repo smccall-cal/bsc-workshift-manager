@@ -6,7 +6,7 @@ Feature: allow members to login / logout, and maintain basic information
 
 Background: there exists some manager and some regular user
 
-    Given user "Manager" exists with password "ManagerBar"
+    Given manager "Manager" exists with password "ManagerBar"
     And user "Regular" exists with password "RegularBar"
     And I am not logged in
     And I am on the sign in page
@@ -26,11 +26,11 @@ Scenario: I can access regular user pages
 Scenario: I can access managerial pages
 
     When I log in as "Manager" with password "ManagerBar"
-    And I follow "Add a User"
+    And I follow "Add a Resident"
     Then I should be on the user creation page
 
 Scenario: Regular users cannot access managerial pages
 
     When I log in as "Regular" with password "RegularBar"
-    And I follow "Add a User"
+    And I follow "Add a Resident"
     Then I should be on the personal page for "Regular"

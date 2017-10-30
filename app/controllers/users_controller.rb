@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     end
 
     def manager
-        return current_user.manager == 1
+        if not current_user.manage? then redirect_to user_path(current_user.id) end
     end
 
     def index
@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     end
 
     def new
+
     end
 
     def create

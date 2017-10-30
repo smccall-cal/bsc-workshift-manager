@@ -2,6 +2,11 @@ Given /^user "(.*)" exists with password "(.*)"/ do |us, pa|
     User.init(us, us + "@berkeley.edu", pa + "123456")
 end
 
+Given /^manager "(.*)" exists with password "(.*)"/ do |us, pa|
+    Manager.init(us, us + "@berkeley.edu", pa + "123456")
+end
+
+
 When /^(?:|I )log in as "(.*)" with password "(.*)"$/ do |us, pa|
     pass = pa + "123456"
 
