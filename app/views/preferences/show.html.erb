@@ -1,4 +1,39 @@
 <p id="notice"><%= notice %></p>
+<p id="mes">Your preference: </p>
 
-<%= link_to 'Edit', edit_preference_path(@preference) %> |
-<%= link_to 'Back', preferences_path %>
+<div id="preference">
+  <% Preference.shifts.each do |sh| %>
+    <div class="shift" id="<%= "preference[shift][#{sh}]" %>" >
+        <%= @preference.shift_hash[sh] %>
+    </div>
+    <%= label_tag "preference[shift][#{sh}]", sh %>
+    <br>
+  <% end %>
+  <div class="table">
+    <div class="tbody">
+      <div class="tr">
+        <div class="th">
+        </div>
+        <% Preference.times.each do |t| %>
+          <div class = "th"><%= t %></div>    
+        <% end %>
+      </div>
+      <% Preference.days.each do |d| %>
+        <div class="tr">
+          <div class="td">
+          <%= d %>
+          </div>
+          <% Preference.times.each do |t| %>
+            <div class="td schedule" id="<%= "preference[schedule][#{d}][#{t}]" %>">
+                <%= @preference.schedule_hash[d][t] %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <br>
+</div>
+
+<%= link_to 'Edit', edit_user_preference_path(@user, @preference) %> |
+<%= link_to 'Back', user_path(@user) %>

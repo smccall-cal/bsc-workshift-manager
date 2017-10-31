@@ -1,8 +1,19 @@
 class PreferencesController < ApplicationController
-  before_action :set_preference, only: [:show, :edit, :update]
+  before_action :set_user, :except => :notlogged
+  before_action :set_preference, :only => [:show, :edit, :update]
+
+  def index
+    if @user.preferences.length == 0
+      redirect_to no_user_preferences_path(@user)
+    else
+      redirect_to user_preference_path(@user, @user.preferences[0])
+    end
+  end
 
   def no
-    flash[:notice] = "No preferences."
+  end
+
+  def notlogged
   end
 
   # GET /preferences/1
@@ -22,14 +33,14 @@ class PreferencesController < ApplicationController
   # POST /preferences
   # POST /preferences.json
   def create
-    @preference = Preference.new(preference_params)
-    
+    @preference = @user.preferences.new(preference_params)
+
     respond_to do |format|
       if @preference.save
-        format.html { redirect_to @preference, notice: 'Preference was successfully created.' }
+        format.html { redirect_to user_preference_path(@user, @preference), notice: 'Preference was successfully created.' }
         format.json { render :show, status: :created, location: @preference }
       else
-        format.html { render :new }
+        format.html { redirect_to new_user_preference_path(@user), alert: @preference.errors[:schedule][0] }
         format.json { render json: @preference.errors, status: :unprocessable_entity }
       end
     end
@@ -38,25 +49,32 @@ class PreferencesController < ApplicationController
   # PATCH/PUT /preferences/1
   # PATCH/PUT /preferences/1.json
   def update
+
     respond_to do |format|
-      if @preference.update(preference_params)
-        format.html { redirect_to @preference, notice: 'Preference was successfully updated.' }
+      @preference = @user.preferences.update(preference_params)[0]
+      if @preference.valid?
+        format.html { redirect_to user_preference_path(@user, @preference), notice: 'Preference was successfully updated.' }
         format.json { render :show, status: :ok, location: @preference }
       else
-        format.html { render :edit }
+        format.html { redirect_to edit_user_preference_path(@user, @preference), alert: @preference.errors[:schedule][0] }
         format.json { render json: @preference.errors, status: :unprocessable_entity }
       end
     end
   end
 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_preference
-      @preference = Preference.find(params[:id])
+      @preference = @user.preferences.find(params[:id])
+    end
+    def set_user
+      @user = current_user
+      if not user_signed_in? then redirect_to notlogged_user_preferences_path(params[:user_id]) end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def preference_params
-      {:shift=>params[:shift], :schedule=>params[:schedule]}
+      {:shift=>params[:preference][:shift], :schedule=>params[:preference][:schedule]}
     end
 end
