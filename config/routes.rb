@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
-    resources :semesters do
-        resources :shifts, :except => [:index]
-    end
-    
+    devise_for :users
+
     root :to => "users#index"
     #FIXME with proper controller path
 
@@ -15,5 +13,10 @@ Rails.application.routes.draw do
             end
         end
     end
+
+    resources :semesters do
+        resources :shifts, :except => [:index]
+    end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,11 +1,20 @@
 Given /^user "(.*)" exists with password "(.*)"/ do |us, pa|
-    User.init(us, pa)
+    User.init(us, us + "@berkeley.edu", pa + "123456")
 end
 
-When /^(?:|I )am logged in as "(.*)"$/ do |user|
-    page.set_rack_session(:session_id => User.find_by(name: user).session_id)
+Given /^manager "(.*)" exists with password "(.*)"/ do |us, pa|
+    Manager.init(us, us + "@berkeley.edu", pa + "123456")
+end
+
+
+When /^(?:|I )log in as "(.*)" with password "(.*)"$/ do |us, pa|
+    pass = pa + "123456"
+
+    select(us, from: "user_email")
+    fill_in("user_password", with: pass)
+    click_button("Log in")
 end
 
 When /^(?:|I )am not logged in$/ do
-    page.set_rack_session(:session_id => nil)
+    page.driver.submit :delete, "/users/sign_out", {}
 end
