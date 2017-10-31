@@ -305,7 +305,7 @@
   },
   "Cucumber Features": {
     "coverage": {
-      "/Users/smccall/Desktop/Berkeley/bsc-workshift-manager/app/models/user.rb": [
+      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/models/user.rb": [
         1,
         1,
         null,
@@ -326,7 +326,7 @@
         null,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/bsc-workshift-manager/app/models/manager.rb": [
+      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/models/manager.rb": [
         1,
         null,
         1,
@@ -335,7 +335,7 @@
         null,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/bsc-workshift-manager/app/controllers/application_controller.rb": [
+      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/controllers/application_controller.rb": [
         1,
         1,
         null,
@@ -344,23 +344,23 @@
         null,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/bsc-workshift-manager/app/helpers/application_helper.rb": [
+      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/bsc-workshift-manager/app/helpers/preferences_helper.rb": [
+      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/helpers/preferences_helper.rb": [
         1,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/bsc-workshift-manager/app/helpers/semesters_helper.rb": [
+      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/helpers/semesters_helper.rb": [
         1,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/bsc-workshift-manager/app/helpers/shifts_helper.rb": [
+      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/helpers/shifts_helper.rb": [
         1,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/bsc-workshift-manager/app/controllers/users_controller.rb": [
+      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/controllers/users_controller.rb": [
         1,
         1,
         1,
@@ -407,7 +407,7 @@
         null,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/bsc-workshift-manager/app/controllers/preferences_controller.rb": [
+      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/controllers/preferences_controller.rb": [
         1,
         1,
         1,
@@ -489,7 +489,7 @@
         null,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/bsc-workshift-manager/app/models/preference.rb": [
+      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/models/preference.rb": [
         1,
         1,
         1,
@@ -545,24 +545,24 @@
         null,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/bsc-workshift-manager/app/models/application_record.rb": [
+      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/models/application_record.rb": [
         1,
         1,
         null
       ],
-      "/Users/smccall/Desktop/Berkeley/bsc-workshift-manager/app/channels/application_cable/channel.rb": [
+      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/channels/application_cable/channel.rb": [
         0,
         0,
         0,
         0
       ],
-      "/Users/smccall/Desktop/Berkeley/bsc-workshift-manager/app/channels/application_cable/connection.rb": [
+      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/channels/application_cable/connection.rb": [
         0,
         0,
         0,
         0
       ],
-      "/Users/smccall/Desktop/Berkeley/bsc-workshift-manager/app/controllers/semesters_controller.rb": [
+      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/controllers/semesters_controller.rb": [
         0,
         0,
         0,
@@ -571,87 +571,6 @@
         0,
         0,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/smccall/Desktop/Berkeley/bsc-workshift-manager/app/controllers/shifts_controller.rb": [
         0,
         0,
         0,
@@ -732,27 +651,108 @@
         0,
         0
       ],
-      "/Users/smccall/Desktop/Berkeley/bsc-workshift-manager/app/jobs/application_job.rb": [
+      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/controllers/shifts_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         0,
         0
       ],
-      "/Users/smccall/Desktop/Berkeley/bsc-workshift-manager/app/mailers/application_mailer.rb": [
+      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/jobs/application_job.rb": [
+        0,
+        0
+      ],
+      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/mailers/application_mailer.rb": [
         0,
         0,
         0,
         0
       ],
-      "/Users/smccall/Desktop/Berkeley/bsc-workshift-manager/app/models/semester.rb": [
+      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/models/semester.rb": [
         0,
         0,
         0
       ],
-      "/Users/smccall/Desktop/Berkeley/bsc-workshift-manager/app/models/shift.rb": [
+      "/Users/smccall/Desktop/Berkeley/169/bsc-workshift-manager/app/models/shift.rb": [
         0,
         0,
         0
       ]
     },
-    "timestamp": 1509405356
+    "timestamp": 1509420923
   }
 }
