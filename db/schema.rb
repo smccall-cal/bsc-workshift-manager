@@ -21,6 +21,25 @@ ActiveRecord::Schema.define(version: 20171026201536) do
     t.index ["user_id"], name: "index_preferences_on_user_id"
   end
 
+  create_table "semesters", force: :cascade do |t|
+    t.string "semester_name"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shifts", force: :cascade do |t|
+    t.integer "semester_id"
+    t.string "day"
+    t.time "time"
+    t.string "location"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["semester_id"], name: "index_shifts_on_semester_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.integer "manage"
