@@ -4,7 +4,7 @@ The customer’s needed to revamp their workshift management system to a more us
 https://workshift.bsc.coop/caz/
 
 Our project is currently deployed at:
-https://bsc-workshift-management.herokuapp.com
+https://bsc-workshift-manager.herokuapp.com
 
 <!-- <a href="https://codeclimate.com/github/smccall-cal/bsc-workshift-manager"><img src="https://codeclimate.com/github/smccall-cal/bsc-workshift-manager/badges/gpa.svg" /></a> -->
 
