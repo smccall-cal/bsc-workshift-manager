@@ -1,6 +1,7 @@
 class PreferencesController < ApplicationController
   before_action :set_user, :except => :notlogged
   before_action :set_preference, :only => [:show, :edit, :update]
+  before_action :new_password
 
   def index
     if @user.preferences.length == 0
@@ -62,6 +63,11 @@ class PreferencesController < ApplicationController
     end
   end
 
+  def new_password
+      if current_user.init
+          redirect_to edit_user_registration_path
+      end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

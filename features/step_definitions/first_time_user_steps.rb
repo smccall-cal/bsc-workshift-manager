@@ -20,17 +20,23 @@ Then /^I should be redirected to (.*)/ do |page_name|
     step ("I should be on " + page_name)
 end
 
-When /^I set up my new password/ do
+When /^I set up my new password with "(.*)" to replace "(.*)"/ do |pa, old_pa|
     steps %{
-        When I fill in "user_password" with "Bar2"
-        When I fill in "user_password_confirmation" with "Bar2"
-        When I fill in "user_current_password" with "Bar"
+        When I fill in "user_password" with "#{pa}"
+        When I fill in "user_password_confirmation" with "#{pa}"
+        When I fill in "user_current_password" with "#{old_pa}"
         When I press "Update"
     }
 end
 
-Given /^I have not set up my password/ do
-    step ("user \"" + @username + "\" have not logged in before")
+Given /^I have (not )?set up my password/ do |n|
+    if n
+        step ("user \"" + @username + "\" have not logged in before")
+    else
+        u = User.find_by_username(@username)
+        u.init = false
+        u.save
+    end
 end
 
 Given /^I have not set up my preferences/ do
