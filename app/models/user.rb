@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
     has_many :preferences #, :dependencies => :destroy
 
     def self.init(username, email, password)
-        new_user = User.new(username: username, password: password, email: email, manage: 0, init: true)
+        new_user = User.new(username: username, password: password, email: email, manage: 0)
         return new_user.save
     end
 
