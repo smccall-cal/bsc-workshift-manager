@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
     before_action :manager, only: [:new, :destroy]
-    before_action :new_password
 
     def user_params
       params.permit(:email, :username, :password, :id)
@@ -41,12 +40,6 @@ class UsersController < ApplicationController
     end
 
     def destroy
-    end
-
-    def new_password
-        if current_user.init
-            redirect_to edit_user_registration_path
-        end
     end
 
 end

@@ -330,7 +330,6 @@
         1,
         1,
         1,
-        1,
         null,
         1,
         0,
@@ -370,12 +369,6 @@
         null,
         null,
         1,
-        null,
-        null,
-        1,
-        7,
-        6,
-        null,
         null,
         null,
         null
@@ -383,8 +376,15 @@
       "/home/ubuntu/workspace/git/bsc-workshift-manager/app/controllers/application_controller.rb": [
         1,
         1,
+        1,
         null,
         1,
+        null,
+        null,
+        1,
+        23,
+        6,
+        null,
         null,
         null,
         null
@@ -409,6 +409,9 @@
         1,
         null,
         1,
+        null,
+        null,
+        1,
         1,
         1,
         1,
@@ -425,7 +428,6 @@
         1,
         1,
         1,
-        1,
         null,
         1,
         1,
@@ -485,11 +487,6 @@
         0,
         null,
         null,
-        null,
-        null,
-        1,
-        6,
-        0,
         null,
         null,
         null,
@@ -794,6 +791,6 @@
         0
       ]
     },
-    "timestamp": 1509525993
+    "timestamp": 1509601150
   }
 }
