@@ -23,10 +23,24 @@ module NavigationHelpers
 
     when /^the preferences page for "(.*)"$/
         id = User.find_by(username: $1).id
-        no_user_preferences_path(id)
+        user_preferences_path(id)
+    
+    when /^the my preferences page for "(.*)"$/
+        id = User.find_by(username: $1).id
+        preference_id = User.find(id).preferences[0].id
+        user_preference_path(id, preference_id)
 
     when /^the user creation page$/
         new_user_path
+
+    when /^the new password page for "(.*)"$/
+        edit_user_registration_path
+    
+    when /^the make preferences page/
+        new_user_preference_path(User.find_by_username(@username).id)
+        
+    when /^the no preferences page/
+        no_user_preferences_path(User.find_by_username(@username).id)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
