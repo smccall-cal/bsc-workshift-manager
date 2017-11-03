@@ -26,7 +26,7 @@ module NavigationHelpers
         no_user_preferences_path(id)
 
     when /^the user creation page$/
-        new_user_path
+        new_user_registration_path
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

@@ -1,9 +1,9 @@
 Given /^user "(.*)" exists with password "(.*)"/ do |us, pa|
-    User.init(us, us + "@berkeley.edu", pa + "123456")
+    User.init(us, us + "@berkeley.edu", pa + "123456", "CZ")
 end
 
 Given /^manager "(.*)" exists with password "(.*)"/ do |us, pa|
-    Manager.init(us, us + "@berkeley.edu", pa + "123456")
+    Manager.init(us, us + "@berkeley.edu", pa + "123456", "CZ")
 end
 
 
