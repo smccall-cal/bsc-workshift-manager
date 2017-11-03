@@ -1,13 +1,9 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
-    before_action :manager, only: [:new, :destroy]
+    before_action :manager?, only: [:new, :destroy]
 
     def user_params
       params.permit(:email, :username, :password, :id)
-    end
-
-    def manager
-        if not current_user.manage? then redirect_to user_path(current_user.id) end
     end
 
     def index
@@ -17,6 +13,7 @@ class UsersController < ApplicationController
     end
 
     def show
+        @manager = current_user.manage?
     end
 
     def new
