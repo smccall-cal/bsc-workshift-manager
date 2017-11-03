@@ -1,0 +1,5 @@
+#!/bin/sh
+
+heroku run rake db:drop
+heroku run rake db:migrate
+heroku run rake db:seed
