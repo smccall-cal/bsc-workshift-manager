@@ -1,0 +1,46 @@
+<h1>Shift </h1>
+
+<%= notice %>
+<br>
+
+
+Shift Location: <%= @shift.location%>
+<br>
+Shift Description: <%= @shift.description%>
+<br>
+Day of the week: <%= @shift.day%>
+<br>
+Time: <%= @shift.time%>
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>name of shifter</th>
+    </tr>
+  </thead>
+    
+  <% @shift_users.each do |sh| %> 
+  <tr>
+    <td><%= sh.username%></td>
+  </tr>
+  <% end %>
+</table>   
+</br>
+
+<%= form_for(@shift ,url:add_user_semester_shifts_path, method: :post) do |f| %>
+  <div class="field">
+    <%= f.select :users, User.all.collect{ |u| [u.username, u.email] }, include_blank: true %>
+    
+  </div>
+  <div class="actions">
+    <%= f.submit "Add user to shift" %>
+  </div>
+<% end %>
+
+
+<br>
+<%= link_to 'Edit', edit_semester_shift_path(@semester,@shift) %> 
+<%= button_to 'Delete', semester_shift_path(@semester,@shift), :method => :delete, :confirm => 'Are you sure?' %>
+<br>
+<%= link_to 'Back', semester_path(@semester) %> 

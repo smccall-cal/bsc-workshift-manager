@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171102054933) do
+ActiveRecord::Schema.define(version: 20171104073144) do
 
   create_table "preferences", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 20171102054933) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "shift_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "shift_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shift_id"], name: "index_shift_users_on_shift_id"
+    t.index ["user_id"], name: "index_shift_users_on_user_id"
+  end
+
   create_table "shifts", force: :cascade do |t|
     t.integer "semester_id"
     t.string "day"
@@ -38,6 +47,15 @@ ActiveRecord::Schema.define(version: 20171102054933) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["semester_id"], name: "index_shifts_on_semester_id"
+  end
+
+  create_table "shifts_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "shift_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shift_id"], name: "index_shifts_users_on_shift_id"
+    t.index ["user_id"], name: "index_shifts_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

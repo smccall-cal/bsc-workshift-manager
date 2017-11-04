@@ -10,6 +10,9 @@ class ShiftsController < ApplicationController
   # GET /semesters/:semester_id/shifts/:id(.:format) 
   # GET /shifts/1.json
   def show
+    @semester = Semester.find(session[:semester]["id"])
+    @shift = Shift.find(params["id"])
+    @shift_users = @shift.users.all
   end
 
   # GET /semesters/:semester_id/shifts/new(.:format)
@@ -76,6 +79,13 @@ class ShiftsController < ApplicationController
     #   format.html { redirect_to shifts_url, notice: 'Shift was successfully destroyed.' }
     #   format.json { head :no_content }
     # end
+  end
+  
+  def add_new_shift_user
+    @shift = Shift.find params[:id]
+    @user = User.where(:email => params[:shift][:users]).first
+    @shift.users << @user
+    redirect_to(semester_shift_path(@shift))
   end
 
   private
