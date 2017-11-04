@@ -1,9 +1,15 @@
 Given /^user "(.*)" exists with password "(.*)"/ do |us, pa|
     User.init(us, us + "@berkeley.edu", pa + "123456", "CZ")
+    u = User.find_by_username(us)
+    u.init = false
+    u.save
 end
 
 Given /^manager "(.*)" exists with password "(.*)"/ do |us, pa|
     Manager.init(us, us + "@berkeley.edu", pa + "123456", "CZ")
+    u = User.find_by_username(us)
+    u.init = false
+    u.save
 end
 
 

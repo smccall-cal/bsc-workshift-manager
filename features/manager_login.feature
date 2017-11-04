@@ -21,7 +21,7 @@ Scenario: I can access regular user pages
 
     When I log in as "Manager" with password "ManagerBar"
     And I follow "My preferences"
-    Then I should be on the preferences page for "Manager"
+    Then I should be on the no preferences page for "Manager"
 
 Scenario: I can access managerial pages
 
