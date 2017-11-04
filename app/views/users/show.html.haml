@@ -1,2 +1,15 @@
+%h1 Welcome #{current_user.username}
+
+- 3.times do
+  %br
+
+Remaining Hours: #{current_user.hours}
+%br
+Current Fines: #{current_user.fines}
+
+- 7.times do
+  %br
+
 = link_to "My preferences", user_preferences_path(params[:id])
+%br
 = link_to "Add a Resident", new_user_path
