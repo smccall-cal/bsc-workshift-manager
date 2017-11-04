@@ -20,9 +20,10 @@ Time: <%= @shift.time%>
     </tr>
   </thead>
     
-  <% @shift_users.each do |sh| %> 
+  <% @shift_users.each do |user| %> 
   <tr>
-    <td><%= sh.username%></td>
+    <td><%= user.username%></td>
+    <td><%= link_to 'Delete', delete_shift_user_semester_shifts_path(@shift,:user_id => user), :method => :delete %></td>
   </tr>
   <% end %>
 </table>   

@@ -87,6 +87,13 @@ class ShiftsController < ApplicationController
     @shift.users << @user
     redirect_to(semester_shift_path(@shift))
   end
+  
+  def delete_new_shift_user
+    @shift = Shift.find params[:id]
+    @user = User.find params[:user_id]
+    @shift.users.destroy(@user)
+    redirect_to(semester_shift_path(@shift))
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

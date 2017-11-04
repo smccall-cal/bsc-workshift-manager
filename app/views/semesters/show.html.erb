@@ -30,6 +30,9 @@ End Date: <%= @semester.end_date.strftime("%d %B %Y")%>
     <td><%= sh.description %></td>
     <td><%= sh.day %></td>
     <td><%= sh.time.strftime("%r")%></td>
+    <% sh.users.each do |u| %>
+      <td><%= u.username %></td>
+    <% end %>
   </tr>
   <% end %>
 </table>
