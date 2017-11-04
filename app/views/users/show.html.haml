@@ -1,12 +1,3 @@
-%h3 Hours Remaining
-= current_user.hours
-
-%h3 Current Fines
-= current_user.fines
-
-%br
-%br
-
 = link_to "My preferences", user_preferences_path(params[:id])
 - if current_user.manage?
     = link_to "Add a Resident", new_user_registration_path
