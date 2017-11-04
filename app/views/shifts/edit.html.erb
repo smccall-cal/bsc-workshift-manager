@@ -1,8 +1,14 @@
-<h1>Create New Shift</h1>
+<h1>Editing Shift</h1>
 
 <%= notice %>
 
-<%= form_tag semester_shifts_path, :method => "post" do %>
+Shift ID: <%= @shift.id%>
+<br>
+Start Date: <%= @semester.start_date.strftime("%d %B %Y")%>
+<br>
+End Date: <%= @semester.end_date.strftime("%d %B %Y")%>
+
+<%= form_tag semester_shift_path, :method => "patch" do %>
 
   <%= label :shift, :location, 'Shift Location'%>
   <%= text_field :shift, :location%>

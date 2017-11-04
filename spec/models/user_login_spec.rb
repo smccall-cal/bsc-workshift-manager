@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'User'
+require 'rails_helper'
 
 # These tests were more important when login was implemented from scratch
 # Now that the login is handled by devise, these tests mostly show that

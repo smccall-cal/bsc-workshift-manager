@@ -15,10 +15,12 @@ class ShiftsController < ApplicationController
   # GET /semesters/:semester_id/shifts/new(.:format)
   def new
     @shift = Shift.new
+    @semester = Semester.find(session[:semester]["id"])
   end
 
   # GET /semesters/:semester_id/shifts/:id/edit(.:format)
   def edit
+    @semester = Semester.find(session[:semester]["id"])
   end
 
   # POST /semesters/:semester_id/shifts(.:format) 
@@ -45,25 +47,35 @@ class ShiftsController < ApplicationController
   # PATCH/PUT /semesters/:semester_id/shifts/:id(.:format)
   # PATCH/PUT /semesters/:semester_id/shifts/:id(.:format)
   def update
-    respond_to do |format|
-      if @shift.update(shift_params)
-        format.html { redirect_to @shift, notice: 'Shift was successfully updated.' }
-        format.json { render :show, status: :ok, location: @shift }
-      else
-        format.html { render :edit }
-        format.json { render json: @shift.errors, status: :unprocessable_entity }
-      end
-    end
+    @semester = Semester.find(session[:semester]["id"])
+    @shift = Shift.find params[:id]
+    @shift.update_attributes!(shift_params)
+    flash[:notice] = "#{@shift.description} @ #{@shift.location} was successfully updated."
+    redirect_to semester_path(@semester)
   end
+  # def update
+  #   respond_to do |format|
+  #     if @shift.update(shift_params)
+  #       format.html { redirect_to @shift, notice: 'Shift was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @shift }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @shift.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /semesters/:semester_id/shifts/:id(.:format)
   # DELETE /shifts/1.json
   def destroy
+    @semester = Semester.find(session[:semester]["id"])
+    @shift = Shift.find params[:id]
     @shift.destroy
-    respond_to do |format|
-      format.html { redirect_to shifts_url, notice: 'Shift was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to semester_path(@semester)
+    # respond_to do |format|
+    #   format.html { redirect_to shifts_url, notice: 'Shift was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
   end
 
   private
