@@ -1,4 +1,17 @@
+%h1 Welcome #{current_user.username}
+
+- 3.times do
+  %br
+
+Remaining Hours: #{current_user.hours}
+%br
+Current Fines: #{current_user.fines}
+
+- 7.times do
+  %br
+
 = link_to "My preferences", user_preferences_path(params[:id])
+
 - if current_user.manage?
     = link_to "Add a Resident", new_user_registration_path
 = link_to "Sign Out", destroy_user_session_path, method: :delete
