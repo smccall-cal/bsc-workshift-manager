@@ -14,7 +14,8 @@ users = [ {username: "Xin Qin", email: "qinxin@berkeley.edu", password: "123456"
           {username: "Spencer McCall", email: "smccall@berkeley.edu", password: "123456"}]
 
 users.each do |user|
-  User.init(user[:username], user[:email], user[:password])
+  User.init(user[:username], user[:email], user[:password], "CZ")
 end
 
-Manager.init("Oski", "oski@berkeley.edu", "123456")
+Manager.init("Oski", "oski@berkeley.edu", "123456", "CZ")
+Admin.init("Chancellor Christ", "christ@berkeley.edu", "123456")
