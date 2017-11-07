@@ -13,3 +13,23 @@
  *= require_tree .
  *= require_self
  */
+
+ h1 {
+   text-align: center;
+ }
+ h2 {
+   text-align: center;
+ }
+ .login_container {
+   margin: auto;
+   text-align: center;
+   border: 5px; border-style: solid;
+   width: 350px;
+   height: 200px;
+   padding-top: 20px;
+   padding-bottom: 20px;
+ }
+
+ .Devise_container {
+   text-align: center;
+ }
