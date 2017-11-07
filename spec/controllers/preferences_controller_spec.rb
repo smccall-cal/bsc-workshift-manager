@@ -41,7 +41,8 @@ RSpec.describe PreferencesController, type: :controller do
   # PreferencesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #show" do
+
+  describe "GET #show", :type => :model do
     it "returns a success response" do
       preference = Preference.create! valid_attributes
       get :show, params: {id: preference.to_param}, session: valid_session
@@ -49,6 +50,9 @@ RSpec.describe PreferencesController, type: :controller do
     end
     it "calls model method to fetch the preferences" do
     end
+    # it "new a preference" do
+    #     expect(Preference.new).to be_valid
+    # end
   end
 
   describe "GET #new" do
@@ -60,6 +64,7 @@ RSpec.describe PreferencesController, type: :controller do
 
   describe "GET #edit" do
     it "returns a success response" do
+      # user = User.create! valid_attributes
       preference = Preference.create! valid_attributes
       get :edit, params: {id: preference.to_param}, session: valid_session
       expect(response).to be_success
