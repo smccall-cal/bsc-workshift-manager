@@ -13,5 +13,5 @@ Current Fines: #{current_user.fines}
 = link_to "My preferences", user_preferences_path(params[:id])
 
 - if current_user.manage?
-    = link_to "Add a Resident", new_user_registration_path
+  = link_to "Add a Resident", new_user_registration_path
 = link_to "Sign Out", destroy_user_session_path, method: :delete
