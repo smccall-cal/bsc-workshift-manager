@@ -33,3 +33,14 @@
  .Devise_container {
    text-align: center;
  }
+
+ .Edit_container {
+  text-align: center;
+  height: 350px;
+  width: 400px;
+  margin: auto;
+ }
+
+ .edit_field {
+   text-align: left;
+ }
