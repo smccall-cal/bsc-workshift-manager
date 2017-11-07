@@ -3,34 +3,45 @@
 
 
 <%= form_tag user_preference_path(@user, @preference), :method => "put", :id => "preference" do %>
-  <% Preference.shifts.each do |sh| %>
-    <%= select_tag "preference[shift][#{sh}]", options_for_select((Array 0..5), :selected => @preference.shift_hash[sh]) %>
-    <%= label_tag "preference[shift][#{sh}]", sh %>
-    <br>
-  <% end %>
-  <div class="table">
-    <div class="tbody">
-      <div class="tr">
-        <div class="th">
-        </div>
+  <ul class="nav nav-pills nav-stacked">
+    <li><a href="#">Exterior Cleaning</a></li>
+    <li><a href="#">Interior Cleaning</a></li>
+    <li><a href="#">Kitchen</a></li>
+    <li><a href="#">Rotating Shift</a></li>
+    <li><a href="#">WR</a></li>
+  </ul>
+    <% Preference.shifts.each do |sh| %>
+      <
+      <%= select_tag "preference[shift][#{sh}]", options_for_select((Array 0..5), :selected => @preference.shift_hash[sh]) %>
+      <%= label_tag "preference[shift][#{sh}]", sh %>
+      <br>
+    <% end %>
+  <br>
+  <table class= 'table'>
+    <tbody>
+      <tr>
+        <th>Times</th>
         <% Preference.times.each do |t| %>
-          <div class = "th"><%= t %></div>    
+          <th><%= t %></th>    
         <% end %>
-      </div>
+      </tr>
+      <tr>
       <% Preference.days.each do |d| %>
-        <div class="tr">
-          <div class="td">
+        <tr>
+          <td>
           <%= d %>
-          </div>
+          </td>
           <% Preference.times.each do |t| %>
-            <div class="td">
+            <td>
             <%= select_tag "preference[schedule][#{d}][#{t}]", options_for_select(["+", "-", "x", "?", " "], :selected =>  @preference.schedule_hash[d][t]) %>
-            </div>
+            </td>
           <% end %>
-        </div>
+        </tr>
       <% end %>
-    </div>
-  </div>
+      </tr>
+    </tbody>
+  </table>
+  
   <br>
   <%= submit_tag "Save Preferences" %>
 <% end %>
