@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
       end
   end
 
+  def manager?
+      if not (user_signed_in? && current_user.manage?) then redirect_to root_path end
+  end
+
 end
