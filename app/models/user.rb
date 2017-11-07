@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :trackable, :validatable
     has_many :preferences #, :dependencies => :destroy
+    has_and_belongs_to_many :shifts
 
     def self.init(username, email, password, building)
         new_user = User.new(username: username, password: password, email: email, building: building, manage: 0)
