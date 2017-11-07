@@ -29,15 +29,6 @@ ActiveRecord::Schema.define(version: 20171104073144) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "shift_users", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "shift_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["shift_id"], name: "index_shift_users_on_shift_id"
-    t.index ["user_id"], name: "index_shift_users_on_user_id"
-  end
-
   create_table "shifts", force: :cascade do |t|
     t.integer "semester_id"
     t.string "day"

@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-    before_action :manager?, only: [:new, :delete]
+    before_action :manager?, only: [:new, :create, :delete]
     skip_before_action :require_no_authentication
     skip_before_action :new_password, :only => [:edit, :update]
 

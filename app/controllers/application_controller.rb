@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def home
   end
-  
+
   def new_password
       if current_user && current_user.init
           redirect_to edit_user_registration_path

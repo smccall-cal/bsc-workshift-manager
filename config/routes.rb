@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-    devise_for :users
+    devise_for :users, :controllers => { :registrations => :registrations }
 
     root :to => "users#index"
     #FIXME with proper controller path
@@ -22,8 +22,8 @@ Rails.application.routes.draw do
             end
         end
     end
-    
-    
+
+
     #resources :shifts_users
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
