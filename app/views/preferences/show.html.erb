@@ -1,37 +1,39 @@
 <p id="notice"><%= notice %></p>
-<p id="mes">Your preferences: </p>
+<h2>Your preferences: </h2>
 
 <div id="preference">
   <% Preference.shifts.each do |sh| %>
-    <div class="shift" id="<%= "preference[shift][#{sh}]" %>" >
+    <span class="shift" id="<%= "preference[shift][#{sh}]" %>" >
         <%= @preference.shift_hash[sh] %>
-    </div>
+    </span>
     <%= label_tag "preference[shift][#{sh}]", sh %>
     <br>
   <% end %>
-  <div class="table">
-    <div class="tbody">
-      <div class="tr">
-        <div class="th">
-        </div>
-        <% Preference.times.each do |t| %>
-          <div class = "th"><%= t %></div>    
-        <% end %>
-      </div>
-      <% Preference.days.each do |d| %>
-        <div class="tr">
-          <div class="td">
-          <%= d %>
-          </div>
-          <% Preference.times.each do |t| %>
-            <div class="td schedule" id="<%= "preference[schedule][#{d}][#{t}]" %>">
-                <%= @preference.schedule_hash[d][t] %>
-            </div>
-          <% end %>
-        </div>
+
+  <table class= 'table'>
+  <tbody>
+    <tr>
+      <th>Times</th>
+      <% Preference.times.each do |t| %>
+        <th><%= t %></th>    
       <% end %>
-    </div>
-  </div>
+    </tr>
+    <tr>
+    <% Preference.days.each do |d| %>
+      <tr>
+        <td>
+        <%= d %>
+        </td>
+        <% Preference.times.each do |t| %>
+          <td id="<%= "preference[schedule][#{d}][#{t}]" %>">
+          <%= @preference.schedule_hash[d][t] %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tr>
+  </tbody>
+</table>
   <br>
 </div>
 

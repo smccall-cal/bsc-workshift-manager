@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20171104073144) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
+    t.string "building"
     t.integer "manage"
     t.integer "hours", default: 0
     t.integer "fines", default: 0

@@ -21,16 +21,10 @@ Scenario: I can access regular user pages
 
     When I log in as "Manager" with password "ManagerBar"
     And I follow "My preferences"
-    Then I should be on the preferences page for "Manager"
+    Then I should be on the no preferences page for "Manager"
 
 Scenario: I can access managerial pages
 
     When I log in as "Manager" with password "ManagerBar"
     And I follow "Add a Resident"
     Then I should be on the user creation page
-
-Scenario: Regular users cannot access managerial pages
-
-    When I log in as "Regular" with password "RegularBar"
-    And I follow "Add a Resident"
-    Then I should be on the personal page for "Regular"

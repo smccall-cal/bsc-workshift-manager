@@ -9,12 +9,21 @@ class User < ActiveRecord::Base
     has_many :preferences #, :dependencies => :destroy
     has_and_belongs_to_many :shifts
 
-    def self.init(username, email, password)
-        new_user = User.new(username: username, password: password, email: email, manage: 0)
+    def self.init(username, email, password, building)
+        new_user = User.new(username: username, password: password, email: email, building: building, manage: 0)
         return new_user.save
     end
 
     def manage?
         return manage == 1
+    end
+
+    def buildings
+        if self.building == "All"
+            return ["Afro", "Castro", "CZ", "Cloyne", "Convent", "Davis", "Euclid",
+                    "Fenwick", "Hillegass-Parker", "Hoyt", "Kidd", "Kingman", "Lothlorien",
+                    "Northside", "Ridge", "Rochdale", "Sherman", "Stebbins", "Wilde", "Wolf"]
+        end
+        return [self.building]
     end
 end
