@@ -41,10 +41,16 @@ RSpec.describe ApplicationController, type: :controller do
     end
     
     describe "log_out" do
-        it "checks if the route is sessions#destroy" do
+        it "returns true if the route is sessions#destroy" do
             allow(controller).to receive(:controller_name).and_return("sessions")
             allow(controller).to receive(:action_name).and_return("destroy")
             expect(controller.log_out).to be_truthy
+        end
+        
+        it "returns false if the route is not sessions#destroy" do
+            allow(controller).to receive(:controller_name).and_return("sessions")
+            allow(controller).to receive(:action_name).and_return("new")
+            expect(controller.log_out).to be_falsey
         end
     end
 end
