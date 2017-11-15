@@ -1,7 +1,7 @@
 <h1>New Preference</h1>
 <p id="error"><%= alert %></p>
 
-<%= form_tag user_preferences_path(@user), :method => "post", :id => "preference" do %>
+<%= form_tag user_preferences_path(@user), :method => "post", :id => "preference"do%> #, :user_id => "#{find_user_id(@user)}" 
   <% Preference.shifts.each do |sh| %>
     <%= select_tag "preference[shift][#{sh}]", options_for_select(Array 0..5) %>
     <%= label_tag "preference[shift][#{sh}]", sh %>
@@ -13,7 +13,7 @@
         <div class="th">
         </div>
         <% Preference.times.each do |t| %>
-          <div class = "th"><%= t %></div>    
+          <div class = "th"><%= t %></div>
         <% end %>
       </div>
       <% Preference.days.each do |d| %>
@@ -35,4 +35,4 @@
 <% end %>
 
 <!--to be replaced by personal page path-->
-<%= link_to 'Back', user_path(@user) %> 
+<%= link_to 'Back', user_path(@user) %>
