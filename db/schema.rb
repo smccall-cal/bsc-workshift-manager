@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171104073144) do
+ActiveRecord::Schema.define(version: 20171115165922) do
 
   create_table "preferences", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -29,24 +29,38 @@ ActiveRecord::Schema.define(version: 20171104073144) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "shifts", force: :cascade do |t|
-    t.integer "semester_id"
-    t.string "day"
-    t.time "time"
+  create_table "shift_details", force: :cascade do |t|
     t.string "location"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["semester_id"], name: "index_shifts_on_semester_id"
   end
 
-  create_table "shifts_users", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "shift_id"
+  create_table "shift_templates", force: :cascade do |t|
+    t.integer "hours"
+    t.string "day"
+    t.integer "shift_details_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["shift_id"], name: "index_shifts_users_on_shift_id"
-    t.index ["user_id"], name: "index_shifts_users_on_user_id"
+    t.index ["shift_details_id"], name: "index_shift_templates_on_shift_details_id"
+  end
+
+  create_table "shift_templates_semesters", force: :cascade do |t|
+    t.integer "shift_templates_id"
+    t.integer "semesters_id"
+    t.index ["semesters_id"], name: "index_shift_templates_semesters_on_semesters_id"
+    t.index ["shift_templates_id"], name: "index_shift_templates_semesters_on_shift_templates_id"
+  end
+
+  create_table "shifts", force: :cascade do |t|
+    t.integer "semester_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "date"
+    t.boolean "is_checked_off"
+    t.integer "user_id"
+    t.index ["semester_id"], name: "index_shifts_on_semester_id"
+    t.index ["user_id"], name: "index_shifts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
