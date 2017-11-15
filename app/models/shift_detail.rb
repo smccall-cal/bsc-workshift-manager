@@ -1,0 +1,2 @@
+class ShiftDetail < ApplicationRecord
+end
