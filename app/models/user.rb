@@ -10,16 +10,29 @@ class User < ActiveRecord::Base
     has_and_belongs_to_many :shifts
 
     def self.init(username, email, password, building)
-        new_user = User.new(username: username, password: password, email: email, building: building, manage: 0)
+        new_user = User.new(username: username, password: password, email: email, building: building)
         return new_user.save
     end
 
+    def promote(role)
+        self.role = role
+        self.save
+    end
+
     def manage?
-        return manage == 1
+        return self.role == "Manager" || admin?
+    end
+
+    def admin?
+        return self.role == "Admin" || president?
+    end
+
+    def president?
+        return self.role == "President"
     end
 
     def buildings
-        if self.building == "All"
+        if self.admin?
             return ["Afro", "Castro", "CZ", "Cloyne", "Convent", "Davis", "Euclid",
                     "Fenwick", "Hillegass-Parker", "Hoyt", "Kidd", "Kingman", "Lothlorien",
                     "Northside", "Ridge", "Rochdale", "Sherman", "Stebbins", "Wilde", "Wolf"]

@@ -11,20 +11,21 @@ describe User do
         @user  = "Username of some sort"
         @email = "generic@berkeley.edu"
         @pass  = "Password of some sort"
+        @building = "Location of some sort"
     end
 
-    it "accepts a username, email, and password" do
+    it "accepts a username, email, password, and building" do
         expect(User).to receive(:new).and_return(User.new(username: @user, password: @pass, email: @email))
-        User.init(@user, @email, @pass)
+        User.init(@user, @email, @pass, @building)
     end
 
     it "correctly hides the password" do
-        User.init(@user, @email, @pass)
+        User.init(@user, @email, @pass, @building)
         expect(User.find_by(username: @user).encrypted_password).not_to eq(@pass)
     end
 
     it "properly saves" do
-        v = User.init(@user, @email, @pass)
+        v = User.init(@user, @email, @pass, @building)
         expect(v).to eq(true)
     end
 
