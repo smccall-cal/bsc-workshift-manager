@@ -20,8 +20,18 @@ class Preference < ApplicationRecord
     @@times = (8..23).map {|t| "#{t%12}#{(t < 12)? 'am' : 'pm' }"}
 
     def shift_schedule_keys
+        check_shift_keys
+        check_schedule_day_keys
+        check_schedule_time_keys
+    end
+    
+    def check_shift_keys
         errors.add(:shift, "must contain all and only the shifts as keys") if shift && shift_hash.keys != @@shifts
+    end
+    def check_schedule_day_keys
         errors.add(:schedule, "must contain all and only the days as keys") if schedule && schedule_hash.keys != @@days
+    end
+    def check_schedule_time_keys
         errors.add(:schedule, "inner day hash must contain all and only the times as keys") if schedule && schedule_hash.values.inject(false) {|res, time| res = res || (time.keys != @@times)}
     end
     
