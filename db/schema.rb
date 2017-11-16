@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171115073305) do
+ActiveRecord::Schema.define(version: 20171104073144) do
 
   create_table "preferences", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -51,9 +51,10 @@ ActiveRecord::Schema.define(version: 20171115073305) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.integer "manage"
-    t.integer "hours"
-    t.integer "fines"
+    t.string "building"
+    t.string "role", default: "User"
+    t.integer "hours", default: 0
+    t.integer "fines", default: 0
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -65,7 +66,6 @@ ActiveRecord::Schema.define(version: 20171115073305) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.boolean "init", default: true
-    t.string "building"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
