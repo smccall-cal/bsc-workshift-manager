@@ -13,6 +13,12 @@ RSpec.describe ApplicationController, type: :controller do
     end
     
     describe "before_action :new_password" do
+        it "isn't called when the route is for logging out" do
+            allow(controller).to receive(:log_out).and_return(true)
+            get :index
+            expect(response.body).to eq "Hello world"
+        end
+        
         it "doesn't check first-time-user if no user's logged in" do
             allow(controller).to receive(:current_user).and_return(nil)
             get :index
@@ -31,6 +37,20 @@ RSpec.describe ApplicationController, type: :controller do
             allow(@user).to receive(:init).and_return(false)
             get :index
             expect(response.body).to eq "Hello world"
+        end
+    end
+    
+    describe "log_out" do
+        it "returns true if the route is sessions#destroy" do
+            allow(controller).to receive(:controller_name).and_return("sessions")
+            allow(controller).to receive(:action_name).and_return("destroy")
+            expect(controller.log_out).to be_truthy
+        end
+        
+        it "returns false if the route is not sessions#destroy" do
+            allow(controller).to receive(:controller_name).and_return("sessions")
+            allow(controller).to receive(:action_name).and_return("new")
+            expect(controller.log_out).to be_falsey
         end
     end
 end

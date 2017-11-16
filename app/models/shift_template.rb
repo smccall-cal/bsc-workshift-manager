@@ -1,0 +1,2 @@
+class ShiftTemplate < ApplicationRecord
+end
