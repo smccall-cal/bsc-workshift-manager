@@ -8,11 +8,11 @@ require 'rails_helper'
 describe User do
 
     before(:each) do
-        @user  = "Username of some sort"
-        @email = "generic@berkeley.edu"
-        @pass  = "Password of some sort"
-        @building = "Location of some sort"
-    end
+        @user  = "Bob"
+        @email = "Bob@berkeley.edu"
+        @pass  = "abc123"
+        @building = "Soda"
+    end  # otherwise, User.save will fail validation test, in "properly saves" part.
 
     it "accepts a username, email, password, and building" do
         expect(User).to receive(:new).and_return(User.new(username: @user, password: @pass, email: @email))
