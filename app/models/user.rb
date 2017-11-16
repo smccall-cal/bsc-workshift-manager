@@ -1,24 +1,42 @@
 require 'digest'
+require 'openssl'
 
 class User < ActiveRecord::Base
-    has_many :preferences
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+    devise :database_authenticatable, :registerable,
+           :recoverable, :rememberable, :trackable, :validatable
+    has_many :preferences #, :dependencies => :destroy
+    has_and_belongs_to_many :shifts
 
-    def self.init(username, password)
-        hashed_pass = Digest::SHA256.hexdigest password
-        valid = User.create(username: username, hashed_pass: hashed_pass)
-        return valid != nil
+    def self.init(username, email, password, building)
+        new_user = User.new(username: username, password: password, email: email, building: building)
+        return new_user.save
     end
 
-    def self.validate(username, password)
-        hashed_pass = Digest::SHA256.hexdigest password
-        user = User.find_by(username: username)
+    def promote(role)
+        self.role = role
+        self.save
+    end
 
-        if user == nil
-            return false
-        elsif user.hashed_pass != hashed_pass
-            return false
+    def manage?
+        return self.role == "Manager" || admin?
+    end
+
+    def admin?
+        return self.role == "Admin" || president?
+    end
+
+    def president?
+        return self.role == "President"
+    end
+
+    def buildings
+        if self.admin?
+            return ["Afro", "Castro", "CZ", "Cloyne", "Convent", "Davis", "Euclid",
+                    "Fenwick", "Hillegass-Parker", "Hoyt", "Kidd", "Kingman", "Lothlorien",
+                    "Northside", "Ridge", "Rochdale", "Sherman", "Stebbins", "Wilde", "Wolf"]
         end
-
-        return true
+        return [self.building]
     end
 end

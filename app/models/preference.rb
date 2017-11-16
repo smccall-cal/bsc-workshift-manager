@@ -2,6 +2,7 @@ class Preference < ApplicationRecord
     belongs_to :user
     validates :shift, :schedule, :presence => true
     validate :shift_schedule_keys
+    validate :available_time_more_than_5
 
     @@shifts = []
 
@@ -9,7 +10,7 @@ class Preference < ApplicationRecord
 
     File.open("app/models/shifts", "r") do |f|
       f.each_line do |line|
-        @@shifts.push(line.to_sym)
+        @@shifts.push(line.gsub("\n","").to_sym)
       end
     end
 
@@ -19,10 +20,23 @@ class Preference < ApplicationRecord
     @@times = (8..23).map {|t| "#{t%12}#{(t < 12)? 'am' : 'pm' }"}
 
     def shift_schedule_keys
+        check_shift_keys
+        check_schedule_day_keys
+        check_schedule_time_keys
+    end
+    
+    def check_shift_keys
         errors.add(:shift, "must contain all and only the shifts as keys") if shift && shift_hash.keys != @@shifts
+    end
+    def check_schedule_day_keys
         errors.add(:schedule, "must contain all and only the days as keys") if schedule && schedule_hash.keys != @@days
+    end
+    def check_schedule_time_keys
         errors.add(:schedule, "inner day hash must contain all and only the times as keys") if schedule && schedule_hash.values.inject(false) {|res, time| res = res || (time.keys != @@times)}
-        p errors
+    end
+    
+    def available_time_more_than_5
+        errors.add(:schedule, "Available time should be at least 5 hours.") if schedule && (schedule_hash.values.inject(0) {|coun, d| coun+=d.values.count("+")}) < 5
     end
 
     def self.shifts
