@@ -1,3 +1,4 @@
+@wip
 Feature: allow users to access and modify preferences and settings
 
   As a member
