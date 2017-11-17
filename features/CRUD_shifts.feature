@@ -1,3 +1,4 @@
+@wip
 Feature: Managers should be able to perform CRUD functions on shifts resources
  
   As a manager,
