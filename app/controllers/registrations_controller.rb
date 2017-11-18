@@ -1,5 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
-    before_action :manager?, only: [:new, :create, :delete]
+    before_action :configure_sign_up_params, only: [:create]
+    before_action :manager?, only: [:new, :create, :destroy]
     skip_before_action :require_no_authentication
     skip_before_action :new_password, :only => [:edit, :update]
 
@@ -23,6 +24,23 @@ class RegistrationsController < Devise::RegistrationsController
         pairs.each{|name, email|
             User.init(username: name, email: email, password: "5108481936", building: building)
         }
+    end
+
+    def configure_sign_up_params
+       devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :building])
+    end
+
+    # If you have extra params to permit, append them to the sanitizer.
+    # def configure_account_update_params
+    #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+    # end
+
+    def sign_up(resource_name, resource)
+    end
+
+    #The path used after sign up.
+    def after_sign_up_path_for(resource)
+       users_path
     end
 
     protected
