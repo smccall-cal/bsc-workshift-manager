@@ -5,7 +5,7 @@ rvm:
 
 env:
   global:
-    - CC_TEST_REPORTER_ID=e6aac9f4c47188e63a0d55783af1bd62a8789d9c668486a976de122e1d844faf
+    - CC_TEST_REPORTER_ID=0b89c7234d16eb4c621550b0ca503a615b52ea5664a70cd35595edcdb4b8e19d
 language: ruby
 rvm:
   - 2.4.1
@@ -14,6 +14,9 @@ before_script:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
   - bundle exec rspec
+  - bundle exec cucumber --tags=~wip
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
