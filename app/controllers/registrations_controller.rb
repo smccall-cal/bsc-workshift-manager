@@ -15,11 +15,14 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     def mass_create
-        list = params[:names]
+        names = params[:names]
         emails = params[:emails]
         building = params[:building]
-        #Split by regex
-        User.init(username: name, email: email, password: "5108481936", building: building)
+
+        #Split names and emails by regex, save to hash pairs {name => email}
+        pairs.each{|name, email|
+            User.init(username: name, email: email, password: "5108481936", building: building)
+        }
     end
 
     protected
