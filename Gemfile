@@ -66,7 +66,9 @@ group :test do
   gem 'test-unit'
   gem 'minitest'
   gem 'shoulda-matchers', '3', :require => false
-  gem 'simplecov', '~> 0.12.0', :require => true
+  gem 'simplecov', '~> 0.8.2', :require => false
+  gem 'simplecov-shield'
+
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels' # basic imperative step defs
   gem 'database_cleaner' # required by Cucumber
