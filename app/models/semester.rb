@@ -1,3 +1,8 @@
 class Semester < ApplicationRecord
-    has_many :shifts, dependent: :destroy
+    has_and_belongs_to_many :shifts, dependent: :destroy
+    
+    def self.init(semester_name, start_date, end_date)
+        new_semester = Semester.new(semester_name: semester_name, start_date: start_date, end_date: end_date)
+        return new_semester.save
+    end
 end
