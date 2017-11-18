@@ -10,8 +10,8 @@ Current Fines: #{current_user.fines}
 - 7.times do
   %br
 
-current_user.shifts.each do |shift|
-  = link_to shift.time + " " + shift.name + " " + shift.location, shift_path(shift.id)
+current_user.current_shifts.each do |shift|
+  = link_to shift.to_s, shift_path(shift.id)
 
 - 7.times do
   %br
