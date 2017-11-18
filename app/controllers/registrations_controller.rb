@@ -24,6 +24,7 @@ class RegistrationsController < Devise::RegistrationsController
         pairs.each{|name, email|
             User.init(username: name, email: email, password: "5108481936", building: building)
         }
+        redirect_to user_path(current_user.id)
     end
 
     def configure_sign_up_params
