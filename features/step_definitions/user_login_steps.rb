@@ -13,6 +13,7 @@ Given /^admin "(.*)" exists with password "(.*)"/ do |us, pa|
     User.find_by_username(us).promote("Admin").unset_init
 end
 
+
 When /^(?:|I )log in as "(.*)" with password "(.*)"$/ do |us, pa|
     pass = pa + "123456"
 
