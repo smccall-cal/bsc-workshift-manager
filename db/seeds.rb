@@ -19,5 +19,6 @@ users.each do |user|
   User.init(user[:username], user[:email], user[:password], user[:building])
 end
 
-User.find_by_username("Oski").promote("Manager")
-User.find_by_username("Chancellor Christ").promote("Admin")
+User.find_by_username("Oski").promote("Manager").unset_init
+User.find_by_username("Chancellor Christ").promote("Admin").unset_init
+User.find_by_username("Kevin Liu").unset_init

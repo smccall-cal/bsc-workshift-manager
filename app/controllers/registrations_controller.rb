@@ -5,9 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
 
 
     def update
-        u = User.find(current_user.id)
-        u.init = false
-        u.save
+        User.find(current_user.id).unset_init
         super
     end
 
