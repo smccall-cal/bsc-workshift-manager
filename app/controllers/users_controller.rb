@@ -21,13 +21,6 @@ class UsersController < ApplicationController
     end
 
     def create
-        valid = User.init(params[:username], params[:password])
-        if !valid
-            flash[:notice] = "Invalid username / password"
-            redirect_to new_user_registration_path
-        end
-        flash[:notice] = "#{params[:username]} created successfully"
-        redirect_to root_path
     end
 
     def edit

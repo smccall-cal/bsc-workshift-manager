@@ -58,8 +58,10 @@ ActiveRecord::Schema.define(version: 20171115165922) do
     t.datetime "updated_at", null: false
     t.datetime "date"
     t.boolean "is_checked_off"
+    t.integer "shift_templates_id"
     t.integer "user_id"
     t.index ["semester_id"], name: "index_shifts_on_semester_id"
+    t.index ["shift_templates_id"], name: "index_shifts_on_shift_templates_id"
     t.index ["user_id"], name: "index_shifts_on_user_id"
   end
 
