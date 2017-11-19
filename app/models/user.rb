@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :trackable, :validatable
-    has_many :preferences #, :dependencies => :destroy
+    has_one :preference #, :dependencies => :destroy
     has_and_belongs_to_many :shifts
 
     def self.init(username, email, password, building)
