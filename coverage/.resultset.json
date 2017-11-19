@@ -1,7 +1,7 @@
 {
   "Cucumber Features": {
     "coverage": {
-      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/models/user.rb": [
+      "/home/ubuntu/workspace/git/bsc-workshift-manager/app/models/user.rb": [
         1,
         1,
         null,
@@ -45,7 +45,7 @@
         null,
         null
       ],
-      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/controllers/application_controller.rb": [
+      "/home/ubuntu/workspace/git/bsc-workshift-manager/app/controllers/application_controller.rb": [
         1,
         1,
         1,
@@ -69,26 +69,26 @@
         null,
         null
       ],
-      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/helpers/application_helper.rb": [
+      "/home/ubuntu/workspace/git/bsc-workshift-manager/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/helpers/preferences_helper.rb": [
+      "/home/ubuntu/workspace/git/bsc-workshift-manager/app/helpers/preferences_helper.rb": [
         1,
         1,
         0,
         null,
         null
       ],
-      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/helpers/semesters_helper.rb": [
+      "/home/ubuntu/workspace/git/bsc-workshift-manager/app/helpers/semesters_helper.rb": [
         1,
         null
       ],
-      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/helpers/shifts_helper.rb": [
+      "/home/ubuntu/workspace/git/bsc-workshift-manager/app/helpers/shifts_helper.rb": [
         1,
         null
       ],
-      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/controllers/users_controller.rb": [
+      "/home/ubuntu/workspace/git/bsc-workshift-manager/app/controllers/users_controller.rb": [
         1,
         1,
         1,
@@ -112,13 +112,6 @@
         null,
         null,
         1,
-        0,
-        0,
-        0,
-        0,
-        null,
-        0,
-        0,
         null,
         null,
         1,
@@ -132,7 +125,7 @@
         null,
         null
       ],
-      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/controllers/registrations_controller.rb": [
+      "/home/ubuntu/workspace/git/bsc-workshift-manager/app/controllers/registrations_controller.rb": [
         1,
         1,
         1,
@@ -152,7 +145,7 @@
         null,
         null
       ],
-      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/controllers/preferences_controller.rb": [
+      "/home/ubuntu/workspace/git/bsc-workshift-manager/app/controllers/preferences_controller.rb": [
         1,
         1,
         1,
@@ -234,7 +227,7 @@
         null,
         null
       ],
-      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/models/preference.rb": [
+      "/home/ubuntu/workspace/git/bsc-workshift-manager/app/models/preference.rb": [
         1,
         1,
         1,
@@ -300,17 +293,17 @@
         null,
         null
       ],
-      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/models/application_record.rb": [
+      "/home/ubuntu/workspace/git/bsc-workshift-manager/app/models/application_record.rb": [
         1,
         1,
         null
       ],
-      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/models/semester.rb": [
+      "/home/ubuntu/workspace/git/bsc-workshift-manager/app/models/semester.rb": [
         1,
         1,
         null
       ],
-      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/controllers/semesters_controller.rb": [
+      "/home/ubuntu/workspace/git/bsc-workshift-manager/app/controllers/semesters_controller.rb": [
         1,
         null,
         null,
@@ -399,13 +392,13 @@
         null,
         null
       ],
-      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/models/shift.rb": [
+      "/home/ubuntu/workspace/git/bsc-workshift-manager/app/models/shift.rb": [
         1,
         1,
         1,
         null
       ]
     },
-    "timestamp": 1510957679
+    "timestamp": 1511066556
   }
 }
