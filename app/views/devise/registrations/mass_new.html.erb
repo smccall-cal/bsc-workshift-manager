@@ -1,0 +1,22 @@
+<h2>Create Many New Residents</h2>
+
+<%= form_for :user, url: mass_create_path do |f| %>
+  <div class="field">
+    <%= f.label :usernames %><br />
+    <%= f.text_area :usernames, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :emails %><br />
+    <%= f.text_area :emails, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :building%> <br />
+    <%= f.select :building, current_user.buildings %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign them up" %>
+  </div>
+<% end %>
