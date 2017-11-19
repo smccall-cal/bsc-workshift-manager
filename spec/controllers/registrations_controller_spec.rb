@@ -36,17 +36,16 @@ RSpec.describe RegistrationsController, type: :controller do
     describe "POST #masscreate" do
 
         before :each do
-            @names = ["A", "B", "C", "D"]
-            @emails = @names.map{|n| n + "@berkeley.edu"}
-            @user = User.new(:id=>1, :role => "Manager", :building => "CZ")
+            @names = "A\nB\nC\nD\n"
+            @emails = @names.split("\n").map{|n| n + "@berkeley.edu"}.join("\n")
+            @user = User.new(:id=>1, :role => "Manager", :building => "CZ", :init => false)
 
             allow(controller).to receive(:current_user).and_return(@user)
-            allow(controller).to receive(:authenticate_scope!).and_return(@user)
             @request.env["devise.mapping"] = Devise.mappings[:user]
         end
 
         it "adds all the users" do
-            post :mass_create, :params => {names: @names, emails: @emails, building: "CZ"}
+            post :mass_create, :params => {user: {usernames: @names, emails: @emails, building: "CZ"}}
             expect(User.find_by(username: "A")).to be_truthy
             expect(User.find_by(username: "B")).to be_truthy
             expect(User.find_by(username: "C")).to be_truthy
