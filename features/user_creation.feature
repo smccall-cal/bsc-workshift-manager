@@ -19,7 +19,7 @@ Scenario: Add a single user as a Manager
     And I press "Sign them up"
     Then I should be on the personal page for "Oski"
 
-Scenario: Add a single user as a Manager
+Scenario: Add multiple users as a Manager
 
     Given I am on the multiple user creation page
     When I fill in "Username" with "A\nB\nC\nD"
