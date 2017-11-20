@@ -12,7 +12,7 @@ class SemestersController < ApplicationController
   def show
       @semester = Semester.find(params[:id])
       session[:semester] = @semester
-      @shifts = @semester.shifts
+      @shift_templates = @semester.shift_templates.all
   end
 
   # GET /semesters/new
@@ -31,7 +31,7 @@ class SemestersController < ApplicationController
       flash[:notice] = "#{@semester.semester_name} was successfully created."
       redirect_to semesters_path
   end
-  
+
   # def create
   #   @semester = Semester.new(semester_params)
 
@@ -80,7 +80,7 @@ class SemestersController < ApplicationController
     # def semester_params
     #   params.fetch(:semester, {})
     # end
-    
+
     def semester_params
       params.require(:semester).permit(:semester_name, :start_date, :end_date)
   end

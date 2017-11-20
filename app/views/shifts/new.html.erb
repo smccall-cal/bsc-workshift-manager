@@ -4,16 +4,16 @@
 
 <%= form_tag semester_shifts_path, :method => "post" do %>
 
-  <%= label :shift, :location, 'Shift Location'%>
-  <%= text_field :shift, :location%>
+  <%= label :shift_detail, :location, 'Shift Location'%>
+  <%= text_field :shift_detail, :location%>
   
-  <%= label :shift, :description, 'Shift Description'%>
-  <%= text_field :shift, :description%>
+  <%= label :shift_detail, :description, 'Shift Description'%>
+  <%= text_field :shift_detail, :description%>
 
-  <%= label :shift, :day, 'Day of the week'%>
+  <%= label :shift_template, :day, 'Day of the week'%>
   <%= select_tag 'shift[day]', options_for_select(Date::DAYNAMES) %>
   
-  <%= label :shift, :time, 'Time of shift'%>
+  <%= label :shift_template, :time, 'Time of shift'%>
   <%= time_select("shift", "time")%>
 
   <%= submit_tag 'Save Shift'%>
