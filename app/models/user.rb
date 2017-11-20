@@ -16,9 +16,8 @@ class User < ActiveRecord::Base
     end
 
     def current_shifts
-        return []
-        #all = self.shifts
-        #return all.select{ |shift| shift.shift_template == Semester.current }
+        all = self.shifts
+        return all.select{ |shift| shift.shift_template == Semester.current }
     end
 
     def promote role
