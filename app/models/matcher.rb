@@ -12,7 +12,6 @@ class Matcher
         while self.users.length > 0
             graph = generate_graph
             additional_matches = bipartite_matching graph
-            p additional_matches
             update_lists_with additional_matches
         end
         return self.matches
@@ -20,9 +19,9 @@ class Matcher
 
     def generate_graph
         null_users = -1.downto(self.users.length - self.shifts.length).to_a
-        graph = { left: self.users.keys + null_users, right: self.shifts.keys, edges: Hash.new}
+        graph = { left: self.users.keys + null_users, right: self.shifts.keys, edges: Hash.new(Hash.new(1))}
         self.users.each{ |user, hours|
-            graph[:edges][user] = Hash.new
+            graph[:edges][user] = Hash.new(0)
             self.shifts.each{ |shift, hours|
                 graph[:edges][user][shift] = preference user, shift
             }

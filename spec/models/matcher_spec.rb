@@ -60,4 +60,22 @@ RSpec.describe Matcher do
         @matcher.match
     end
 
+    it "runs until all users are assigned shifts" do
+        allow(@user).to receive(:preference_for).and_return(5)
+        @matcher.match
+        expect(@matcher.users.length).to eq(0)
+    end
+
+    it "assigns all shifts when possible" do
+        allow(@user).to receive(:preference_for).and_return(5)
+        expect(@matcher.match.flatten(5).length).to eq(15)
+    end
+
+    it "terminates if all shifts aren't assigned, if all users have shifts" do
+        allow(@user).to receive(:preference_for).and_return(5)
+        @matcher.shifts["K"] = 2.5
+        @matcher.match
+        expect(@matcher.users.length).to eq(0)
+        expect(@matcher.shifts.length).to eq(1)
+    end
 end
