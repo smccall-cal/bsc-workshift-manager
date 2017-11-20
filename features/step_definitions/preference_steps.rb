@@ -10,7 +10,7 @@ Given /^user "(.*)" has set up preferences/ do |username|
     times_ = Preference.times
     schedule = {}
     days.each do |d|
-        schedule[d] = Hash[times_.zip times_.map {availabilities.sample}]
+        schedule[d] = Hash[times_.zip times_.map {availabilities[prng.rand availabilities.length]}]
     end
     
     user = User.find_by_username username
