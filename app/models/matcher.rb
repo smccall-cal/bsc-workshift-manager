@@ -3,8 +3,8 @@ class Matcher
     attr_accessor :users, :shifts, :matches
 
     def initialize building
-        @users = User.where(:building == building).map { |user| [user.id, 5] }.to_h
-        @shifts = ShiftTemplate.where(:building == building).map { |shift| [shift.name, shift.hours] }.to_h
+        @users = User.from(building).map { |user| [user.id, 5] }.to_h
+        @shifts = ShiftTemplate.from(building).map { |shift| [shift.name, shift.hours] }.to_h
         @matches = Hash.new([])
     end
 

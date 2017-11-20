@@ -4,8 +4,8 @@ require 'rails_helper'
 RSpec.describe Matcher do
 
     before(:each) do
-        allow(User).to receive(:where).and_return([])
-        allow(ShiftTemplate).to receive(:where).and_return([])
+        allow(User).to receive(:from).and_return([])
+        allow(ShiftTemplate).to receive(:from).and_return([])
         @matcher = Matcher.new "CZ"
 
         @matcher.users = (1..5).map { |i| [i, 5] }.to_h
