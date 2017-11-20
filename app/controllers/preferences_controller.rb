@@ -3,10 +3,10 @@ class PreferencesController < ApplicationController
   before_action :set_preference, :only => [:show, :edit, :update]
 
   def index
-    if @user.preferences.length == 0
+    if @user.preference.nil?
       redirect_to no_user_preferences_path(@user)
     else
-      redirect_to user_preference_path(@user, @user.preferences[0])
+      redirect_to user_preference_path(@user, @user.preference)
     end
   end
 
@@ -33,7 +33,7 @@ class PreferencesController < ApplicationController
   # POST /preferences
   # POST /preferences.json
   def create
-    @preference = @user.preferences.new(preference_params)
+    @preference = @user.build_preference(preference_params)
 
     respond_to do |format|
       if @preference.save
@@ -51,8 +51,7 @@ class PreferencesController < ApplicationController
   def update
 
     respond_to do |format|
-      @preference = @user.preferences.update(preference_params)[0]
-      if @preference.valid?
+      if @user.preference.update(preference_params)
         format.html { redirect_to user_preference_path(@user, @preference), notice: 'Preference was successfully updated.' }
         format.json { render :show, status: :ok, location: @preference }
       else
@@ -66,7 +65,7 @@ class PreferencesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_preference
-      @preference = @user.preferences.find(params[:id])
+      @preference = @user.preference
     end
     def set_user
       @user = current_user

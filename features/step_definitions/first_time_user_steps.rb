@@ -40,7 +40,8 @@ Given /^I have (not )?set up my password/ do |n|
 end
 
 Given /^I have not set up my preferences/ do
-    User.find_by_username(@username).preferences.destroy
+    preference = User.find_by_username(@username).preference
+    preference.destroy if not preference.nil?
 end
 
 When /^I set up my preferences/ do
