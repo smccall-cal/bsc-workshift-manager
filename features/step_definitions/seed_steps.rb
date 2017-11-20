@@ -51,7 +51,6 @@ And /^some shifts exist/ do
               {location: "Bathroom", description: "Deep Clean", hours: 1, day: "monday", floor: "100s", details: "testing", semester_id: 1, user_id: 3}]
 
     shift_templates.each do |template|
-        p template[:description]
         ShiftTemplate.init(template)
     end
 end

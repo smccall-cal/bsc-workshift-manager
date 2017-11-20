@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'rails_helper'
 
-RSpec.describe Matcher do
+describe Matcher, type: :model do
 
     before(:each) do
         allow(User).to receive(:from).and_return([])

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
+    before_action :user_params
     before_action :manager?, only: [:new, :destroy]
 
     def user_params
