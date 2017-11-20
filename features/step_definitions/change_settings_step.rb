@@ -1,8 +1,13 @@
-Given "I set my preferences before" do
-  @preference = Preference.new
-  @preference.create
+Given /I set my preferences before/ do
+  current_user.preference.build
 end
 
-Given "And I didn't set my preferences before"  do
-  redirect_to  no_user_preferences_path(@user)
+Given /I didn't set my preferences before/  do
+  if current_user.preference != nil
+      current_user.preference.destroy
+  end
+end
+
+Given /the following preferences exist:/ do |table|
+    table.raw.each{|userid, shift, schedule|}
 end

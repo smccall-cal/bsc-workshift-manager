@@ -6,8 +6,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :trackable, :validatable
-    has_one :preference #, :dependencies => :destroy
-    has_and_belongs_to_many :shifts
+    has_one :preference
+    has_many :shifts
+    has_many :shift_templates
 
     def self.init(username, email, password, building)
         new_user = User.new(username: username, password: password, email: email, building: building)
@@ -15,9 +16,8 @@ class User < ActiveRecord::Base
     end
 
     def current_shifts
-        return []
-        #all = self.shifts
-        #return all.select{ |shift| shift.shift_template == Semester.current }
+        all = self.shifts
+        return all.select{ |shift| shift.shift_template == Semester.current }
     end
 
     def promote role
