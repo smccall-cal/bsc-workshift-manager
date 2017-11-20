@@ -1,4 +1,3 @@
-@wip
 Feature: Grant Admin's all Managerial powers for all buildings.
 
     As an Admin,
@@ -20,9 +19,9 @@ Scenario: I should be able to log in
 
 Scenario: I should be able to sign up someone for any building
 
-    When I log in a "Admin" with password "AdminBar"
+    When I log in as "Admin" with password "AdminBar"
     And I go to the user creation page
     And I select "CZ" from "Building"
     And I select "Kingman" from "Building"
-    And I select "Hoyne" from "Building"
+    And I select "Cloyne" from "Building"
     Then I should be on the user creation page

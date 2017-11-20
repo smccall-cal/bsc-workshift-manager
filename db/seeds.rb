@@ -19,13 +19,14 @@ users.each do |user|
   User.init(user[:username], user[:email], user[:password], user[:building])
 end
 
-User.find_by_username("Oski").promote("Manager")
-User.find_by_username("Chancellor Christ").promote("Admin")
+User.find_by_username("Oski").promote("Manager").unset_init
+User.find_by_username("Chancellor Christ").promote("Admin").unset_init
+User.find_by_username("Kevin Liu").unset_init
 
 
 semesters = [ {semester_name: "Fall 2017", start_date: "16-Aug-2017", end_date: "15-Dec-2017"},
           {semester_name: "Spring 2018", start_date: "09-Jan-2017", end_date: "11-May-2017"}]
-          
+
 semesters.each do |semester|
   Semester.init(semester)
 end
@@ -65,12 +66,12 @@ shift_details = [ {location: "Roof", description: "Clean/Sweep"},
           {location: "Red Room", description: "Sweep & Mop"},
           {location: "Snack Room", description: "Snack Shift"},
           {location: "Waste Area", description: "Sweep"}]
-          
+
 shift_details.each do |detail|
   ShiftDetail.init(detail)
 end
 
-shift_templates = [ 
+shift_templates = [
           {location: "Kitchen", description: "Freezer Clean/Organize", hours: 2, day: "monday", semester_id: 1, user_id: 1},
           {location: "Kitchen", description: "Fridge Clean/Organize", hours: 2, day: "monday", details: "Small Fridge", semester_id: 1, user_id: 2},
           {location: "Kitchen", description: "Fridge Clean/Organize", hours: 2, day: "monday", details: "Walk in Fridge", semester_id: 1, user_id: 3},
@@ -86,7 +87,7 @@ shift_templates = [
           {location: "Bathroom", description: "Deep Clean", hours: 1, day: "monday", floor: "10s", semester_id: 1, user_id: 1},
           {location: "Bathroom", description: "Cleaning", hours: 1, day: "monday", floor: "100s", semester_id: 1, user_id: 2},
           {location: "Bathroom", description: "Deep Clean", hours: 1, day: "monday", floor: "100s", details: "testing", semester_id: 1, user_id: 3}]
-          
+
 shift_templates.each do |template|
   ShiftTemplate.init(template)
 end
@@ -94,7 +95,7 @@ end
 shifts = [ {date: "16-Aug-2017", user_email: "tng016@berkeley.edu", shift_template_id: 3},
            {date: "23-Aug-2017", user_email: "tng016@berkeley.edu", shift_template_id: 3},
            {date: "30-Aug-2017", user_email: "tng016@berkeley.edu", shift_template_id: 3}]
-          
+
 shifts.each do |shift|
   Shift.init(shift)
 end
@@ -177,7 +178,7 @@ end
 #           {location: "Red Room", description: "Sweep & Mop"},
 #           {location: "???", description: "Snack Shift"},
 #           {location: "Waste Area", description: "Sweep"},]
-          
+
 # shift_details.each do |detail|
 #   ShiftDetail.init(detail[:location], detail[:description])
 # end

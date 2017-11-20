@@ -15,9 +15,25 @@ class User < ActiveRecord::Base
         return new_user.save
     end
 
-    def promote(role)
+    def current_shifts
+        all = self.shifts
+        return all.select{ |shift| shift.shift_template == Semester.current }
+    end
+
+    def promote role
         self.role = role
         self.save
+        return self
+    end
+
+    def unset_init
+        self.init = false
+        self.save
+        return self
+    end
+
+    def preference_for shift_name
+        return self.preference.shift_hash[shift_name]
     end
 
     def manage?

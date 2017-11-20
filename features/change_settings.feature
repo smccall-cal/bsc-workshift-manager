@@ -15,16 +15,16 @@ Background: user preferences have been added to database
 
 Scenario: I should see my preferences and settings when I've logged in and I click on the preferences button
 
-  Given I am on the personal page
-  And I am logged in as "Foo"
+  Given I am logged in as "Foo" with password "Bar"
+  And I am on the personal page for "Foo"
   And I set my preferences before
   When I press "My preferences"
   Then I should see  "preference"  #a draft test one  #my preferences and settings
 
 Scenario: I should see a reminder message when I've not set my preferences
 
-  Given I am on the personal page
-  And I am logged in
+  Given I am logged in as "Foo" with password "Bar"
+  And I am on the personal page for "Foo"
   And I didn't set my preferences before
   When I press "My preferences"
   Then I should see "No preferences."
@@ -33,12 +33,13 @@ Scenario: I should be told to login when I click the preferences button without 
 
   Given I am on the personal page
   And I am not logged in
-  When I press My preferences
+  When I press "My preferences"
   Then I should see "Please log in first."
 
 Scenario: I modify the times available and the modification should be saved
 
-  Given I am on the preferences page
+  Given I am logged in as "Foo" with password "Bar"
+  And I am on the preferences page for "Foo"
   When I make the following modification:
     | Mon_8pm | + |
     | Wed_9pm | - |
@@ -53,7 +54,8 @@ Scenario: I modify the times available and the modification should be saved
 
 Scenario: I should see an error message when saved available time is less than 5 hours
 
-  Given I am on the preferences page
+  Given I am logged in as "Foo" with password "Bar"
+  And I am on the preferences page for "Foo"
   When I fill my preferences with the following:
     | Mon_8pm | + |
     | Wed_9pm | + |
