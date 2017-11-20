@@ -27,7 +27,7 @@ semesters = [ {semester_name: "Fall 2017", start_date: "16-Aug-2017", end_date: 
           {semester_name: "Spring 2018", start_date: "09-Jan-2017", end_date: "11-May-2017"}]
           
 semesters.each do |semester|
-  Semester.init(semester[:semester_name], semester[:start_date], semester[:end_date])
+  Semester.init(semester)
 end
 
 shift_details = [ {location: "Roof", description: "Clean/Sweep"},
@@ -67,36 +67,36 @@ shift_details = [ {location: "Roof", description: "Clean/Sweep"},
           {location: "Waste Area", description: "Sweep"}]
           
 shift_details.each do |detail|
-  ShiftDetail.init(detail[:location], detail[:description])
+  ShiftDetail.init(detail)
 end
 
 shift_templates = [ 
-          {location: "Kitchen", description: "Freezer Clean/Organize", hours: 2, day: "monday"},
-          {location: "Kitchen", description: "Fridge Clean/Organize", hours: 2, day: "monday", details: "Small Fridge"},
-          {location: "Kitchen", description: "Fridge Clean/Organize", hours: 2, day: "monday", details: "Walk in Fridge"},
-          {location: "Kitchen", description: "Grills", hours: 2, day: "monday"},
-          {location: "Kitchen", description: "Surface Clean", hours: 2, day: "monday", details: "After Dinner"},
-          {location: "Kitchen", description: "Surface Clean", hours: 2, day: "monday", details: "Before Noon"},
-          {location: "Kitchen", description: "Sweep/Mop", hours: 2, day: "monday"},
-          {location: "Kitchen", description: "Clean", hours: 1, day: "monday", details: "PreDinner Cleaning crew (3:30 - 4:30)"},
-          {location: "Kitchen", description: "Dishes", hours: 2, day: "monday", details: "1 - 3 pm"},
-          {location: "Kitchen", description: "Dishes", hours: 1, day: "monday", details: "1hour anytime"},
-          {location: "Kitchen", description: "Dishes", hours: 1, day: "monday", details: "Anytime"},
-          {location: "Bathroom", description: "Cleaning", hours: 1, day: "monday", floor: "10s"},
-          {location: "Bathroom", description: "Deep Clean", hours: 1, day: "monday", floor: "10s"},
-          {location: "Bathroom", description: "Cleaning", hours: 1, day: "monday", floor: "100s"},
-          {location: "Bathroom", description: "Deep Clean", hours: 1, day: "monday", floor: "100s", details: "testing"}]
+          {location: "Kitchen", description: "Freezer Clean/Organize", hours: 2, day: "monday", semester_id: 1, user_id: 1},
+          {location: "Kitchen", description: "Fridge Clean/Organize", hours: 2, day: "monday", details: "Small Fridge", semester_id: 1, user_id: 2},
+          {location: "Kitchen", description: "Fridge Clean/Organize", hours: 2, day: "monday", details: "Walk in Fridge", semester_id: 1, user_id: 3},
+          {location: "Kitchen", description: "Grills", hours: 2, day: "monday", semester_id: 1, user_id: 4},
+          {location: "Kitchen", description: "Surface Clean", hours: 2, day: "monday", details: "After Dinner", semester_id: 1, user_id: 1},
+          {location: "Kitchen", description: "Surface Clean", hours: 2, day: "monday", details: "Before Noon", semester_id: 1, user_id: 2},
+          {location: "Kitchen", description: "Sweep/Mop", hours: 2, day: "monday", semester_id: 1, user_id: 3},
+          {location: "Kitchen", description: "Clean", hours: 1, day: "monday", details: "PreDinner Cleaning crew (3:30 - 4:30)", semester_id: 1, user_id: 4},
+          {location: "Kitchen", description: "Dishes", hours: 2, day: "monday", details: "1 - 3 pm", semester_id: 1, user_id: 1},
+          {location: "Kitchen", description: "Dishes", hours: 1, day: "monday", details: "1hour anytime", semester_id: 1, user_id: 2},
+          {location: "Kitchen", description: "Dishes", hours: 1, day: "monday", details: "Anytime", semester_id: 1, user_id: 3},
+          {location: "Bathroom", description: "Cleaning", hours: 1, day: "monday", floor: "10s", semester_id: 1, user_id: 4},
+          {location: "Bathroom", description: "Deep Clean", hours: 1, day: "monday", floor: "10s", semester_id: 1, user_id: 1},
+          {location: "Bathroom", description: "Cleaning", hours: 1, day: "monday", floor: "100s", semester_id: 1, user_id: 2},
+          {location: "Bathroom", description: "Deep Clean", hours: 1, day: "monday", floor: "100s", details: "testing", semester_id: 1, user_id: 3}]
           
-shift_templates.each do |detail|
-  ShiftTemplate.init(detail[:location], detail[:description], detail[:hours], detail[:day], detail[:floor], detail[:details])
+shift_templates.each do |template|
+  ShiftTemplate.init(template)
 end
 
 shifts = [ {date: "16-Aug-2017", user_email: "tng016@berkeley.edu", shift_template_id: 3},
            {date: "23-Aug-2017", user_email: "tng016@berkeley.edu", shift_template_id: 3},
-           {date: "30-Aug-2017", user_email: "tng016@berkeley.edu", shift_template_id: 3},]
+           {date: "30-Aug-2017", user_email: "tng016@berkeley.edu", shift_template_id: 3}]
           
-shifts.each do |detail|
-  Shift.init(detail[:date], detail[:user_email], detail[:shift_template_id])
+shifts.each do |shift|
+  Shift.init(shift)
 end
 
 # Original Shifts

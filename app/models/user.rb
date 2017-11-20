@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
            :recoverable, :rememberable, :trackable, :validatable
     has_many :preferences #, :dependencies => :destroy
     has_many :shifts
+    has_many :shift_templates
 
     def self.init(username, email, password, building)
         new_user = User.new(username: username, password: password, email: email, building: building)

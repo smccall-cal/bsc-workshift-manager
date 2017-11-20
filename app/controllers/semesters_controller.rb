@@ -12,7 +12,8 @@ class SemestersController < ApplicationController
   def show
       @semester = Semester.find(params[:id])
       session[:semester] = @semester
-      @shifts = @semester.shifts
+      @shift_templates = @semester.shift_templates.all
+      byebug
   end
 
   # GET /semesters/new
