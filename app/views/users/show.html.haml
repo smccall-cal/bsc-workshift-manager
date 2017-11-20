@@ -14,4 +14,5 @@ Current Fines: #{current_user.fines}
 
 - if current_user.manage?
   = link_to "Add a Resident", new_user_registration_path
+  = link_to "View Semester Workshift", semesters_path
 = link_to "Sign Out", destroy_user_session_path, method: :delete
