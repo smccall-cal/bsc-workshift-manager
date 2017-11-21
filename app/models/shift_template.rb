@@ -2,7 +2,7 @@ class ShiftTemplate < ApplicationRecord
     has_and_belongs_to_many :semesters
     has_many :shifts
     belongs_to :shift_detail
-    belongs_to :user
+    belongs_to :user, optional: true
     
     def self.init(template)
         shift_detail = ShiftDetail.where(location: template[:location], description: template[:description]).take
