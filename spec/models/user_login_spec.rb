@@ -5,7 +5,7 @@ require 'rails_helper'
 # Now that the login is handled by devise, these tests mostly show that
 # we've implemented devise somewhat properly, and know what to expect from it
 
-describe User do
+describe User, type: :model do
 
     before(:each) do
         @user  = "Bob"
