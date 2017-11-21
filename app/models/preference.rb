@@ -4,17 +4,7 @@ class Preference < ApplicationRecord
     validate :shift_schedule_keys
     validate :available_time_more_than_5
 
-    @@shifts = []
-
-    # temporarily use file to load shift names
-
-    File.open("app/models/shifts", "r") do |f|
-      f.each_line do |line|
-        @@shifts.push(line.gsub("\n","").to_sym)
-      end
-    end
-
-    # TODO: change shifts source to api from another rescource Shift
+    @@shifts = ShiftDetail.all.map {|sh| (sh.location + "--" + sh.description).to_sym}
 
     @@days = %i{Monday Tueday Wednesday Thursday Friday Saturday Sunday}
     @@times = (8..23).map {|t| "#{t%12}#{(t < 12)? 'am' : 'pm' }"}
