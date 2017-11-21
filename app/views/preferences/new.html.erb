@@ -7,29 +7,31 @@
     <%= label_tag "preference[shift][#{sh}]", sh %>
     <br>
   <% end %>
-  <div class="table">
-    <div class="tbody">
-      <div class="tr">
-        <div class="th">
-        </div>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>Times</th>
         <% Preference.times.each do |t| %>
-          <div class = "th"><%= t %></div>
+          <th><%= t %></th>
         <% end %>
-      </div>
+      </tr>
+      <tr>
       <% Preference.days.each do |d| %>
-        <div class="tr">
-          <div class="td">
+        <tr>
+          <td>
           <%= d %>
-          </div>
+          </td>
           <% Preference.times.each do |t| %>
-            <div class="td">
+            <td>
             <%= select_tag "preference[schedule][#{d}][#{t}]", options_for_select(["+", "-", "x", "?", " "]) %>
-            </div>
+            </td>
+          </td>
           <% end %>
-        </div>
+        <tr>
       <% end %>
-    </div>
-  </div>
+      </tr>
+    <tbody>
+  </table>
   <br>
   <%= submit_tag "Save Preferences" %>
 <% end %>
