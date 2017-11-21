@@ -11,7 +11,6 @@
     <li><a href="#">WR</a></li>
   </ul>
     <% Preference.shifts.each do |sh| %>
-      <
       <%= select_tag "preference[shift][#{sh}]", options_for_select((Array 0..5), :selected => @preference.shift_hash[sh]) %>
       <%= label_tag "preference[shift][#{sh}]", sh %>
       <br>
