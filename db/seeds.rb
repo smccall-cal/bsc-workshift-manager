@@ -81,7 +81,7 @@ shift_templates = [
           {location: "Kitchen", description: "Sweep/Mop", hours: 2, day: "monday", semester_id: 1, user_id: 3},
           {location: "Kitchen", description: "Clean", hours: 1, day: "monday", details: "PreDinner Cleaning crew (3:30 - 4:30)", semester_id: 1, user_id: 4},
           {location: "Kitchen", description: "Dishes", hours: 2, day: "monday", details: "1 - 3 pm", semester_id: 1, user_id: 1},
-          {location: "Kitchen", description: "Dishes", hours: 1, day: "monday", details: "1hour anytime", semester_id: 1, user_id: 2},
+          {location: "Kitchen", description: "Dishes", hours: 1, day: "monday", details: "1 hour anytime", semester_id: 1, user_id: 2},
           {location: "Kitchen", description: "Dishes", hours: 1, day: "monday", details: "Anytime", semester_id: 1, user_id: 3},
           {location: "Bathroom", description: "Cleaning", hours: 1, day: "monday", floor: "10s", semester_id: 1, user_id: 4},
           {location: "Bathroom", description: "Deep Clean", hours: 1, day: "monday", floor: "10s", semester_id: 1, user_id: 1},

@@ -5,19 +5,8 @@ class Preference < ApplicationRecord
     validate :available_time_more_than_5
 
     @@shifts = []
-
-    # temporarily use file to load shift names
-
-    File.open("app/models/shifts", "r") do |f|
-      f.each_line do |line|
-        @@shifts.push(line.gsub("\n","").to_sym)
-      end
-    end
-
-    # TODO: change shifts source to api from another rescource Shift
-
-    @@days = %i{Monday Tueday Wednesday Thursday Friday Saturday Sunday}
-    @@times = (8..23).map {|t| "#{t%12}#{(t < 12)? 'am' : 'pm' }"}
+    @@days = []
+    @@times = []
 
     def shift_schedule_keys
         check_shift_keys
@@ -26,13 +15,13 @@ class Preference < ApplicationRecord
     end
     
     def check_shift_keys
-        errors.add(:shift, "must contain all and only the shifts as keys") if shift && shift_hash.keys != @@shifts
+        errors.add(:shift, "must contain all and only the shifts as keys") if shift && shift_hash.keys != Preference.shifts
     end
     def check_schedule_day_keys
-        errors.add(:schedule, "must contain all and only the days as keys") if schedule && schedule_hash.keys != @@days
+        errors.add(:schedule, "must contain all and only the days as keys") if schedule && schedule_hash.keys != Preference.days
     end
     def check_schedule_time_keys
-        errors.add(:schedule, "inner day hash must contain all and only the times as keys") if schedule && schedule_hash.values.inject(false) {|res, time| res = res || (time.keys != @@times)}
+        errors.add(:schedule, "inner day hash must contain all and only the times as keys") if schedule && schedule_hash.values.inject(false) {|res, time| res = res || (time.keys != Preference.times)}
     end
     
     def available_time_more_than_5
@@ -40,15 +29,15 @@ class Preference < ApplicationRecord
     end
 
     def self.shifts
-        @@shifts
+        @@shifts = ShiftDetail.all.map {|sh| (sh.location + "--" + sh.description).to_sym}
     end
 
     def self.days
-        @@days
+        @@days = %i{Monday Tueday Wednesday Thursday Friday Saturday Sunday}
     end
 
     def self.times
-        @@times
+        @@times = (8..23).map {|t| "#{t%12}#{(t < 12)? 'am' : 'pm' }"}
     end
 
     # When setting colomns, rails stringifies hash automatically.

@@ -39,6 +39,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'devise'
+gem 'graphmatch', :git => "git://github.com/pH14/graphmatch.git"
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

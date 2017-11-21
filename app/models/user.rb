@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
         return new_user.save
     end
 
+    def self.from(building)
+        return User.where(:building == building)
+    end
+
     def current_shifts
         all = self.shifts
         return all.select{ |shift| shift.shift_template == Semester.current }
