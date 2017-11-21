@@ -2,8 +2,10 @@ Rails.application.routes.draw do
 
     devise_for :users, :controllers => { :registrations => :registrations }
     devise_scope :user do
+        get "/users/delete" => "registrations#delete", :as => "delete"
         get "/users/massnew" => "registrations#mass_new", :as => "mass_add"
         post "/users/masscreate" => "registrations#mass_create", :as => "mass_create"
+        delete "/users/:id/revoke" => "registrations#revoke", :as => "revoke"
     end
 
     root :to => "users#index"

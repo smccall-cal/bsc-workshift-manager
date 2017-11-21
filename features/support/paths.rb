@@ -36,6 +36,9 @@ module NavigationHelpers
     when /^the multiple user creation page$/
         mass_add_path
 
+    when /^the user revoking page$/
+        delete_path
+
     when /^the new password page for "(.*)"$/
         edit_user_registration_path
 

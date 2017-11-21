@@ -51,6 +51,41 @@ RSpec.describe RegistrationsController, type: :controller do
             expect(User.find_by(username: "C")).to be_truthy
             expect(User.find_by(username: "D")).to be_truthy
         end
+        
+    end
+    
+    describe "GET #delete" do
+        
+        before(:each) do
+            @user = User.new(:id=>1, :role => "Manager", :building => "CZ", :init => false)
+
+            allow(controller).to receive(:current_user).and_return(@user)
+            @request.env["devise.mapping"] = Devise.mappings[:user]
+        end
+        
+        it "assigns @users with all the users" do
+            get :delete
+            expect(assigns(:users)).to eq User.all.select {|user| user.role == "User"}
+        end
+        
+    end
+    
+    describe "DELETE #revoke" do
+        
+        before(:each) do
+            User.init("Foo","Foo@berkeley.edu","Bar123456","CZ")
+            @someuser = User.find_by_username("Foo")
+            @user = User.new(:id=>1, :role => "Manager", :building => "CZ", :init => false)
+
+            allow(controller).to receive(:current_user).and_return(@user)
+            @request.env["devise.mapping"] = Devise.mappings[:user]
+        end
+        
+        it "deletes user with given id in the params" do
+            delete :revoke, :params => {:id => @someuser.id}
+            expect(User.where(:username => "Foo")).not_to exist
+        end
+        
     end
 
 end
