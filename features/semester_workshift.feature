@@ -1,5 +1,5 @@
 Feature: Managers should be able to input details of upcoming semester workshift and view details of previous semesters
- 
+
   As a manager,
   So that I may design the work shift calendar for the semester ahead,
   I want to be specify the type, frequency, timings and other necessary information required and the application will generate the work shift calendar for me.
@@ -11,11 +11,13 @@ Background: previous workshifts have been added to database
   | Spring 2017         | 10-Jan-2017     |  10-May-2017    |
   | Fall 2017           | 10-Aug-2017     |  10-Dec-2017    |
 
+  And manager "Manager" exists with password "ManagerBar"
+  And I am logged in as "Manager" with password "ManagerBar"
   And I am on the semesters page
   Then 2 semesters should exist
 
 Scenario: I should be able to see details of previous semesters
-  
+
   Given I am on the semesters page
   When I follow "Spring 2017"
   Then I should see "10 January 2017"

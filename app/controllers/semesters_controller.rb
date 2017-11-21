@@ -1,4 +1,5 @@
 class SemestersController < ApplicationController
+  before_action :manager?
   #before_action :set_semester, only: [:show, :edit, :update, :destroy]
 
   # GET /semesters
