@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
     before_action :configure_sign_up_params, only: [:create]
-    before_action :manager?, only: [:new, :create, :destroy]
+    before_action :manager?, only: [:new, :create, :destroy, :revoke, :index]
     skip_before_action :require_no_authentication
     skip_before_action :new_password, :only => [:edit, :update]
 
@@ -26,6 +26,15 @@ class RegistrationsController < Devise::RegistrationsController
             User.init(name, email, "5108481936", building)
         }
         redirect_to user_path(current_user.id)
+    end
+    
+    def delete
+        @users = User.all.select {|user| user.role == "User"}
+    end
+    
+    def revoke
+        User.find(params[:id]).destroy
+        redirect_to delete_path
     end
 
     def configure_sign_up_params
