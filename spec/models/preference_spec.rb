@@ -5,8 +5,8 @@ RSpec.describe Preference, type: :model do
       # expect(Preference.save).to be_truthy
   end
 
-  it "have multiple shifts" do
-    expect(Preference.shifts.length).to be > 1
+  it "have the same number of shifts as number of shiftdetails" do
+    expect(Preference.shifts.length).to eq ShiftDetail.all.length
   end
 
   it "have multiple days" do
@@ -14,6 +14,6 @@ RSpec.describe Preference, type: :model do
   end
 
   it "have multiple times" do
-      expect(Preference.shifts.length).to be > 1
+      expect(Preference.times.length).to be > 1
   end
 end
