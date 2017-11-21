@@ -1,6 +1,6 @@
 # README
 
-The customer’s needed to revamp their workshift management system to a more user-friendly and efficient application. Their current system has all the needed functionality, but, it takes a meticulous amount of time to do each individual task. Our application will  revamp their entire workshift system so that there would be more accessible interface for both members and managers. The website link of the customer’s website is at:
+The customers needed to revamp their workshift management system to a more user-friendly and efficient application. Their current system has all the needed functionality, but, it takes a meticulous amount of time to do each individual task. Our application will  revamp their entire workshift system so that there would be more accessible interface for both members and managers. The website link of the customer’s website is at:
 https://workshift.bsc.coop/caz/
 
 Our project is currently deployed at:
