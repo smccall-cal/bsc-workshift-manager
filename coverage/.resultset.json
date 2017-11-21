@@ -1,7 +1,7 @@
 {
   "Cucumber Features": {
     "coverage": {
-      "/home/ubuntu/workspace/app/models/user.rb": [
+      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/models/user.rb": [
         1,
         1,
         null,
@@ -13,54 +13,361 @@
         1,
         1,
         null,
+        1,
+        23,
+        23,
+        null,
+        null,
+        1,
+        7,
+        7,
+        null,
+        null,
+        1,
+        20,
+        null,
+        null,
+        1,
+        12,
+        null,
+        null,
+        1,
+        12,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        0,
+        null,
+        1,
+        null,
+        null
+      ],
+      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/controllers/application_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+<<<<<<< HEAD
+=======
+        1,
+        null,
+        null,
+        1,
+        96,
+        6,
+        null,
+        null,
+        null,
+        1,
+        3,
+        null,
+        null,
+        1,
+        104,
+        null,
+        null,
+        null
+      ],
+      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/helpers/application_helper.rb": [
+>>>>>>> 76aaa6067d1266d2ab9f3b536b94b09e902e2099
         1,
         0,
-        0,
-        null,
-        null,
-        1,
-        0,
-        0,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null,
-        0,
-        null,
         0,
         null,
         null
       ],
-      "/home/ubuntu/workspace/app/models/semester.rb": [
-        1,
-        1,
-        null,
-        1,
-        0,
-        0,
-        null,
-        null
-      ],
+<<<<<<< HEAD
       "/home/ubuntu/workspace/app/models/application_record.rb": [
+=======
+      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/helpers/preferences_helper.rb": [
+        1,
+        1,
+        0,
+        null,
+        null
+      ],
+      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/helpers/semesters_helper.rb": [
+>>>>>>> 76aaa6067d1266d2ab9f3b536b94b09e902e2099
+        1,
+        null
+      ],
+      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/helpers/shifts_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/controllers/users_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+<<<<<<< HEAD
+        5,
+=======
+        8,
+        8,
+>>>>>>> 76aaa6067d1266d2ab9f3b536b94b09e902e2099
+        null,
+        null,
+        null,
+        1,
+        9,
+        null,
+        null,
+        1,
+<<<<<<< HEAD
+        1,
+        1,
+        1,
+=======
+>>>>>>> 76aaa6067d1266d2ab9f3b536b94b09e902e2099
+        null,
+        null,
+        null,
+        1,
+<<<<<<< HEAD
+        1,
+=======
+        0,
+        0,
+        0,
+        0,
+>>>>>>> 76aaa6067d1266d2ab9f3b536b94b09e902e2099
+        null,
+        0,
+        0,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+<<<<<<< HEAD
+        1,
+        1,
+        1,
+=======
+        null,
+        null,
+        null
+      ],
+      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/controllers/registrations_controller.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/controllers/preferences_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        2,
+        2,
+        null,
+        0,
+>>>>>>> 76aaa6067d1266d2ab9f3b536b94b09e902e2099
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        2,
+        1,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        8,
+        8,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/models/preference.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        92,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        17,
+        null,
+        1,
+        1,
+<<<<<<< HEAD
+=======
+        1,
+        1,
+>>>>>>> 76aaa6067d1266d2ab9f3b536b94b09e902e2099
+        null,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        8,
+        null,
+        null,
+        1,
+        8,
+<<<<<<< HEAD
+        0,
+=======
+>>>>>>> 76aaa6067d1266d2ab9f3b536b94b09e902e2099
+        null,
+        null,
+        1,
+        3,
+        null,
+        null,
+        1,
+        3,
+        null,
+        null,
+<<<<<<< HEAD
+        1,
+        8,
+        null,
+        null,
+        null
+      ],
+      "/home/ubuntu/workspace/app/helpers/application_helper.rb": [
+=======
+>>>>>>> 76aaa6067d1266d2ab9f3b536b94b09e902e2099
+        1,
+        24,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+<<<<<<< HEAD
+        1,
+        0,
+=======
+        93,
+        null,
+        null,
+        1,
+        115,
+>>>>>>> 76aaa6067d1266d2ab9f3b536b94b09e902e2099
+        null,
+        null
+      ],
+      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/models/application_record.rb": [
         1,
         1,
         null
       ],
-      "/home/ubuntu/workspace/app/controllers/semesters_controller.rb": [
+      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/models/semester.rb": [
+        1,
+        1,
+        null
+      ],
+<<<<<<< HEAD
+      "/home/ubuntu/workspace/app/models/shift.rb": [
+        1,
+        1,
+=======
+      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/controllers/semesters_controller.rb": [
         1,
         null,
         null,
@@ -144,61 +451,23 @@
         null,
         null,
         null,
-        1,
-        1,
-        null,
-        null
-      ],
-      "/home/ubuntu/workspace/app/controllers/application_controller.rb": [
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        null,
-        1,
-        8,
-        0,
-        null,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
-        8,
-        null,
-        null,
-        null
-      ],
-      "/home/ubuntu/workspace/app/helpers/application_helper.rb": [
+>>>>>>> 76aaa6067d1266d2ab9f3b536b94b09e902e2099
         1,
         null
+<<<<<<< HEAD
+      ]
+    },
+    "timestamp": 1510905438
+=======
       ],
-      "/home/ubuntu/workspace/app/helpers/preferences_helper.rb": [
-        1,
-        1,
-        0,
-        null,
-        null
-      ],
-      "/home/ubuntu/workspace/app/helpers/semesters_helper.rb": [
-        1,
-        null
-      ],
-      "/home/ubuntu/workspace/app/helpers/shifts_helper.rb": [
-        1,
-        null
-      ],
-      "/home/ubuntu/workspace/app/models/shift.rb": [
+      "/Users/anju/Dropbox/teaching/cs169-fa17/projects/bsc-workshift-manager/app/models/shift.rb": [
         1,
         1,
         1,
         null
       ]
     },
-    "timestamp": 1510905438
+    "timestamp": 1510957679
+>>>>>>> 76aaa6067d1266d2ab9f3b536b94b09e902e2099
   }
 }
