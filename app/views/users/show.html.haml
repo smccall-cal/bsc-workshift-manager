@@ -6,10 +6,17 @@
       = link_to "Sign Out", destroy_user_session_path, method: :delete
   #menuContainer
     %ul
-      %li
-        = link_to "My preferences", user_preferences_path(params[:id])
+      - if !current_user.manage?
+        %li
+          = link_to "My preferences", user_preferences_path(params[:id])
+      - if current_user.manage?
+        %li
+          = link_to "Manage Residents", users_path
+        %li
+          = link_to "View Semester Workshift", semesters_path
 
-        
+
+
 
 
 
@@ -32,24 +39,10 @@
 - 7.times do
   %br
 
-
-- 3.times do
-  %br
-
 - if current_user.manage?
   = link_to "Add a Resident", new_user_registration_path
   %br
   = link_to "Add Multiple Residents", mass_add_path
-
-  - 3.times do
-    %br
-    
+  %br
   = link_to "Delete Residents", delete_path
-
-  - 3.times do
-    %br
-
-  = link_to "View Semester Workshift", semesters_path
-
-  - 3.times do
-    %br
+  %br

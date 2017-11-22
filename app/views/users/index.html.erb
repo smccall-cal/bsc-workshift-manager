@@ -1,0 +1,55 @@
+<table class="table">
+    <tbody>
+        <tr>
+            <th>Username</th>
+            <th>Building</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr>
+            <%= form_for :user, url: mass_create_path do |f| %>
+            <td>
+              <%= f.text_area :username, autofocus: true %>
+            </td>
+
+            <td>
+              <%= f.select :building, current_user.buildings %>
+            </td>
+
+            <td>
+              <%= f.text_area :email, autofocus: true %>
+            </td>
+
+            <td>
+                User
+            </td>
+
+            <td>
+                <%= f.submit "Add" %>
+            </td>
+            <% end %>
+        </tr>
+        <% @users.each do |user| %>
+            <tr>
+                <td><%= user.username %></td>
+                <td><%= user.building %></td>
+                <td><%= user.email %></td>
+                <td><%= user.role %></td>
+                <td>
+                    <%= form_tag edit_user_registration_path(user), :method => "get" do %>
+                        <%= submit_tag "Edit", :id => "#{user.username}_edit" %>
+                    <% end %>
+                <td>
+                    <%= form_tag revoke_path(user), :method => "delete" do %>
+                        <%= submit_tag "Delete", :id => "#{user.username}_delete" %>
+                    <% end %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+<%= link_to 'Back', user_path(current_user) %>

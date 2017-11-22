@@ -16,8 +16,8 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     def mass_create
-        names = params[:user][:usernames].split /\r?\n/
-        emails = params[:user][:emails].split /\r?\n/
+        names = params[:user][:username].split /\r?\n/
+        emails = params[:user][:email].split /\r?\n/
         building = params[:user][:building]
         pairs = Hash[names.zip emails]
 
@@ -25,16 +25,16 @@ class RegistrationsController < Devise::RegistrationsController
         pairs.each{|name, email|
             User.init(name, email, "5108481936", building)
         }
-        redirect_to user_path(current_user.id)
+        redirect_to users_path
     end
-    
+
     def delete
         @users = User.all.select {|user| user.role == "User"}
     end
-    
+
     def revoke
         User.find(params[:id]).destroy
-        redirect_to delete_path
+        redirect_to users_path
     end
 
     def configure_sign_up_params

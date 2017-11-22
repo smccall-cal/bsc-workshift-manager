@@ -8,9 +8,7 @@ class UsersController < ApplicationController
     end
 
     def index
-        if user_signed_in?
-            redirect_to user_path(current_user.id)
-        end
+        @users = User.all.select {|user| user.role == "User"}
     end
 
     def show
