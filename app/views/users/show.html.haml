@@ -1,11 +1,27 @@
+%header
+  #headerContainer
+    %h3 BSC Workshift Manager
+
+    #nav
+      = link_to "Sign Out", destroy_user_session_path, method: :delete
+  #menuContainer
+    %ul
+      %li
+        = link_to "My preferences", user_preferences_path(params[:id])
+
+        
+
+
+
 %h1 Welcome #{current_user.username}
 
 - 3.times do
   %br
 
-Remaining Hours: #{current_user.hours}
-%br
-Current Fines: #{current_user.fines}
+#userInfo
+  Remaining Hours: #{current_user.hours}
+  %br
+  Current Fines: #{current_user.fines}
 
 - 7.times do
   %br
@@ -16,7 +32,6 @@ Current Fines: #{current_user.fines}
 - 7.times do
   %br
 
-= link_to "My preferences", user_preferences_path(params[:id])
 
 - 3.times do
   %br
@@ -38,5 +53,3 @@ Current Fines: #{current_user.fines}
 
   - 3.times do
     %br
-
-= link_to "Sign Out", destroy_user_session_path, method: :delete
