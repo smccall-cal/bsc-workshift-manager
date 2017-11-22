@@ -1,0 +1,20 @@
+<h1>Create New Semester</h1>
+
+<%= notice %>
+
+<%= form_tag semesters_path, :method => "post" do %>
+
+  <%= label :semester, :semester_name, 'Semester Name'%>
+  <%= text_field :semester, :semester_name%>
+
+  <%= label :semester, :start_date, 'Start Date'%>
+  <%= date_select :semester, :start_date%>
+  
+  <%= label :semester, :end_date, 'End Date'%>
+  <%= date_select :semester, :end_date%>
+
+  <%= submit_tag 'Save Semester'%>
+  
+<% end %>
+
+<%= link_to 'Back', semesters_path %> 
