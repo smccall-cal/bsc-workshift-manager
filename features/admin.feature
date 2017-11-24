@@ -1,4 +1,3 @@
-@wip
 Feature: Grant Admin's all Managerial powers for all buildings.
 
     As an Admin,
