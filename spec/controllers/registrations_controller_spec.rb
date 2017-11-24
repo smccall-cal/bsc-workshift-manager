@@ -45,7 +45,7 @@ RSpec.describe RegistrationsController, type: :controller do
         end
 
         it "adds all the users" do
-            post :mass_create, :params => {user: {usernames: @names, emails: @emails, building: "CZ"}}
+            post :mass_create, :params => {user: {username: @names, email: @emails, building: "CZ"}}
             expect(User.find_by(username: "A")).to be_truthy
             expect(User.find_by(username: "B")).to be_truthy
             expect(User.find_by(username: "C")).to be_truthy
