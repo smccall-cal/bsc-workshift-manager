@@ -1,23 +1,40 @@
 <h1>New Preference</h1>
-
-<%= notice %>
-
-<%= form_tag preferences_path, :method => "post" do %>
+<p id="error"><%= alert %></p>
+<!-- #, :user_id => "#{find_user_id(@user)}" -->
+<%= form_tag user_preferences_path(@user), :method => "post", :id => "preference" do %>
   <% Preference.shifts.each do |sh| %>
-    <%= label_tag "shift[#{sh}]", sh %>
-    <%= select_tag "shift[#{sh}]", options_for_select(Array 0..5) %>
-  <% end %>
-  <% Preference.days.each do |d| %>
+    <%= select_tag "preference[shift][#{sh}]", options_for_select(Array 0..5) %>
+    <%= label_tag "preference[shift][#{sh}]", sh %>
     <br>
-    <%= d %>
-    <% Preference.times.each do |t| %>
-      <%= label_tag "schedule[#{d}][#{t}]", t %>
-      <%= select_tag "schedule[#{d}][#{t}]", options_for_select(["+", "-", "x", "?", " "]) %>
-    <% end %>
   <% end %>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>Times</th>
+        <% Preference.times.each do |t| %>
+          <th><%= t %></th>
+        <% end %>
+      </tr>
+      <tr>
+      <% Preference.days.each do |d| %>
+        <tr>
+          <td>
+          <%= d %>
+          </td>
+          <% Preference.times.each do |t| %>
+            <td>
+            <%= select_tag "preference[schedule][#{d}][#{t}]", options_for_select(["+", "-", "x", "?", " "]) %>
+            </td>
+          </td>
+          <% end %>
+        <tr>
+      <% end %>
+      </tr>
+    <tbody>
+  </table>
   <br>
   <%= submit_tag "Save Preferences" %>
 <% end %>
 
 <!--to be replaced by personal page path-->
-<%= link_to 'Back', preferences_path %> 
+<%= link_to 'Back', user_path(@user) %>

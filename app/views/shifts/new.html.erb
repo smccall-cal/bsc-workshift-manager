@@ -1,0 +1,23 @@
+<h1>Create New Shift</h1>
+
+<%= notice %>
+
+<%= form_tag semester_shifts_path, :method => "post" do %>
+
+  <%= label :shift_detail, :location, 'Shift Location'%>
+  <%= text_field :shift_detail, :location%>
+  
+  <%= label :shift_detail, :description, 'Shift Description'%>
+  <%= text_field :shift_detail, :description%>
+
+  <%= label :shift_template, :day, 'Day of the week'%>
+  <%= select_tag 'shift[day]', options_for_select(Date::DAYNAMES) %>
+  
+  <%= label :shift_template, :time, 'Time of shift'%>
+  <%= time_select("shift", "time")%>
+
+  <%= submit_tag 'Save Shift'%>
+  
+<% end %>
+
+<%= link_to 'Back', semester_path(@semester) %> 
