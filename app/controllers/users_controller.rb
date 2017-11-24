@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
     def index
         key = params["key"] || "username"
-        query = Regexp.new (params["query"] || ".*")
+        query = Regexp.new((params["query"] || ".*"), "i")
         @users = User.select {|user| user[key] =~ query and user.role == "User" }
     end
 
