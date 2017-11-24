@@ -6,23 +6,14 @@ Feature: Users should be able to sort or filter jobs
 
 Background: shift responsibilities have been added to database
 
-  Given the following shifts with types exist:
-  | 100's Roof Clean/Sweep        | Exterior      |
-  | 10's Hallway                  | Interior      |
-  | After Dinner Food Put Away    | Kitchen       |
-  | 100's Bathroom                | Rotating Shift|
-  | WR - Can's/Bottle             | WR            |
-
-
-  And I am on the BSCWorkshift member personal page
-  Then 5 seed shift responsibilities should exist
+  Given user "Foo" exists with password "Bar"
+  And I am not logged in
+  And I am on the sign in page
+  And I log in as "Foo" with password "Bar"
+  And some shift details exist
 
 Scenario: I can filter the jobs of certain type
   
-  Given I and on the personal page
-  And I am logged in
-  When I press My responsibilities
-  Then I should see shift responsibilities
   
 Scenario: I can sort the jobs with certain keys
   
