@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
+    before_action :user_params
     before_action :manager?, only: [:new, :destroy]
 
     def user_params
@@ -7,9 +8,7 @@ class UsersController < ApplicationController
     end
 
     def index
-        if user_signed_in?
-            redirect_to user_path(current_user.id)
-        end
+        @users = User.all.select {|user| user.role == "User"}
     end
 
     def show
@@ -21,13 +20,6 @@ class UsersController < ApplicationController
     end
 
     def create
-        valid = User.init(params[:username], params[:password])
-        if !valid
-            flash[:notice] = "Invalid username / password"
-            redirect_to new_user_registration_path
-        end
-        flash[:notice] = "#{params[:username]} created successfully"
-        redirect_to root_path
     end
 
     def edit
@@ -39,4 +31,10 @@ class UsersController < ApplicationController
     def destroy
     end
 
+    def entry
+        if user_signed_in?
+            redirect_to user_path(current_user.id)
+        end
+    end
+    
 end

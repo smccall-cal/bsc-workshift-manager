@@ -39,6 +39,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'devise'
+gem 'graphmatch', :git => "git://github.com/pH14/graphmatch.git"
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
@@ -66,13 +67,16 @@ group :test do
   gem 'test-unit'
   gem 'minitest'
   gem 'shoulda-matchers', '3', :require => false
-  gem 'simplecov', '~> 0.12.0', :require => true
+  gem 'simplecov', '~> 0.8.2', :require => false
+  gem 'simplecov-shield'
+
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels' # basic imperative step defs
   gem 'database_cleaner' # required by Cucumber
   gem 'autotest-rails'
   gem 'factory_girl_rails' # if using FactoryGirl
   gem 'metric_fu'        # collect code metrics
+  gem 'rails-controller-testing'
 end
 
 group :production do

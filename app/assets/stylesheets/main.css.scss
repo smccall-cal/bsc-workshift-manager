@@ -2,20 +2,61 @@ h1 {
   text-align: center;
 }
 h2 {
-  text-align: center;
+  text-align: left;
+}
+
+body {
+  background: rgb(215, 243, 252);
 }
 .login_container {
-  margin: auto;
+  position: relative;
+  z-index: 1;
+  background: lightblue;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 20px;
   text-align: center;
-  border: 5px; border-style: solid;
-  width: 350px;
-  height: 200px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.actions_button {
+  text-transform: uppercase;
+  outline: 0;
+  background: rgb(65, 176, 245);
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  font-size: 14px;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2), 0 3px 3px 0 rgba(0, 0, 0, 0.24);
+  
+}
+
+.password_field {
+
+  background: #f2f2f2;
+  width: 100%;
+  padding: 15px;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.email_field {
+  outline: 0;
+  width: 100%;
+  height: 50px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 16px;
 }
 
 .Devise_container {
   text-align: center;
+}
+
+.forgot_font {
+  color: black;
 }
 
 .Edit_container {
@@ -28,3 +69,65 @@ h2 {
 .edit_field {
   text-align: left;
 }
+
+#userInfo {
+  text-align: center;
+}
+
+header {
+  height: 80px;
+  width: 100%;
+  background: rgb(132, 199, 238);
+  border-bottom: 3px solid rgba(38, 167, 253, 0.4);
+
+  #headerContainer {
+    width: 90%;
+    margin: 0 auto;
+    display: inline-block;
+
+    a {
+      color: white;
+      padding-top: 20px;
+    }
+
+    #nav {
+      float: right;
+      padding-top:25px;
+    }
+
+    h3{
+      margin-left: 60px;
+      float: left;
+      font-size: 25px;
+    }
+  }
+
+  #menuContainer{
+    background: rgb(170, 226, 230);
+    height: 40px;
+
+    ul {
+      margin: 0;
+      li {
+        float: left;
+        list-style: none;
+        margin: 0 20px;
+        padding: 5px;
+        margin-top: 5px;
+        cursor: pointer;
+        color: white;
+        text-transform: capitalize;
+        &:hover {
+          background: white;
+          color: grey;
+          border-radius: 4px;
+        }
+        a {
+          color: white;
+        }
+      }
+    }
+  }
+  
+}
+

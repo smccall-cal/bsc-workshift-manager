@@ -42,6 +42,6 @@ Time: <%= @shift.time%>
 
 <br>
 <%= link_to 'Edit', edit_semester_shift_path(@semester,@shift) %> 
-<%= button_to 'Delete', semester_shift_path(@semester,@shift), :method => :delete, :confirm => 'Are you sure?' %>
+<%= button_to 'Delete', semester_shift_path(@semester,@shift), :method => :delete, data: {confirm: "Are you sure?"} %>
 <br>
 <%= link_to 'Back', semester_path(@semester) %> 

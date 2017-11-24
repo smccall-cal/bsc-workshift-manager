@@ -52,6 +52,7 @@ Scenario: I should be redirected to "my preferences" page after I set up my pref
   
   Given I am logged in as "Foo" with password "Bar"
   And I have set up my password
+  And some shift details exist
   And I am on the make preferences page
   When I set up my preferences
   Then I should be redirected to the my preferences page for "Foo"

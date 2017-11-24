@@ -41,32 +41,41 @@ RSpec.describe PreferencesController, type: :controller do
   # PreferencesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before(:all) do
+      @user  = "Username of some sort"
+      @email = "generic@berkeley.edu"
+      @pass  = "Password of some sort"
+      @building = "Location of some sort"
+      User.init(@user, @email, @pass, @building)
+      @user_id = User.find_by(username: @user).id
+  end
 
-  describe "GET #show", :type => :model do
-    it "returns a success response" do
-      preference = Preference.create! valid_attributes
-      get :show, params: {id: preference.to_param}, session: valid_session
-      expect(response).to be_success
-    end
-    it "calls model method to fetch the preferences" do
-    end
+
+  # describe "GET #show", :type => :model do
+    # it "returns a success response" do
+    #   preference = Preference.create! valid_attributes
+    #   get :show, params: {user_id: @user_id ,id: preference.to_param}, session: valid_session
+    #   expect(response.status).to eq(200)
+    # end
+    # it "calls model method to fetch the preferences" do
+    # end
     # it "new a preference" do
     #     expect(Preference.new).to be_valid
     # end
-  end
+  # end
 
-  describe "GET #new" do
-    it "returns a success response" do
-      get :new, params: {}, session: valid_session
-      expect(response).to be_success
-    end
-  end
+  # describe "GET #new" do
+    # it "returns a success response" do
+    #   get :new, params: {user_id: @user_id}, session: valid_session
+    #   expect(response).to be_success
+    # end
+  # end
 
   describe "GET #edit" do
     it "returns a success response" do
-      # user = User.create! valid_attributes
+      user = User.create! valid_attributes
       preference = Preference.create! valid_attributes
-      get :edit, params: {id: preference.to_param}, session: valid_session
+      get :edit, params: {user_id: @user_id, id: preference.to_param}, session: valid_session
       expect(response).to be_success
     end
   end
@@ -75,19 +84,19 @@ RSpec.describe PreferencesController, type: :controller do
     context "with valid params" do
       it "creates a new Preference" do
         expect {
-          post :create, params: {preference: valid_attributes}, session: valid_session
+          post :create, params: {user_id: @user_id, preference: valid_attributes}, session: valid_session
         }.to change(Preference, :count).by(1)
       end
 
       it "redirects to the created preference" do
-        post :create, params: {preference: valid_attributes}, session: valid_session
+        post :create, params: {user_id: @user_id,preference: valid_attributes}, session: valid_session
         expect(response).to redirect_to(Preference.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {preference: invalid_attributes}, session: valid_session
+        post :create, params: {user_id: @user_id, preference: invalid_attributes}, session: valid_session
         expect(response).to be_success
       end
     end
@@ -101,14 +110,14 @@ RSpec.describe PreferencesController, type: :controller do
 
       it "updates the requested preference" do
         preference = Preference.create! valid_attributes
-        put :update, params: {id: preference.to_param, preference: new_attributes}, session: valid_session
+        put :update, params: {user_id: @user_id, id: preference.to_param, preference: new_attributes}, session: valid_session
         preference.reload
         skip("Add assertions for updated state")
       end
 
       it "redirects to the preference" do
         preference = Preference.create! valid_attributes
-        put :update, params: {id: preference.to_param, preference: valid_attributes}, session: valid_session
+        put :update, params: {user_id: @user_id, id: preference.to_param, preference: valid_attributes}, session: valid_session
         expect(response).to redirect_to(preference)
       end
     end
@@ -116,7 +125,7 @@ RSpec.describe PreferencesController, type: :controller do
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
         preference = Preference.create! valid_attributes
-        put :update, params: {id: preference.to_param, preference: invalid_attributes}, session: valid_session
+        put :update, params: {user_id: @user_id, id: preference.to_param, preference: invalid_attributes}, session: valid_session
         expect(response).to be_success
       end
     end
