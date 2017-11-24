@@ -2,20 +2,27 @@ class UsersController < ApplicationController
     before_action :authenticate_user!
     before_action :user_params
     before_action :manager?, only: [:new, :destroy]
-    before_action :sort_filter_params, only: :index
 
     def user_params
         params.permit(:email, :username, :password, :id)
     end
-    
-    def sort_filter_params
-        params.permit(:query, :key)
-    end
 
     def index
-        key = params["key"] || "username"
-        query = Regexp.new((params["query"] || ".*"), "i")
-        @users = User.select {|user| user[key] =~ query and user.role == "User" }
+        @key = params["key"] || session["key"] || "username"
+        session["key"] = @key
+        
+        @query_ = params["query"] || session["query"] || ""
+        session["query"] = @query_
+        @query = Regexp.new(@query_, "i")
+        
+        @sort = params["sort"] || session["sort"] || ""
+        if params["sort"] == session["sort"]
+            session["sort"] = (@sort = "")
+        else
+            session["sort"] = @sort
+        end
+        
+        @users = User.select {|user| user[@key] =~ @query and user.role == "User" }.sort_by{|u| u[@sort]}
     end
 
     def show

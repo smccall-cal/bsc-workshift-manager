@@ -1,9 +1,8 @@
 <tbody>
     <tr>
-        <th>Username</th>
-        <th>Building</th>
-        <th>Email</th>
-        <th>Role</th>
+        <% ["username", "building", "email", "role"].each do |ele| %>
+            <th><%= link_to ele.capitalize, users_path(:format => :js, :sort => ele), remote: true, class: selected?(ele, @sort) %></th>
+        <% end %>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
