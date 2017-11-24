@@ -30,25 +30,12 @@
                 <%= f.text_field :redirect, :value => users_path, :style => "display:none;" %>
                 <%= f.submit "Add" %>
             </td>
+            
+            <td>
+            </td>
             <% end %>
         </tr>
-        <% @users.each do |user| %>
-            <tr>
-                <td><%= user.username %></td>
-                <td><%= user.building %></td>
-                <td><%= user.email %></td>
-                <td><%= user.role %></td>
-                <td>
-                    <%= form_tag edit_user_registration_path(user), :method => "get" do %>
-                        <%= submit_tag "Edit", :id => "#{user.username}_edit" %>
-                    <% end %>
-                <td>
-                    <%= form_tag revoke_path(user), :method => "delete" do %>
-                        <%= submit_tag "Delete", :id => "#{user.username}_delete" %>
-                    <% end %>
-                </td>
-            </tr>
-        <% end %>
+        <%= render "users" %>
     </tbody>
 </table>
 
