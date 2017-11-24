@@ -2,6 +2,11 @@ class UsersController < ApplicationController
     before_action :authenticate_user!
     before_action :user_params
     before_action :manager?, only: [:new, :destroy, :index]
+    skip_before_action :verify_authenticity_token, if: :sort_filter?
+    
+    def sort_filter?
+        action_name == "index" && request.format.symbol == :js
+    end
 
     def user_params
         params.permit(:email, :username, :password, :id)
