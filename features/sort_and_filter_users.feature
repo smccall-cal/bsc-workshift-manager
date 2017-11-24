@@ -1,3 +1,4 @@
+@javascript
 Feature: Managers should be able to sort or filter users
  
   As a manager

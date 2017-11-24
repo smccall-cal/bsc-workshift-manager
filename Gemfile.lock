@@ -85,6 +85,7 @@ GEM
       rest-client (>= 1.6.0)
       ruby_parser (~> 3.0)
       sexp_processor (~> 4.1)
+    cliver (0.3.2)
     code_analyzer (0.4.8)
       sexp_processor
     code_metrics (0.1.3)
@@ -245,6 +246,10 @@ GEM
       ast (~> 2.3)
     path_expander (1.0.2)
     pg (0.21.0)
+    poltergeist (1.16.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      websocket-driver (>= 0.2.0)
     power_assert (1.1.1)
     procto (0.0.3)
     public_suffix (3.0.1)
@@ -433,6 +438,7 @@ DEPENDENCIES
   metric_fu
   minitest
   pg
+  poltergeist
   puma (~> 3.7)
   rack_session_access
   rails (~> 5.1.4)
