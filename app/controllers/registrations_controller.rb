@@ -16,6 +16,7 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     def mass_create
+        redirect_url = params[:user][:redirect] # It may be from users/massnew or /users
         names = params[:user][:username].split /\r?\n/
         emails = params[:user][:email].split /\r?\n/
         building = params[:user][:building]
@@ -25,7 +26,7 @@ class RegistrationsController < Devise::RegistrationsController
         pairs.each{|name, email|
             User.init(name, email, "5108481936", building)
         }
-        redirect_to users_path
+        redirect_to redirect_url
     end
 
     def delete
@@ -51,7 +52,7 @@ class RegistrationsController < Devise::RegistrationsController
 
     #The path used after sign up.
     def after_sign_up_path_for(resource)
-       users_path
+       user_path(current_user.id)
     end
 
     protected

@@ -27,6 +27,7 @@
             </td>
 
             <td>
+                <%= f.text_field :redirect, :value => users_path, :style => "display:none;" %>
                 <%= f.submit "Add" %>
             </td>
             <% end %>

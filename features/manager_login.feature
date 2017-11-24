@@ -17,11 +17,11 @@ Scenario: A correct login will send me to my page
     When I log in as "Manager" with password "ManagerBar"
     Then I should be on the personal page for "Manager"
 
-Scenario: I can access regular user pages
+# Scenario: I can access regular user pages
 
-    When I log in as "Manager" with password "ManagerBar"
-    And I follow "My preferences"
-    Then I should be on the no preferences page for "Manager"
+#     When I log in as "Manager" with password "ManagerBar"
+#     And I follow "My preferences"
+#     Then I should be on the no preferences page for "Manager"
 
 Scenario: I can access managerial pages
 
