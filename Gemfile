@@ -40,6 +40,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'devise'
 gem 'graphmatch', :git => "git://github.com/pH14/graphmatch.git"
+gem 'jquery-rails'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
