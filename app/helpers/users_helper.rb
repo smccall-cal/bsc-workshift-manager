@@ -1,5 +1,5 @@
 module UsersHelper
-    def selected? link, var
-        if var == link then "selected" else "" end
+    def selected? link
+        if @sort == link then "selected" else "" end
     end
 end
