@@ -9,12 +9,13 @@ class UsersController < ApplicationController
     end
     
     def sort_filter_params
-        params.permit(:query)
+        params.permit(:query, :key)
     end
 
     def index
-        query = Regexp.new ((params["query"] || "") + ".*")
-        @users = User.select {|user| user.username =~ query and user.role == "User" }
+        key = params["key"] || "username"
+        query = Regexp.new (params["query"] || ".*")
+        @users = User.select {|user| user[key] =~ query and user.role == "User" }
     end
 
     def show

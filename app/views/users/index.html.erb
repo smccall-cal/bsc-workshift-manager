@@ -1,6 +1,8 @@
 <div class="search">
     <%= form_with :url => "/users.js", :method => :get do |f| %>
-        <%= f.text_field :query, autofocus: true %>
+        <%= f.label :key, "Search by" %>
+        <%= f.select :key, ["username", "building", "email", "role"] %>
+        <%= f.text_field :query, autofocus: true, placeholder: "Query" %>
         <%= f.submit "Search" %>
     <% end %>
 </div>
