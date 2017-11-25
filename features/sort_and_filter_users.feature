@@ -18,10 +18,20 @@ Scenario: I can filter the users by typing some query of certain key
   When I select "username" from "key"
   And I fill in "i" for "query"
   And I press "Search"
-  Then I should see users with "i" in "username"
-  And I should not see users without "i" in "username"
+  Then I should not see users without "i" in "username"
+  And I should see users with "i" in "username"
   
 Scenario: I can sort the users with certain keys
   
   When I follow "Username"
   Then I should see users sorted by "username"
+  
+Scenario: I can sort and filter at the same time
+  
+  When I select "email" from "key"
+  And I fill in "1" for "query"
+  And I press "Search"
+  And I follow "Building"
+  Then I should not see users without "1" in "email"
+  And I should see users with "1" in "email"
+  And I should see users sorted by "building"
