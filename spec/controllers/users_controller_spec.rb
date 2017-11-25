@@ -73,7 +73,7 @@ RSpec.describe UsersController, type: :controller do
         it "assigns sorted and filtered users to @users" do
             @params = {:key=>"username", :query=>"i", :sort=>"username"}
             get :index, :params => @params
-            expect(assigns(:users)).to eq User.select {|user| user[@params[:key]] =~ @params[:query] and user.role == "User" }.sort_by{|u| u[@params[:sort]]}
+            expect(assigns(:users)).to eq (User.select {|user| user[@params[:key]] =~ @params[:query] and user.role == "User" }.sort_by{|u| u[@params[:sort]]})
         end
         
     end
