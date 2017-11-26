@@ -29,7 +29,7 @@ class Preference < ApplicationRecord
     end
 
     def self.shifts
-        @@shifts = ShiftDetail.all.map {|sh| (sh.location + "--" + sh.description).to_sym}
+        @@shifts = ShiftDetail.all.map {|sh| sh.to_sym}
     end
 
     def self.days
