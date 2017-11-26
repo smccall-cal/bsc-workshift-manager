@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
-    # before_action :user_params
     before_action :manager?, only: [:new, :destroy, :index]
+    before_action :set_user, only: [:edit, :update]
 
-    # def user_params
-    #     params.permit(:email, :username, :password, :id)
-    # end
-    # seems not needed because without it tests are passed
+    def user_params
+        params.require(:user).permit(:email, :username, :building)
+    end
 
     def clear_sessions
         session["key"] = nil
@@ -40,6 +39,9 @@ class UsersController < ApplicationController
         end
     end
     
+    def set_user
+        @user = User.find(params[:id])
+    end
 
     def index
         clear_sessions if request.format.symbol == :html # every time a manager visit this page, make it in init state
@@ -62,6 +64,11 @@ class UsersController < ApplicationController
     end
 
     def update
+        if @user.update(user_params)
+            redirect_to users_path, notice: 'User was successfully updated.'
+        else
+            redirect_to users_path, alert: @user.errors.full_messages[0]
+        end
     end
 
     def destroy

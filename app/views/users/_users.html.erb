@@ -9,15 +9,15 @@
     <tr>
         <%= form_for :user, :url => mass_create_path do |f| %>
         <td>
-          <%= f.text_area :username, autofocus: true %>
+            <%= f.text_area :username, autofocus: true %>
         </td>
 
         <td>
-          <%= f.select :building, current_user.buildings %>
+            <%= f.select :building, current_user.buildings %>
         </td>
 
         <td>
-          <%= f.text_area :email, autofocus: true %>
+            <%= f.text_area :email, autofocus: true %>
         </td>
 
         <td>
@@ -40,7 +40,7 @@
             <td><%= user.email %></td>
             <td><%= user.role %></td>
             <td>
-                <%= form_tag edit_user_registration_path(user), :method => "get" do %>
+                <%= form_tag edit_user_path(user), :method => :get do |f| %>
                     <%= submit_tag "Edit", :id => "#{user.username}_edit" %>
                 <% end %>
             <td>
