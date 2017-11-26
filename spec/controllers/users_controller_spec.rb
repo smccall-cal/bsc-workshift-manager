@@ -206,5 +206,55 @@ RSpec.describe UsersController, type: :controller do
         end
         
     end
+    
+    describe "set_user" do
+        
+        before(:each) do
+            @user = User.new(:id=>1, :role=>"Manager", :init=>false)
+            @user_ = User.new(:id=>2)
+            allow(controller).to receive(:authenticate_user!).and_return(true)
+            allow(controller).to receive(:current_user).and_return(@user)
+            allow(controller).to receive(:user_signed_in?).and_return(true)
+            allow(User).to receive(:find).and_return(@user_)
+        end
+        
+        it "sets @user the user to be edited" do
+            get :edit, :params => {:id => 2}
+            expect(assigns(:user)).to eq @user_
+        end
+        
+    end
+    
+    describe "POST #update" do
+        
+        before(:each) do
+            @user = User.new(:id=>1, :role=>"Manager", :init=>false)
+            @user_ = User.new(:id=>2)
+            allow(controller).to receive(:authenticate_user!).and_return(true)
+            allow(controller).to receive(:current_user).and_return(@user)
+            allow(controller).to receive(:user_signed_in?).and_return(true)
+            allow(User).to receive(:find).and_return(@user_)
+        end
+        
+        it "calls update on @user" do
+            expect(@user_).to receive(:update)
+            post :update, :params => {:id => 2, :user => {:email => "Foo@berkeley.edu", :username => "Foo", :building => "CZ"}}
+        end
+        
+        it "redirects the user to manage residents page with success message if the update's valid" do
+            allow(@user_).to receive(:update).and_return(true)
+            post :update, :params => {:id => 2, :user => {:email => "Foo@berkeley.edu", :username => "Foo", :building => "CZ"}}
+            expect(response).to redirect_to users_path
+            expect(flash[:notice]).to eq 'User was successfully updated.'
+        end
+        
+        it "redirects the user to manage residents page with success message if the update's valid" do
+            allow(@user_).to receive(:update).and_return(false)
+            post :update, :params => {:id => 2, :user => {:email => "Foo@berkeley.edu", :username => "Foo", :building => "CZ"}}
+            expect(response).to redirect_to users_path
+            expect(flash[:alert]).to eq @user_.errors.full_messages[0]
+        end
+        
+    end
 
 end
