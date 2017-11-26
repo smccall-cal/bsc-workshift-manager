@@ -15,13 +15,19 @@ Background: a user's logged in and shifts have been added to database
   And some shift details exist
   And I am on the make preferences page
 
-Scenario: I can filter the jobs of certain location
+Scenario: I can filter the jobs of certain key by typing some query
   
   When I select "location" from "key"
   And I fill in "i" for "query"
   And I press "Filter"
   Then I should not see jobs without "i" in "location"
   And I should see jobs with "i" in "location"
+  
+Scenario: I can filter the jobs of certain key by clicking on some key
+  
+  When I follow "Kitchen"
+  Then I should not see jobs without "Kitchen" in "location"
+  And I should see jobs with "Kitchen" in "location"
   
 Scenario: I can sort the jobs with certain keys
   
