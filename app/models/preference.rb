@@ -37,7 +37,7 @@ class Preference < ApplicationRecord
     end
 
     def self.times
-        @@times = (8..23).map {|t| "#{t%12}#{(t < 12)? 'am' : 'pm' }"}
+        @@times = (8..23).map {|t| "#{ (t-1) % 12 + 1 }#{(t < 12)? 'am' : 'pm' }"}
     end
 
     # When setting colomns, rails stringifies hash automatically.
