@@ -65,9 +65,9 @@ class UsersController < ApplicationController
 
     def update
         if @user.update(user_params)
-            redirect_to users_path(@user), notice: 'User was successfully updated.'
+            redirect_to users_path, notice: 'User was successfully updated.'
         else
-            redirect_to users_path(@user), alert: @user.errors
+            redirect_to users_path, alert: @user.errors
         end
     end
 
