@@ -1,0 +1,5 @@
+//Find the largest Palindrome in a string
+
+var findLargestPalindrome = function (string) {
+  
+}
