@@ -7,6 +7,7 @@ class UsersController < ApplicationController
         params.require(:user).permit(:email, :username, :building)
     end
 
+<<<<<<< HEAD
     def clear_sessions
         session["key"] = nil
         session["query"] = nil
@@ -42,10 +43,13 @@ class UsersController < ApplicationController
     def set_user
         @user = User.find(params[:id])
     end
+=======
+    include SortFilter
+>>>>>>> [Feature] complete implementation of preference filtering
 
     def index
         clear_sessions if request.format.symbol == :html # every time a manager visit this page, make it in init state
-        index_params
+        sort_filter_params :key => "username"
         @users = User.select {|user| user[@key] =~ @query and user.role == "User" }.sort_by{|u| u[@sort]}
     end
 

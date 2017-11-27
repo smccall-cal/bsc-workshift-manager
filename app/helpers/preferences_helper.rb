@@ -1,5 +1,9 @@
+require "json"
+
 module PreferencesHelper
-  def find_user_id(user_name)
-    return User.find_by(username: user_name).id
-  end
+    include SortFilterHelper_
+    
+    def to_id shift
+        shift.gsub((/(( & )|\/| )/), "-").gsub(/(\()|(\))|'|\+/, "-")
+    end
 end

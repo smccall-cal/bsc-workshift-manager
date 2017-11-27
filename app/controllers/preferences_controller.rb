@@ -1,6 +1,10 @@
+require "json"
+
 class PreferencesController < ApplicationController
   before_action :set_user, :except => :notlogged
   before_action :set_preference, :only => [:show, :edit, :update]
+
+  include SortFilter
 
   def index
     if @user.preference.nil?
@@ -23,7 +27,10 @@ class PreferencesController < ApplicationController
 
   # GET /preferences/new
   def new
-    @preference = Preference.new
+    clear_sessions("rank") if request.format.symbol == :html # every time a manager visit this page, make it in init state
+    sort_filter_params :key => "location"
+    @shifts = Preference.shifts.select {|sh| ShiftDetail.valueOf(sh, @key) =~ @query}
+    @rank = params["rank"]
   end
 
   # GET /preferences/1/edit
