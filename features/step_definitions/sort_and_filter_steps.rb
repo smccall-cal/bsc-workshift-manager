@@ -8,7 +8,7 @@ end
 Then /^I should (not )?see jobs with(out)? "(.*)" in "(.*)"$/ do |n1, n2, query, key|
     @shifts = ShiftDetail.select{|sh| (not (sh[key] =~ Regexp.new(query)).nil?)^n2}
     @shifts.each do |sh|
-        step "I should " + ((n1)? "not ": "") + "see \"#{sh.to_s}\""
+        step "I should " + ((n1)? "not ": "") + "see \"#{sh.to_s_with_space}\""
     end
 end
 
@@ -27,8 +27,12 @@ Then /^I should see jobs sorted by "(.*)"$/ do |sort|
 end
 
 Then /^I should see all displayed jobs with rank "(.*)"$/ do |rank|
-    ranks = page.all(:css, ".rank")
+    ranks = page.all(:css, ".show .rank", :visible => true)
     ranks.each do |r|
         expect(r.value).to eq rank
     end
+end
+
+When /^I follow any "(.*)"/ do |link|
+    first(:link, link).click
 end
