@@ -74,7 +74,7 @@ RSpec.describe UsersController, type: :controller do
         it "assigns sorted and filtered users to @users" do
             @params = {:key=>"username", :query=>"i", :sort=>"username"}
             get :index, :params => @params
-            expect(assigns(:users)).to eq (User.select {|user| user[@params[:key]] =~ Regexp.new(@params[:query], "i") and user.role == "User" }.sort_by{|u| u[@params[:sort]]})
+            expect(assigns(:users)).to eq (User.select {|user| user[@params[:key]] =~ Regexp.new(Regexp.escape(URI.decode@params[:query]), "i") and user.role == "User" }.sort_by{|u| u[@params[:sort]]})
         end
         
     end
@@ -249,7 +249,7 @@ RSpec.describe UsersController, type: :controller do
             expect(flash[:notice]).to eq 'User was successfully updated.'
         end
         
-        it "redirects the user to manage residents page with success message if the update's valid" do
+        it "redirects the user to manage residents page with fail message if the update's invalid" do
             allow(@user_).to receive(:update).and_return(false)
             post :update, :params => {:id => 2, :user => {:email => "Foo@berkeley.edu", :username => "Foo", :building => "CZ"}}
             expect(response).to redirect_to users_path
