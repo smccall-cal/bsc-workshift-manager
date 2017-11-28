@@ -1,0 +1,10 @@
+<% Preference.shifts.each do |sh| %>
+    <div id=<%= "#{to_id sh.to_s}" %>>
+        <% loc = ShiftDetail.valueOf(sh, "location") %>
+        <% des = ShiftDetail.valueOf(sh, "description") %>
+        <%= select_tag "preference[shift][#{sh}]", options_for_select(Array(1..5)), class: "rank" %>
+        <%= link_to loc, new_user_preference_path(:format => :js, :key => "location", :query => loc), remote: true %>
+        --
+        <%= link_to des, new_user_preference_path(:format => :js, :key => "description", :query => des), remote: true %>
+    </div>
+<% end %>

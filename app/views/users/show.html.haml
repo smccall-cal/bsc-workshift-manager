@@ -1,0 +1,48 @@
+%header
+  #headerContainer
+    %h3 BSC Workshift Manager
+
+    #nav
+      = link_to "Sign Out", destroy_user_session_path, method: :delete
+  #menuContainer
+    %ul
+      - if !current_user.manage?
+        %li
+          = link_to "My preferences", user_preferences_path(params[:id])
+      - if current_user.manage?
+        %li
+          = link_to "Manage Residents", users_path
+        %li
+          = link_to "View Semester Workshift", semesters_path
+
+
+
+
+
+
+%h1 Welcome #{current_user.username}
+
+- 3.times do
+  %br
+
+#userInfo
+  Remaining Hours: #{current_user.hours}
+  %br
+  Current Fines: #{current_user.fines}
+
+- 7.times do
+  %br
+
+- current_user.current_shifts.each do |shift|
+  = link_to shift.to_s, shift_path(shift.id)
+
+- 7.times do
+  %br
+
+- if current_user.manage?
+  = link_to "Add a Resident", new_user_registration_path
+  %br
+  = link_to "Add Multiple Residents", mass_add_path
+  %br
+  = link_to "Delete Residents", delete_path
+  %br
