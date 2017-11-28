@@ -11,36 +11,7 @@
   <%= f.submit "Apply on all displayed" %>
 <% end %>
 <%= form_tag user_preferences_path(@user), :method => "post", :id => "preference" do %>
-  <div id="shifts">
-    <%= render "shifts" %>
-  </div>
-  <table class="table">
-    <tbody>
-      <tr>
-        <th>Times</th>
-        <% Preference.times.each do |t| %>
-          <th><%= t %></th>
-        <% end %>
-      </tr>
-      <tr>
-      <% Preference.days.each do |d| %>
-        <tr>
-          <td>
-          <%= d %>
-          </td>
-          <% Preference.times.each do |t| %>
-            <td>
-            <%= select_tag "preference[schedule][#{d}][#{t}]", options_for_select(["+", "-", "x", "?", " "]) %>
-            </td>
-          </td>
-          <% end %>
-        <tr>
-      <% end %>
-      </tr>
-    <tbody>
-  </table>
-  <br>
-  <%= submit_tag "Save Preferences" %>
+  <%= render "shifts" %>
 <% end %>
 
 <%= link_to 'Back', user_path(@user) %>

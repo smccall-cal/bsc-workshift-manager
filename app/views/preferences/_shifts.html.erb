@@ -2,9 +2,36 @@
     <div id=<%= "#{to_id sh.to_s}" %>>
         <% loc = ShiftDetail.valueOf(sh, "location") %>
         <% des = ShiftDetail.valueOf(sh, "description") %>
-        <%= select_tag "preference[shift][#{sh}]", options_for_select(Array(1..5)), class: "rank" %>
-        <%= link_to loc, new_user_preference_path(:format => :js, :key => "location", :query => loc), remote: true %>
+        <%= select_tag "preference[shift][#{sh}]", options_for_select(Array(1..5)), selected: def_shift(sh), class: "rank" %>
+        <%= link_to loc, link_path_action(:key => "location", :query => loc), remote: true %>
         --
-        <%= link_to des, new_user_preference_path(:format => :js, :key => "description", :query => des), remote: true %>
+        <%= link_to des, link_path_action(:key => "description", :query => des), remote: true %>
     </div>
 <% end %>
+<table class="table">
+    <tbody>
+        <tr>
+            <th>Times</th>
+            <% Preference.times.each do |t| %>
+                <th><%= t %></th>
+            <% end %>
+        </tr>
+        <tr>
+        <% Preference.days.each do |d| %>
+            <tr>
+                <td>
+                <%= d %>
+                </td>
+                <% Preference.times.each do |t| %>
+                    <td>
+                    <%= select_tag "preference[schedule][#{d}][#{t}]", options_for_select(["+", "-", "x", "?", " "]), selected: def_schedule(d, t) %>
+                    </td>
+                </td>
+                <% end %>
+            <tr>
+        <% end %>
+        </tr>
+    <tbody>
+</table>
+<br>
+<%= submit_tag "Save Preferences" %>

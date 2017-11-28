@@ -2,8 +2,16 @@ class PreferencesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, :except => :notlogged
   before_action :set_preference, :only => [:show, :edit, :update, :index]
+  before_action :set_sort_filter, :only => [:new, :edit]
 
   include SortFilter
+
+  def set_sort_filter
+    clear_sessions if request.format.symbol == :html # every time a manager visit this page, make it in init state
+    sort_filter_params :key => "location"
+    @shifts = Preference.shifts.select {|sh| ShiftDetail.valueOf(sh, @key) =~ @query}
+    @rank = params["rank"]
+  end
 
   def index
     if @preference.nil?
@@ -26,14 +34,11 @@ class PreferencesController < ApplicationController
 
   # GET /preferences/new
   def new
-    clear_sessions("rank") if request.format.symbol == :html # every time a manager visit this page, make it in init state
-    sort_filter_params :key => "location"
-    @shifts = Preference.shifts.select {|sh| ShiftDetail.valueOf(sh, @key) =~ @query}
-    @rank = params["rank"]
   end
 
   # GET /preferences/1/edit
   def edit
+    render :new if request.format.symbol == :js # reuse the filtering js code
   end
 
   # POST /preferences
