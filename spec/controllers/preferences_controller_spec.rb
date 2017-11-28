@@ -41,32 +41,13 @@ RSpec.describe PreferencesController, type: :controller do
 
     end
     
-    describe "GET #new" do
+    describe "GET #edit" do
         
-        it "clears sessions for sort/filter if the request format is html" do
-            expect(controller).to receive(:clear_sessions).with "rank"
-            get :new, :format => :html, :params => @params
+        it "renders new.js if the request format is js" do
+            get :edit, :format => :js, :xhr => true, :params => @params.merge({:id => @preference})
+            expect(response).to render_template(:new)
         end
         
-        it "doesn't clear sessions for sort/filter if the request format is js" do
-            expect(controller).not_to receive :clear_sessions
-            get :new, :format => :js, :xhr => true, :params => @params
-        end
-        
-        it "gets params for sort/filter" do
-            expect(controller).to receive :sort_filter_params
-            get :new, :params => @params
-        end
-        
-        it "assigns filtered shifts to @shifts" do
-            get :new, :params => @params.merge({:key=>"location", :query=>"i"})
-            expect(assigns(:shifts)).to eq (Preference.shifts.select {|sh| ShiftDetail.valueOf(sh, @params[:key]) =~ Regexp.new(Regexp.escape(URI.decode(@params[:query])), "i")})
-        end
-        
-        it "assigns the rank parameter to @rank" do
-            get :new, :params => @params.merge({:rank => "1"})
-            expect(assigns(:rank)).to eq "1"
-        end
     end
     
     describe "POST #create" do
@@ -139,6 +120,49 @@ RSpec.describe PreferencesController, type: :controller do
             expect(flash[:alert]).to eq @preference.errors.full_messages[0]
         end
         
+    end
+    
+    describe "set_sort_filter" do
+        
+        before :each do
+            @format = double("format")
+            @request = double("request", :format => @format)
+            allow(controller).to receive(:request).and_return(@request)
+        end
+        
+        it "clears sessions for sort/filter if the request format is html" do
+            allow(@format).to receive(:symbol).and_return(:html)
+            expect(controller).to receive(:clear_sessions)
+            controller.set_sort_filter
+        end
+        
+        it "doesn't clear sessions for sort/filter if the request format is js" do
+            allow(@format).to receive(:symbol).and_return(:js)
+            expect(controller).not_to receive :clear_sessions
+            controller.set_sort_filter
+        end
+        
+        it "gets params for sort/filter" do
+            allow(@format).to receive(:symbol).and_return(:js)
+            expect(controller).to receive :sort_filter_params
+            controller.set_sort_filter
+        end
+        
+        it "assigns filtered shifts to @shifts" do
+            allow(@format).to receive(:symbol).and_return(:js)
+            @params = {:key=>"location", :query=>"i"}
+            allow(controller).to receive(:params).and_return(@params)
+            controller.set_sort_filter
+            expect(assigns(:shifts)).to eq (Preference.shifts.select {|sh| ShiftDetail.valueOf(sh, @params[:key]) =~ Regexp.new(Regexp.escape(URI.decode(@params[:query])), "i")})
+        end
+        
+        it "assigns the rank parameter to @rank" do
+            allow(@format).to receive(:symbol).and_return(:js)
+            @params = {"rank" => "1"}
+            allow(controller).to receive(:params).and_return(@params)
+            controller.set_sort_filter
+            expect(assigns(:rank)).to eq @params["rank"]
+        end
     end
     
     describe "set_preference" do
