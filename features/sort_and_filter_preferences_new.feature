@@ -1,5 +1,5 @@
 @javascript
-Feature: Users should be able to filter jobs
+Feature: Users should be able to filter jobs when creating preferences
  
   As a member
   So that I can quickly find what job I want
