@@ -2,7 +2,7 @@
     <div id=<%= "#{to_id sh.to_s}" %>>
         <% loc = ShiftDetail.valueOf(sh, "location") %>
         <% des = ShiftDetail.valueOf(sh, "description") %>
-        <%= select_tag "preference[shift][#{sh}]", options_for_select(Array(1..5)), selected: def_shift(sh), class: "rank" %>
+        <%= select_tag "preference[shift][#{sh}]", options_for_select(Array(0..5)), selected: def_shift(sh), class: "rank" %>
         <%= link_to loc, link_path_action(:key => "location", :query => loc), remote: true %>
         --
         <%= link_to des, link_path_action(:key => "description", :query => des), remote: true %>

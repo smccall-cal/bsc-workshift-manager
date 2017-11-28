@@ -9,7 +9,7 @@ module PreferencesHelper
         if @preference
             @preference.shift_hash[shift]
         else
-            "1"
+            "0"
         end
     end
     

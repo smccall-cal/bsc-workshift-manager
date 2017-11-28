@@ -7,7 +7,7 @@
   <%= f.submit "Filter" %>
 <% end %>
 <%= form_with :url => new_user_preference_path(@user, :format => :js), :method => :get do |f| %>
-  <%= f.select :rank, (Array 1..5) %>
+  <%= f.select :rank, (Array 0..5) %>
   <%= f.submit "Apply on all displayed" %>
 <% end %>
 <%= form_tag user_preferences_path(@user), :method => "post", :id => "preference" do %>
