@@ -23,6 +23,7 @@ class SemestersController < ApplicationController
 
   # GET /semesters/1/edit
   def edit
+    @semester = Semester.find(params[:id])
   end
 
   # POST /semesters
@@ -49,17 +50,14 @@ class SemestersController < ApplicationController
 
   # PATCH/PUT /semesters/1
   # PATCH/PUT /semesters/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @semester.update(semester_params)
-  #       format.html { redirect_to @semester, notice: 'Semester was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @semester }
-  #     else
-  #       format.html { render :edit }
-  #       format.json { render json: @semester.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
+  def update
+    @semester = Semester.find(params[:id])
+      if @semester.update(semester_params)
+            redirect_to semester_path(@semester), notice: 'User was successfully updated.'
+        else
+            redirect_to semesters_path, alert: @semester.errors.full_messages[0]
+        end
+  end
 
   # DELETE /semesters/1
   # DELETE /semesters/1.json
