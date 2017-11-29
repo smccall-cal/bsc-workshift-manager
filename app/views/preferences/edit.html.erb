@@ -1,22 +1,49 @@
+<%= javascript_include_tag('CollapsibleLists.js') %>
+
 <%= render 'preferences/simple_header' %>
 <h1>Editing Preference</h1>
 <p id="error"><%= alert %></p>
 
-
 <%= form_tag user_preference_path(@user, @preference), :method => "put", :id => "preference" do %>
-  <ul class="nav nav-pills nav-stacked">
-    <li><a href="#">Exterior Cleaning</a></li>
-    <li><a href="#">Interior Cleaning</a></li>
-    <li><a href="#">Kitchen</a></li>
-    <li><a href="#">Rotating Shift</a></li>
-    <li><a href="#">WR</a></li>
+  <ul class = "collapsibleList">
+    <li class = "collapseTitle">
+      Exterior Cleaning
+      <ul>
+        <% Preference.shifts.each do |sh| %>
+          <%= select_tag "preference[shift][#{sh}]", options_for_select((Array 0..5), :selected => @preference.shift_hash[sh]) %>
+          <%= label_tag "preference[shift][#{sh}]", sh %>
+          <br>
+        <% end %>
+      </ul>
+    </li>
+    <li class = "collapseTitle">
+      Interior Cleaning
+      <ul>
+        <li>Test</li>
+      </ul>
+    </li>
+    <li class = "collapseTitle">
+      Kitchen
+      <ul>
+        <li>Test</li>
+      </ul>
+    </li>
+    <li class = "collapseTitle">
+      Rotating Shift
+      <ul>
+        <li>Test</li>
+      </ul>
+    </li>
+    <li class = "collapseTitle">
+      WR
+      <ul>
+        <li>Test</li>
+      </ul>
+    </li>
   </ul>
-    <% Preference.shifts.each do |sh| %>
-      <%= select_tag "preference[shift][#{sh}]", options_for_select((Array 0..5), :selected => @preference.shift_hash[sh]) %>
-      <%= label_tag "preference[shift][#{sh}]", sh %>
-      <br>
-    <% end %>
+  
   <br>
+
   <table class= 'table'>
     <tbody>
       <tr>
@@ -43,9 +70,12 @@
   </table>
   
   <br>
-  <%= submit_tag "Save Preferences" %>
+  <div class = "savePref">
+    <%= submit_tag "Save Preferences" %>
+  </div>
 <% end %>
 
-
-<%= link_to 'Show', user_preference_path(@user, @preference) %> |
-<%= link_to 'Back', user_path(@user) %>
+<div class = "ending">
+  <%= link_to 'Show', user_preference_path(@user, @preference) %> |
+  <%= link_to 'Back', user_path(@user) %>
+</div>

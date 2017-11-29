@@ -1,15 +1,47 @@
 <%= render 'preferences/simple_header' %>
 <p id="notice"><%= notice %></p>
-<h2>Your preferences: </h2>
+<%= javascript_include_tag('CollapsibleLists.js') %>
+<h1>Your preferences: </h1>
 
 <div id="preference">
-  <% Preference.shifts.each do |sh| %>
-    <span class="shift" id="<%= "preference[shift][#{sh}]" %>" >
-        <%= @preference.shift_hash[sh] %>
-    </span>
-    <%= label_tag "preference[shift][#{sh}]", sh %>
-    <br>
-  <% end %>
+<ul class = "collapsibleList">
+<li class = "collapseTitle">
+  Exterior Cleaning
+  <ul>
+    <% Preference.shifts.each do |sh| %>
+      <span class="shift" id="<%= "preference[shift][#{sh}]" %>" >
+          <%= @preference.shift_hash[sh] %>
+      </span>
+      <%= label_tag "preference[shift][#{sh}]", sh %>
+      <br>
+    <% end %>
+  </ul>
+</li>
+<li class = "collapseTitle">
+  Interior Cleaning
+  <ul>
+    <li>Test</li>
+  </ul>
+</li>
+<li class = "collapseTitle">
+  Kitchen
+  <ul>
+    <li>Test</li>
+  </ul>
+</li>
+<li class = "collapseTitle">
+  Rotating Shift
+  <ul>
+    <li>Test</li>
+  </ul>
+</li>
+<li class = "collapseTitle">
+  WR
+  <ul>
+    <li >Test</li>
+  </ul>
+</li>
+</ul>
 
   <table class= 'table'>
   <tbody>
@@ -38,5 +70,7 @@
   <br>
 </div>
 
-<%= link_to 'Edit', edit_user_preference_path(@user, @preference) %> |
-<%= link_to 'Back', user_path(@user) %>
+<div class = "ending">
+  <%= link_to 'Edit', edit_user_preference_path(@user, @preference) %> |
+  <%= link_to 'Back', user_path(@user) %>
+</div>
