@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'uri'
 
 RSpec.describe UsersController, type: :controller do
     
@@ -66,14 +67,14 @@ RSpec.describe UsersController, type: :controller do
         end
         
         it "gets params for sort/filter" do
-            expect(controller).to receive :index_params
+            expect(controller).to receive :sort_filter_params
             get :index
         end
         
         it "assigns sorted and filtered users to @users" do
             @params = {:key=>"username", :query=>"i", :sort=>"username"}
             get :index, :params => @params
-            expect(assigns(:users)).to eq (User.select {|user| user[@params[:key]] =~ Regexp.new(@params[:query], "i") and user.role == "User" }.sort_by{|u| u[@params[:sort]]})
+            expect(assigns(:users)).to eq (User.select {|user| user[@params[:key]] =~ Regexp.new(Regexp.escape(URI.decode@params[:query]), "i") and user.role == "User" }.sort_by{|u| u[@params[:sort]]})
         end
         
     end
@@ -92,13 +93,13 @@ RSpec.describe UsersController, type: :controller do
         
     end
     
-    describe "index_params" do
+    describe "sort_filter_params" do
         
         it "calls methods to get params" do
             expect(controller).to receive :get_key
             expect(controller).to receive :get_query
             expect(controller).to receive :get_sort
-            controller.index_params
+            controller.sort_filter_params
         end
         
     end
@@ -121,7 +122,7 @@ RSpec.describe UsersController, type: :controller do
         it "sets @key to default value if no params[:key] and session[:key]" do
             controller.params[:key] = nil
             session[:key] = nil
-            controller.get_key
+            controller.get_key "username"
             expect(assigns(:key)).to eq "username"
         end
         
@@ -158,7 +159,7 @@ RSpec.describe UsersController, type: :controller do
         it "sets @query to be regexp version of @query_ which is case-insensitive" do
             controller.params[:query] = "some value"
             controller.get_query
-            expect(assigns(:query)).to eq Regexp.new "some value", "i"
+            expect(assigns(:query)).to eq Regexp.new(Regexp.escape(URI.decode("some value")), "i")
         end
         
         it "updates sessions" do
@@ -248,7 +249,7 @@ RSpec.describe UsersController, type: :controller do
             expect(flash[:notice]).to eq 'User was successfully updated.'
         end
         
-        it "redirects the user to manage residents page with success message if the update's valid" do
+        it "redirects the user to manage residents page with fail message if the update's invalid" do
             allow(@user_).to receive(:update).and_return(false)
             post :update, :params => {:id => 2, :user => {:email => "Foo@berkeley.edu", :username => "Foo", :building => "CZ"}}
             expect(response).to redirect_to users_path

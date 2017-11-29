@@ -44,6 +44,10 @@ module NavigationHelpers
 
     when /^the make preferences page/
         new_user_preference_path(User.find_by_username(@username).id)
+        
+    when /^the edit preferences page/
+        user = User.find_by_username(@username)
+        edit_user_preference_path(user.id, user.preference.id)
 
     when /^the no preferences page for "(.*)"/
         no_user_preferences_path(User.find_by_username($1).id)
