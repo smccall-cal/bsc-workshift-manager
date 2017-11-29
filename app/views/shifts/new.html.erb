@@ -6,17 +6,34 @@
 
   <%= label :shift_detail, :location, 'Shift Location'%>
   <%= text_field :shift_detail, :location%>
+  i.e. "Bathroom", "Kitchen"
+  <br>
   
   <%= label :shift_detail, :description, 'Shift Description'%>
   <%= text_field :shift_detail, :description%>
+  i.e. "Deep Clean", "Pots"
+  <br>
+  
+  <%= label :shift_template, :details, 'Shift Details'%>
+  <%= text_field :shift, :details%>
+  i.e. "After Dinner", "Pots"
+  <br>
+  
+  <%= label :shift_template, :floor, 'Floor'%>
+  <%= text_field :shift, :floor%>
+  i.e. "10s", "100s"
+  <br>
+  
+  <%= label :shift_template, :hours, 'Hours'%>
+  <%= select_tag 'shift[hours]', options_for_select([1,2,3,4]) %>
+  <br>
 
   <%= label :shift_template, :day, 'Day of the week'%>
   <%= select_tag 'shift[day]', options_for_select(Date::DAYNAMES) %>
-  
-  <%= label :shift_template, :time, 'Time of shift'%>
-  <%= time_select("shift", "time")%>
+  <br>
 
   <%= submit_tag 'Save Shift'%>
+  <br>
   
 <% end %>
 

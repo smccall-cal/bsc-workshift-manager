@@ -33,9 +33,9 @@ class ShiftsController < ApplicationController
     #byebug
     @semester = Semester.find(session[:semester]["id"])
     
-    @shift_detail = ShiftDetail.where(location: params[:shift_detail][:location],description: params[:shift_detail][:description]).take
+    @shift_detail = ShiftDetail.find_by_location_and_description(params[:shift_detail][:location],params[:shift_detail][:description])
     @shift_template = @shift_detail.shift_templates.create(shift_params)
-    #flash[:notice] = "#{@shift.description} @ #{@shift.location} was successfully created."
+    @shift_template.semesters << @semester
     redirect_to semester_path(@semester)
     
     # @shift = Shift.new(shift_params)
@@ -107,7 +107,7 @@ class ShiftsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shift_params
-      params.require(:shift).permit(:day)
+      params.require(:shift).permit(:day,:hours,:floor,:details)
     end
     
     def shift_template_params
