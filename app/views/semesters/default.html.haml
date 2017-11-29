@@ -1,0 +1,17 @@
+%h1 Default Assignment
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Resident</th>
+      <th>Shifts</th>
+    </tr>
+  </thead>
+
+  <% @assignments.each do |assign| %>
+  <tr>
+    <td><%= assign[0] %></td>
+    <td><%= assign[1] %></td>
+  </tr>
+  <% end %>
+</table>

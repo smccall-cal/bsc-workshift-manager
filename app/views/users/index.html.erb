@@ -1,0 +1,14 @@
+<div class="search">
+    <%= form_with :url => users_path(:format => :js), :method => :get do |f| %>
+        <%= f.label :key, "Search by" %>
+        <%= f.select :key, ["username", "building", "email", "role"], selected: @key %>
+        <%= f.text_field :query, autofocus: true, placeholder: "Query", value: @query_ %>
+        <%= f.submit "Search" %>
+    <% end %>
+</div>
+<table class="table" id="users">
+    <%= render "users" %>
+</table>
+
+<%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+<%= link_to 'Back', user_path(current_user) %>
