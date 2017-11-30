@@ -22,8 +22,16 @@
         %td= market.shift
         %td= market.be_taken
         %td= market.taker_username
+        %td= link_to "Delete my shift",  user_market_path(:id=>1,:username=>market.username) ,method: :delete
+
         -# %td= link_to "More about #{movie.title}", movie_path(movie)
 
 
+- 3.times do
+  %br
+
 = link_to 'Add shift to market', new_user_market_path(current_user)
+%br
+-# = link_to 'Delete my shift',  edit_user_market_path(current_user)
+%br
 = link_to 'Back', user_path(current_user)

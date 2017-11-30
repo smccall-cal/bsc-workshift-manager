@@ -17,7 +17,8 @@ Rails.application.routes.draw do
               get "/none" , :to => "preferences#no", :as => "no"
             end
         end
-        resources :markets, :except => [:destroy]
+        resources :markets
+
     end
 
     resources :semesters do

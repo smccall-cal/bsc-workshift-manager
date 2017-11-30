@@ -11,7 +11,19 @@ class MarketsController < ApplicationController
 
   def create
     @market = Market.create!(market_params)
-    flash[:notice] = "#{@market.shift} was successfully sold."
+    flash[:notice] = "Sale for #{@market.shift} was successfully deliverd."
+    redirect_to user_markets_path
+  end
+
+
+  def edit
+  end
+
+
+  def destroy
+    username = params[:username]
+    @market = Market.find_by_username(username).destroy
+    flash[:notice] = "Sale for #{@market.shift} was successfully canceled."
     redirect_to user_markets_path
   end
 
