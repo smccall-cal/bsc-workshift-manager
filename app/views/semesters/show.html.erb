@@ -44,6 +44,6 @@ End Date: <%= @semester.end_date.strftime("%d %B %Y")%>
 
 
 <br>
-<%= link_to 'Create New Shift', new_semester_shift_path(@semester) %>
+<%= link_to 'Create New Shift', new_semester_shift_template_path(@semester) %>
 <br>
 <%= link_to 'Back', semesters_path %>

@@ -1,6 +1,6 @@
 class ShiftTemplatesController < ApplicationController
   before_action :set_shift_template, only: [:show, :edit, :update, :destroy]
-  before_action :set_semester, only: [:show, :edit, :update, :destroy]
+  before_action :set_semester, only: [:show, :edit, :update, :destroy,:new, :create]
 
   # GET /shifts
   # GET /shifts.json
@@ -15,6 +15,7 @@ class ShiftTemplatesController < ApplicationController
 
   # GET /semesters/:semester_id/shifts/new(.:format)
   def new
+    @users = User.all.collect{ |u| [u.username] }
   end
 
   # GET /semesters/:semester_id/shifts/:id/edit(.:format)
@@ -26,9 +27,13 @@ class ShiftTemplatesController < ApplicationController
   # POST /semesters/:semester_id/shifts(.:format) 
   # POST /shifts.json
   def create
+    byebug
     @shift_detail = ShiftDetail.find_by_location_and_description(params[:shift_detail][:location],params[:shift_detail][:description])
-    @shift_template = @shift_detail.shift_templates.create(shift_params)
+    @shift_template = @shift_detail.shift_templates.create(shift_template_params)
+    @user = User.where(username: params[:shift_template][:assigned_user]).take
+    @shift_template.user = @user
     @shift_template.semesters << @semester
+    @shift_template.save
     redirect_to semester_path(@semester)
     
     # @shift = Shift.new(shift_params)
