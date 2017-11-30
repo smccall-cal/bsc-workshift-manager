@@ -4,13 +4,11 @@
   Username:
   = @user.username
 
-= form_tag user_markets_path, :method=> :post, :username => @user.username do
-
+= form_tag(user_markets_path, :method=> :post) do
   -# = label :market, :username, 'Username'
   -# = text_field :market, 'username'
-
   = label :market, :shift, 'Shift'
-  = select :market, :shift, ['wash','clean']
+  = select :market, :shift, ['Kitchen','Bathroom']
 
 
   = submit_tag 'Submit shift'

@@ -8,12 +8,11 @@ class MarketsController < ApplicationController
 
   def new
     @user = current_user
-
   end
 
   def create
     @market = Market.create!(market_params)
-    # @market = @user.markets.create!(market_params)
+    @market.update_attributes!(:username => current_user.username)
     flash[:notice] = "Sale for #{@market.shift} was successfully deliverd."
     redirect_to user_markets_path
   end
@@ -23,12 +22,12 @@ class MarketsController < ApplicationController
     username = params[:username]
     shift = params[:shift]
     cancel = params[:cancel]
+    p cancel
     @markets = Market.where(username: username, shift: shift)
     @markets.each do |market|
-      if cancel
+      if cancel == "true"
         market.update_attributes!(:be_taken => false)
         flash[:notice] = "#{market.username}'s #{market.shift} returns to not sold."
-
       else
         market.update_attributes!(:be_taken => true)
         flash[:notice] = "#{market.username}'s #{market.shift} was successfully sold."

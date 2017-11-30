@@ -20,8 +20,8 @@
         %td= market.shift
         %td= market.be_taken
         %td= market.taker_username
-        %td= link_to "Take the shift",  edit_user_market_path(:id=>3,:username=>market.username, :shift=>market.shift,:cancel=>false)
-        %td= link_to "Cancel take the shift",  edit_user_market_path(:id=>3,:username=>market.username, :shift=>market.shift, :cancel=>true)
+        %td= link_to "Take the shift",  edit_user_market_path(:id=>3,:username=>market.username, :shift=>market.shift,:cancel=>"false")
+        %td= link_to "Cancel take the shift",  edit_user_market_path(:id=>3,:username=>market.username, :shift=>market.shift, :cancel=>"true")
         %td= link_to "Delete my shift",  user_market_path(:id=>1,:username=>market.username) ,method: :delete
 
 -#
