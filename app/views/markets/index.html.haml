@@ -1,10 +1,28 @@
-%h2 Shift Market:
-#main
-  - if flash[:notice]
-    #notice.message= flash[:notice]
-  - elsif flash[:warning]
-    #warning.message= flash[:warning]
-  = yield
+%h1 Shift Market
+- if flash[:notice]
+  #notice.message= flash[:notice]
+- elsif flash[:warning]
+  #warning.message= flash[:warning]
+= yield
+
+
+%table#markets
+  %thead
+    %tr
+      %th Username
+      %th Shift
+      %th Taken
+      %th Taker
+  %tbody
+    - @markets.each do |market|
+      %tr
+        %td= market.username
+        %td= market.shift
+        %td= market.be_taken
+        %td= market.taker_username
+        %td= link_to "Take the shift",  edit_user_market_path(:id=>3,:username=>market.username, :shift=>market.shift,:cancel=>false)
+        %td= link_to "Cancel take the shift",  edit_user_market_path(:id=>3,:username=>market.username, :shift=>market.shift, :cancel=>true)
+        %td= link_to "Delete my shift",  user_market_path(:id=>1,:username=>market.username) ,method: :delete
 
 -#
 -# <%= form_tag do %>
@@ -12,28 +30,6 @@
 -#   <%= text_field_tag(:q) %>
 -#   <%= submit_tag("Search") %>
 -# <% end %>
-
-= form_tag  user_markets_path(), :method => :get do
-  %table#markets
-    %thead
-      %tr
-        %th Username
-        %th Shift
-        %th Taken
-        %th Taker
-
-    %tbody
-      - @markets.each do |market|
-        %tr
-          %td= market.username
-          %td= market.shift
-          %td= market.be_taken
-          %td= market.taker_username
-          %td= link_to "Take the shift",  edit_user_market_path(:id=>3,:username=>market.username, :shift=>market.shift,:cancel=>false)
-          %td= link_to "Cancel take the shift",  edit_user_market_path(:id=>3,:username=>market.username, :shift=>market.shift, :cancel=>true)
-          %td= link_to "Delete my shift",  user_market_path(:id=>1,:username=>market.username) ,method: :delete
-
-          -# %td= link_to "More about #{movie.title}", movie_path(movie)
 
 
 - 3.times do

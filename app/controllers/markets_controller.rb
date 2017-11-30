@@ -7,10 +7,13 @@ class MarketsController < ApplicationController
   end
 
   def new
+    @user = current_user
+
   end
 
   def create
     @market = Market.create!(market_params)
+    # @market = @user.markets.create!(market_params)
     flash[:notice] = "Sale for #{@market.shift} was successfully deliverd."
     redirect_to user_markets_path
   end

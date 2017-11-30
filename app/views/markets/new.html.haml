@@ -1,9 +1,13 @@
 %h1 Send my shift to market
 
-= form_tag user_markets_path, :method=> :post do
+%h2
+  Username:
+  = @user.username
 
-  = label :market, :username, 'Username'
-  = text_field :market, 'username'
+= form_tag user_markets_path, :method=> :post, :username => @user.username do
+
+  -# = label :market, :username, 'Username'
+  -# = text_field :market, 'username'
 
   = label :market, :shift, 'Shift'
   = select :market, :shift, ['wash','clean']
