@@ -1,0 +1,42 @@
+%h1 Shift Market
+- if flash[:notice]
+  #notice.message= flash[:notice]
+- elsif flash[:warning]
+  #warning.message= flash[:warning]
+= yield
+
+
+%table#markets
+  %thead
+    %tr
+      %th Username
+      %th Shift
+      %th Taken
+      %th Taker
+  %tbody
+    - @markets.each do |market|
+      %tr
+        %td= market.username
+        %td= market.shift
+        %td= market.be_taken
+        %td= market.taker_username
+        %td= link_to "Take the shift",  edit_user_market_path(:id=>3,:username=>market.username, :shift=>market.shift,:cancel=>"false")
+        %td= link_to "Cancel take the shift",  edit_user_market_path(:id=>3,:username=>market.username, :shift=>market.shift, :cancel=>"true")
+        %td= link_to "Delete my shift",  user_market_path(:id=>1,:username=>market.username) ,method: :delete
+
+-#
+-# <%= form_tag do %>
+-#   <%= label_tag(:q, "Search for:") %>
+-#   <%= text_field_tag(:q) %>
+-#   <%= submit_tag("Search") %>
+-# <% end %>
+
+
+- 3.times do
+  %br
+
+= link_to 'Add shift to market', new_user_market_path(current_user)
+%br
+-# = link_to 'Delete my shift',  edit_user_market_path(current_user)
+%br
+= link_to 'Back', user_path(current_user)
