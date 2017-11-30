@@ -1,4 +1,5 @@
 class ShiftTemplatesController < ApplicationController
+  before_action :manager?
   before_action :set_shift_template, only: [:show, :edit, :update, :destroy]
   before_action :set_semester, only: [:show, :edit, :update, :destroy,:new, :create]
 

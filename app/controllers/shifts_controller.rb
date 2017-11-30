@@ -1,4 +1,5 @@
 class ShiftsController < ApplicationController
+  before_action :manager?
   before_action :set_semester
   before_action :set_shift, except: [:index]
 
