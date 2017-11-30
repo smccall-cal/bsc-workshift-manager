@@ -13,4 +13,16 @@ class ShiftTemplate < ApplicationRecord
         #FIXME
         return ShiftTemplate.all.collect
     end
+    
+    def generate
+        @shift_day = Date.parse(self.day).wday
+        @next_shift_date = Date.today.wday> @shift_day ? Date.parse(self.day)+7 : Date.parse(self.day)
+        while @next_shift_date < Semester.current.end_date
+            if self.shifts.where(date: Date.today).take == nil
+                Shift.init({:user_email => self.user.email, :date => @next_shift_date, :is_checked_off => false, :shift_template_id => self.id})
+            end
+            @next_shift_date += 7
+        end
+    end
+    
 end

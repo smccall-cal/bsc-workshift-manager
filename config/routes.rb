@@ -21,8 +21,10 @@ Rails.application.routes.draw do
     end
 
     resources :semesters do
+        post "/generate" , :to => "semesters#generate", :as => "generate_shifts"
         resources :shifts do
             collection do
+              
               post "/:id/addshiftuser" , :to => "shifts#add_new_shift_user", :as => "add_user"
               delete ":id/user/:user_id" , :to => "shifts#delete_new_shift_user", :as => "delete_shift_user"
             end
