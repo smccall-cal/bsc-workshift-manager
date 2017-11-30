@@ -24,7 +24,7 @@ class ShiftsController < ApplicationController
 
   # GET /semesters/:semester_id/shifts/:id/edit(.:format)
   def edit
-    @semester = Semester.find(session[:semester]["id"])
+    
   end
 
   # POST /semesters/:semester_id/shifts(.:format) 
