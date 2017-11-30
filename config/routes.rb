@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     end
 
     resources :semesters do
-        resources :shifts, :except => [:index] do
+        resources :shifts do
             collection do
               post "/:id/addshiftuser" , :to => "shifts#add_new_shift_user", :as => "add_user"
               delete ":id/user/:user_id" , :to => "shifts#delete_new_shift_user", :as => "delete_shift_user"

@@ -1,18 +1,22 @@
 class ShiftsController < ApplicationController
-  before_action :set_shift, only: [:show, :edit, :update, :destroy]
+  before_action :set_semester
+  before_action :set_shift, except: [:index]
 
   # GET /shifts
   # GET /shifts.json
-  # def index
-  #   @shifts = Shift.all
-  # end
+  def index
+    @shifts = Array.new
+    @semester.shift_templates.each{
+      |template| template.shifts.each{
+        |shift| @shifts.push(shift)
+      }
+    }
+  end
 
   # GET /semesters/:semester_id/shifts/:id(.:format) 
   # GET /shifts/1.json
   def show
-    @semester = Semester.find(session[:semester]["id"])
-    @shift = Shift.find(params["id"])
-    @shift_users = @shift.users.all
+    
   end
 
   # GET /semesters/:semester_id/shifts/new(.:format)
@@ -24,7 +28,7 @@ class ShiftsController < ApplicationController
 
   # GET /semesters/:semester_id/shifts/:id/edit(.:format)
   def edit
-    
+    @users = User.all.collect{ |u| [u.username] }
   end
 
   # POST /semesters/:semester_id/shifts(.:format) 
@@ -54,11 +58,11 @@ class ShiftsController < ApplicationController
   # PATCH/PUT /semesters/:semester_id/shifts/:id(.:format)
   # PATCH/PUT /semesters/:semester_id/shifts/:id(.:format)
   def update
-    @semester = Semester.find(session[:semester]["id"])
-    @shift = Shift.find params[:id]
-    @shift.update_attributes!(shift_params)
-    flash[:notice] = "#{@shift.description} @ #{@shift.location} was successfully updated."
-    redirect_to semester_path(@semester)
+    @shift.update_attributes(:is_checked_off => shift_params[:is_checked_off] == "Yes", :date => Date.new(shift_params["date(1i)"].to_i, shift_params["date(2i)"].to_i, shift_params["date(3i)"].to_i))
+    @user = User.where(:username => shift_params[:user_id]).first
+    @shift.user = @user
+    @shift.save
+    redirect_to semester_shifts_path(@semester)
   end
   # def update
   #   respond_to do |format|
@@ -101,13 +105,17 @@ class ShiftsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_semester
+      @semester = Semester.find(params[:semester_id])
+    end
+    
     def set_shift
       @shift = Shift.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shift_params
-      params.require(:shift).permit(:day,:hours,:floor,:details)
+      params.require(:shift).permit(:is_checked_off,:user_id,:date)
     end
     
     def shift_template_params

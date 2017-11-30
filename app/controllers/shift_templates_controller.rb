@@ -27,7 +27,6 @@ class ShiftTemplatesController < ApplicationController
   # POST /semesters/:semester_id/shifts(.:format) 
   # POST /shifts.json
   def create
-    byebug
     @shift_detail = ShiftDetail.find_by_location_and_description(params[:shift_detail][:location],params[:shift_detail][:description])
     @shift_template = @shift_detail.shift_templates.create(shift_template_params)
     @user = User.where(username: params[:shift_template][:assigned_user]).take
