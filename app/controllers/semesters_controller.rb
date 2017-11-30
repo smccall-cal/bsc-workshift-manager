@@ -50,7 +50,7 @@ class SemestersController < ApplicationController
   # PATCH/PUT /semesters/1.json
   def update
     if @semester.update(semester_params)
-        redirect_to semester_path(@semester), notice: 'User was successfully updated.'
+        redirect_to semester_path(@semester), notice: 'Semester was successfully updated.'
     else
         redirect_to semesters_path, alert: @semester.errors.full_messages[0]
     end

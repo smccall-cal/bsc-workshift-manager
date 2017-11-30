@@ -27,6 +27,7 @@ Rails.application.routes.draw do
               delete ":id/user/:user_id" , :to => "shifts#delete_new_shift_user", :as => "delete_shift_user"
             end
         end
+        resources :shift_templates, :except => [:index]
     end
 
 

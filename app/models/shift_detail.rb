@@ -13,4 +13,10 @@ class ShiftDetail < ApplicationRecord
         end
         shift_detail
     end
+    
+    def self.check_and_remove_hanging_details(shift_detail)
+        if(shift_detail.shift_templates.count == 0)
+            shift_detail.delete
+        end
+    end
 end
