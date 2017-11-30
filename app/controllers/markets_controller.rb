@@ -17,13 +17,31 @@ class MarketsController < ApplicationController
 
 
   def edit
+    username = params[:username]
+    shift = params[:shift]
+    cancel = params[:cancel]
+    @markets = Market.where(username: username, shift: shift)
+    @markets.each do |market|
+      if cancel
+        market.update_attributes!(:be_taken => false)
+        flash[:notice] = "#{market.username}'s #{market.shift} returns to not sold."
+
+      else
+        market.update_attributes!(:be_taken => true)
+        flash[:notice] = "#{market.username}'s #{market.shift} was successfully sold."
+
+      end
+
+
+    end
+    redirect_to user_markets_path
   end
 
 
   def destroy
     username = params[:username]
     @market = Market.find_by_username(username).destroy
-    flash[:notice] = "Sale for #{@market.shift} was successfully canceled."
+    flash[:notice] = "Sale for #{username}'s #{@market.shift} shift was successfully canceled."
     redirect_to user_markets_path
   end
 
