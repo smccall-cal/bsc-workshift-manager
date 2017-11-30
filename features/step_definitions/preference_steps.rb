@@ -7,7 +7,7 @@ Given /^user "(.*)" has set up preferences/ do |username|
     # but unique to each user
 
     shifts = Preference.shifts.map {|a| a.to_s}
-    shift = Hash[shifts.zip shifts.map {prng.rand 1..5}]
+    shift = Hash[shifts.zip shifts.map {prng.rand 0..5}]
 
     availabilities = ["+", "-", "x", "?"]
     days = Preference.days.map {|a| a.to_s}

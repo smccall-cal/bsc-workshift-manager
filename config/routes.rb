@@ -15,7 +15,6 @@ Rails.application.routes.draw do
         resources :preferences, :except => [:destroy] do
             collection do
               get "/none" , :to => "preferences#no", :as => "no"
-              get "/notlogged", :to => "preferences#notlogged", :as => "notlogged"
             end
         end
     end
