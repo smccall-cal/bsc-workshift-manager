@@ -1,24 +1,65 @@
 require 'digest'
+require 'openssl'
 
 class User < ActiveRecord::Base
-    has_many :preferences
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+    devise :database_authenticatable, :registerable,
+           :recoverable, :rememberable, :trackable, :validatable
+    has_one :preference, :dependent => :destroy
+    has_many :shifts, :dependent => :destroy
+    has_many :shift_templates, :dependent => :destroy
+    has_many :market
 
-    def self.init(username, password)
-        hashed_pass = Digest::SHA256.hexdigest password
-        valid = User.create(username: username, hashed_pass: hashed_pass)
-        return valid != nil
+
+    def self.init(username, email, password, building)
+        new_user = User.new(username: username, password: password, email: email, building: building)
+        return new_user.save
     end
 
-    def self.validate(username, password)
-        hashed_pass = Digest::SHA256.hexdigest password
-        user = User.find_by(username: username)
+    def self.from(building)
+        return User.where(:building == building)
+    end
 
-        if user == nil
-            return false
-        elsif user.hashed_pass != hashed_pass
-            return false
+    def current_shifts
+        all = self.shifts
+        return all.select{ |shift| shift.shift_template == Semester.current }
+    end
+
+    def promote role
+        self.role = role
+        self.save
+        return self
+    end
+
+    def unset_init
+        self.init = false
+        self.save
+        return self
+    end
+
+    def preference_for shift_name
+        return self.preference.shift_hash[shift_name]
+    end
+
+    def manage?
+        return self.role == "Manager" || admin?
+    end
+
+    def admin?
+        return self.role == "Admin" || president?
+    end
+
+    def president?
+        return self.role == "President"
+    end
+
+    def buildings
+        if self.admin?
+            return ["Afro", "Castro", "CZ", "Cloyne", "Convent", "Davis", "Euclid",
+                    "Fenwick", "Hillegass-Parker", "Hoyt", "Kidd", "Kingman", "Lothlorien",
+                    "Northside", "Ridge", "Rochdale", "Sherman", "Stebbins", "Wilde", "Wolf"]
         end
-
-        return true
+        return [self.building]
     end
 end

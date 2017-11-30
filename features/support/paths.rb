@@ -13,8 +13,44 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-    when /^the home\s?page$/
-      '/'
+    when /^the home\s?page$/ then root_path
+
+    when /^the sign in page$/ then new_user_session_path
+
+    when /^the personal page for "(.*)"$/
+        id = User.find_by(username: $1).id
+        user_path(id)
+
+    when /^the preferences page for "(.*)"$/
+        id = User.find_by(username: $1).id
+        user_preferences_path(id)
+
+    when /^the my preferences page for "(.*)"$/
+        id = User.find_by(username: $1).id
+        preference_id = User.find(id).preference.id
+        user_preference_path(id, preference_id)
+
+    when /^the user creation page$/
+        new_user_registration_path
+
+    when /^the multiple user creation page$/
+        mass_add_path
+
+    when /^the manage residents page$/
+        users_path
+
+    when /^the new password page for "(.*)"$/
+        edit_user_registration_path
+
+    when /^the make preferences page/
+        new_user_preference_path(User.find_by_username(@username).id)
+        
+    when /^the edit preferences page/
+        user = User.find_by_username(@username)
+        edit_user_preference_path(user.id, user.preference.id)
+
+    when /^the no preferences page for "(.*)"/
+        no_user_preferences_path(User.find_by_username($1).id)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

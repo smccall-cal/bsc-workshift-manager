@@ -1,3 +1,4 @@
+@wip
 Feature: Users should be able to see the responsibilities
  
   As a member
