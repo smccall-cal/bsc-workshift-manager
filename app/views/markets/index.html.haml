@@ -1,0 +1,29 @@
+%h2 Shift Market:
+
+-#
+-# <%= form_tag do %>
+-#   <%= label_tag(:q, "Search for:") %>
+-#   <%= text_field_tag(:q) %>
+-#   <%= submit_tag("Search") %>
+-# <% end %>
+
+%table#markets
+  %thead
+    %tr
+      %th Username
+      %th Shift
+      %th Taken
+      %th Taker
+
+  %tbody
+    - @markets.each do |market|
+      %tr
+        %td= market.username
+        %td= market.shift
+        %td= market.be_taken
+        %td= market.taker_username
+        -# %td= link_to "More about #{movie.title}", movie_path(movie)
+
+
+= link_to 'Add shift to market', new_user_market_path(current_user)
+= link_to 'Back', user_path(current_user)

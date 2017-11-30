@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :trackable, :validatable
     has_one :preference, :dependent => :destroy
-    belongs_to :market
+    # belongs_to :market
     has_many :shifts, :dependent => :destroy
     has_many :shift_templates, :dependent => :destroy
 
