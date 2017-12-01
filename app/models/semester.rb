@@ -13,6 +13,7 @@ class Semester < ApplicationRecord
                 shift = ShiftTemplate.find_by(name: name)
                 shift.user_id = user
                 success &= shift.save
+            }
         }
         return success
     end

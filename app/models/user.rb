@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
         return new_user.save
     end
 
-    def self.from(buildings)
+    def self.from(building)
         return User.where(:building == building)
     end
 
