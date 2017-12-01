@@ -51,7 +51,23 @@ module NavigationHelpers
 
     when /^the no preferences page for "(.*)"/
         no_user_preferences_path(User.find_by_username($1).id)
+        
+    when /^the semesters page/
+        semesters_path
+    
+    when /^the semester page for "(.*)"/
+        semester_path(Semester.find_by(semester_name: $1).id)
+    
+    when /^the edit semester page for "(.*)"/
+        edit_semester_shift_template_path(Semester.find_by(semester_name: $1).id, ShiftTemplate.first)
+    
+    when /^the semester_shifts page/
+        semester_shifts_path(Semester.first)
+    
+    when /^the edit shift page for "1"/
+        edit_semester_shift_path(Semester.first,Shift.first)
 
+        
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

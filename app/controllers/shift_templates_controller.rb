@@ -79,9 +79,8 @@ class ShiftTemplatesController < ApplicationController
   # DELETE /semesters/:semester_id/shifts/:id(.:format)
   # DELETE /shifts/1.json
   def destroy
-    @semester = Semester.find(session[:semester]["id"])
-    @shift = Shift.find params[:id]
-    @shift.destroy
+    @shift_template.shifts.each {|s| s.destroy}
+    @shift_template.destroy
     redirect_to semester_path(@semester)
     # respond_to do |format|
     #   format.html { redirect_to shifts_url, notice: 'Shift was successfully destroyed.' }

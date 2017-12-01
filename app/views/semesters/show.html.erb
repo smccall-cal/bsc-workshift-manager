@@ -40,6 +40,7 @@ End Date: <%= @semester.end_date.strftime("%d %B %Y")%>
     <td><%= sh.hours %></td>
     <td><%= sh.user.username unless sh.user.nil?%></td>
     <td><%= link_to 'Edit', edit_semester_shift_template_path(@semester,sh)%></td>
+    <td><%= button_to "Delete", semester_shift_template_path(@semester,sh), :method => :delete, data: {confirm: "Are you sure?"} %></td>
   </tr>
   <% end %>
 </table>
