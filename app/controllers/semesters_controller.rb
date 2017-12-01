@@ -40,7 +40,9 @@ class SemestersController < ApplicationController
 
       Matcher default = Matcher.new current_user.building
       matches = default.match
-      Semester.find(params[:semester_id]).assign(matches)
+      
+      if !Semester.find(params[:semester_id]).assign(matches)
+          flash[:notice] = "Something went wrong, please try again"
 
       redirect_to semester_shifts_path params[:semester_id]
   end
