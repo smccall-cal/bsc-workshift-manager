@@ -28,6 +28,7 @@ Rails.application.routes.draw do
               delete ":id/user/:user_id" , :to => "shifts#delete_new_shift_user", :as => "delete_shift_user"
             end
         end
+        post "/:semester_id/default", :to => "semesters#default", :as => "default_assignment"
     end
 
 

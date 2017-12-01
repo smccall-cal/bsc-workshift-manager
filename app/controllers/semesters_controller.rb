@@ -34,7 +34,15 @@ class SemestersController < ApplicationController
   end
 
   def default
-      
+      if current_user.admin?
+          flash[:notice] = "Sorry, this functionality is building-specific"
+          redirect_to user_path current_user.id
+
+      Matcher default = Matcher.new current_user.building
+      matches = default.match
+      Semester.find(params[:semester_id]).assign(matches)
+
+      redirect_to semester_shifts_path params[:semester_id]
   end
 
   # def create
