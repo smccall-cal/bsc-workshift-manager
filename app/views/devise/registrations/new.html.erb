@@ -13,7 +13,7 @@
     <%= f.email_field :email, autofocus: true %>
   </div>
 
-  <div class="field", style="display: none;">
+  <div class="field" style="display: none;">
     <%= f.label :password%> <br />
     <%= f.text_field :password, value: 5108481936 %>
   </div>
@@ -27,3 +27,5 @@
     <%= f.submit "Sign them up" %>
   </div>
 <% end %>
+
+<%= link_to "Back", user_path(current_user.id) %>

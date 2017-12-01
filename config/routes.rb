@@ -6,18 +6,19 @@ Rails.application.routes.draw do
         get "/users/massnew" => "registrations#mass_new", :as => "mass_add"
         post "/users/masscreate" => "registrations#mass_create", :as => "mass_create"
         delete "/users/:id/revoke" => "registrations#revoke", :as => "revoke"
+        get "/users/entry" => "users#entry", :as => "entry"
     end
 
-    root :to => "users#index"
-    #FIXME with proper controller path
+    root :to => "users#entry"
 
     resources :users do
         resources :preferences, :except => [:destroy] do
             collection do
               get "/none" , :to => "preferences#no", :as => "no"
-              get "/notlogged", :to => "preferences#notlogged", :as => "notlogged"
             end
         end
+        resources :markets
+
     end
 
     resources :semesters do

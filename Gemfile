@@ -40,6 +40,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'devise'
 gem 'graphmatch', :git => "git://github.com/pH14/graphmatch.git"
+gem 'jquery-rails'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
@@ -50,6 +51,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'poltergeist'
 end
 
 group :development do

@@ -100,6 +100,11 @@ shifts.each do |shift|
   Shift.init(shift)
 end
 
+market = [{username: "Oski", shift: "Kitchen", be_taken: false}, {username: "Oski", shift: "Bathroom", be_taken: true, taker_username: "Chancellor Christ"}]
+market.each do |market|
+  Market.create(market)
+end
+
 # Original Shifts
 # shifts = [ {location: "100", description: "Roof Clean/Sweep"},
 #           {location: "Balcony", description: "Surface Clean"},

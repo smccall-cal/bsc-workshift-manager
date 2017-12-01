@@ -1,4 +1,4 @@
-Feature: uesr revoking
+Feature: user revoking
 
     As a manager,
     so I can control who has access to the site,
@@ -13,14 +13,14 @@ Background: there exists some Manager
     And user "Foo" exists with password "Bar"
 
 Scenario: See all current users
-  
+
     Given I am on the personal page for "Oski"
-    When I follow "Delete Residents"
+    When I follow "Manage Residents"
     Then I should see all the users
 
 Scenario: Delete a user as a Manager
 
-    Given I am on the user revoking page
+    Given I am on the manage residents page
     When I click the delete button of "Foo"
     Then I should not see "Foo"
-    And I should be on the user revoking page
+    And I should be on the manage residents page

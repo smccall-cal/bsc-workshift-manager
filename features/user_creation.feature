@@ -26,3 +26,11 @@ Scenario: Add multiple users as a Manager
     And I fill in "Email" with "a@berkeley.edu\nb@berkeley.edu\nc@berkeley.edu\nd@berkeley.edu"
     And I press "Sign them up"
     Then I should be on the personal page for "Oski"
+
+Scenario: Add users via manage residents page as a Manager
+    
+    Given I am on the manage residents page
+    When I fill in "user_username" with "A\nB\nC\nD"
+    And I fill in "user_email" with "a@berkeley.edu\nb@berkeley.edu\nc@berkeley.edu\nd@berkeley.edu"
+    And I press "Add"
+    Then I should be on the manage residents page

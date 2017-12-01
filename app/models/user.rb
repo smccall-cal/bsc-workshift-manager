@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
     has_one :preference, :dependent => :destroy
     has_many :shifts, :dependent => :destroy
     has_many :shift_templates, :dependent => :destroy
+    has_many :market
+
 
     def self.init(username, email, password, building)
         new_user = User.new(username: username, password: password, email: email, building: building)
@@ -36,8 +38,8 @@ class User < ActiveRecord::Base
         return self
     end
 
-    def preference_for shift_name
-        return self.preference.shift_hash[shift_name]
+    def preference_for shift_name, shift_time
+        return self.preference.shift_hash[shift_name] * self.preference.availability(shift_time)
     end
 
     def manage?

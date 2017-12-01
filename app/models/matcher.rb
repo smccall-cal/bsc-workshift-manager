@@ -4,7 +4,7 @@ class Matcher
 
     def initialize building
         @users = User.from(building).map { |user| [user.id, 5] }.to_h
-        @shifts = ShiftTemplate.from(building).map { |shift| [shift.name, shift.hours] }.to_h
+        @shifts = ShiftTemplate.from(building).map { |shift| [[shift.name, shift.time], shift.hours] }.to_h
         @matches = Hash.new([])
     end
 
@@ -23,14 +23,16 @@ class Matcher
         self.users.each{ |user, hours|
             graph[:edges][user] = Hash.new(0)
             self.shifts.each{ |shift, hours|
-                graph[:edges][user][shift] = preference user, shift
+                name = shift[0]
+                time = shift[1]
+                graph[:edges][user][name] = preference user, name, time
             }
         }
         return graph
     end
 
-    def preference user, shift
-        stored = User.find(user).preference_for(shift)
+    def preference user, shift, time
+        stored = User.find(user).preference_for(shift, time)
         return - (stored)
     end
 

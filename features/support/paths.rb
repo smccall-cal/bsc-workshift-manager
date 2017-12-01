@@ -36,14 +36,18 @@ module NavigationHelpers
     when /^the multiple user creation page$/
         mass_add_path
 
-    when /^the user revoking page$/
-        delete_path
+    when /^the manage residents page$/
+        users_path
 
     when /^the new password page for "(.*)"$/
         edit_user_registration_path
 
     when /^the make preferences page/
         new_user_preference_path(User.find_by_username(@username).id)
+        
+    when /^the edit preferences page/
+        user = User.find_by_username(@username)
+        edit_user_preference_path(user.id, user.preference.id)
 
     when /^the no preferences page for "(.*)"/
         no_user_preferences_path(User.find_by_username($1).id)

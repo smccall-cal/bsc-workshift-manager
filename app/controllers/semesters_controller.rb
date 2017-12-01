@@ -33,6 +33,10 @@ class SemestersController < ApplicationController
       redirect_to semesters_path
   end
 
+  def default
+      
+  end
+
   # def create
   #   @semester = Semester.new(semester_params)
 
