@@ -43,24 +43,18 @@ Scenario: I should be able to edit shifts
   Then I should see "Assigned_user"
   Then I should see "user"
 
-Scenario: I should be able to add new shifts
-  Given I am on the semester page for "Spring 2017"
-  When I follow "Create New Shift"
-  And I fill in "Shift Location" with "Alderaan"
-  And I press "Save Shift"
-  Then I should be on the semester page for "Spring 2017"
-  And I should see "Alderaan"
+Scenario: I should be able to see all shifts
 
-Scenario: New shifts should only appear on the proper semester
   Given I am on the semester page for "Spring 2017"
-  When I follow "Create New Shift"
-  And I fill in "Shift Location" with "Alderaan"
-  And I press "Save Shift"
-  And I am on the semester page for "Fall 2017"
-  Then I should not see "Alderaan"
+  When I follow "View all shifts from this semester"
+  Then I should see "Freezer Clean/Organize"
+  And I should not see "Deep Clean"
 
-Scenario: I can delete semesters
+Scenario: I should be able to edit shifts
+
   Given I am on the semester page for "Spring 2017"
-  When I press "Delete this Semester"
-  Then I should be on the semesters page
-  And I should not see "Spring 2017"
+  When I follow "View all shifts from this semester"
+  And I follow the first "Edit"
+  And I select "Yes" from "Is checked off?"
+  And I press "Save Shift"
+  Then I should see "true"
