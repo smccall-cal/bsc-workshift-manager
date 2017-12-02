@@ -13,7 +13,7 @@ class Preference < ApplicationRecord
         check_schedule_day_keys
         check_schedule_time_keys
     end
-    
+
     def check_shift_keys
         errors.add(:shift, "must contain all and only the shifts as keys") if shift && shift_hash.keys != Preference.shifts
     end
@@ -23,7 +23,7 @@ class Preference < ApplicationRecord
     def check_schedule_time_keys
         errors.add(:schedule, "inner day hash must contain all and only the times as keys") if schedule && schedule_hash.values.inject(false) {|res, time| res = res || (time.keys != Preference.times)}
     end
-    
+
     def available_time_more_than_5
         errors.add(:schedule, "Available time should be at least 5 hours.") if schedule && (schedule_hash.values.inject(0) {|coun, d| coun+=d.values.count("+")}) < 5
     end

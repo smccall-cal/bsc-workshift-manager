@@ -7,11 +7,9 @@ Given /^four users exist/ do
 end
 
 And /^everyone has preferences/ do
-    User.all.each{|user|
-        steps %Q{
-            user "#{user.username}" has set up preferences"
-            }
-        }
+    User.all.each{ |user|
+        step %{user "#{user.username}" has set up preferences}
+    }
 end
 
 And /^some shift details exist/ do
@@ -56,6 +54,6 @@ And /^some shifts exist/ do
 end
 
 When /^I generate default assignments/ do
-    Matcher m = Matcher.new("CZ")
+    m = Matcher.new("CZ")
     hash = m.match
 end

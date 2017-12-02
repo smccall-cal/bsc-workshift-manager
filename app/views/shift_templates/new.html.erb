@@ -2,7 +2,7 @@
 
 <%= notice %>
 
-<%= form_tag semester_shifts_path, :method => "post" do %>
+<%= form_tag semester_shift_templates_path, :method => "post" do %>
 
   <%= label :shift_detail, :location, 'Shift Location'%>
   <%= text_field :shift_detail, :location%>
@@ -15,23 +15,26 @@
   <br>
   
   <%= label :shift_template, :details, 'Shift Details'%>
-  <%= text_field :shift, :details%>
+  <%= text_field :shift_template, :details%>
   i.e. "After Dinner", "Pots"
   <br>
   
   <%= label :shift_template, :floor, 'Floor'%>
-  <%= text_field :shift, :floor%>
+  <%= text_field :shift_template, :floor%>
   i.e. "10s", "100s"
   <br>
   
   <%= label :shift_template, :hours, 'Hours'%>
-  <%= select_tag 'shift[hours]', options_for_select([1,2,3,4]) %>
+  <%= select_tag 'shift_template[hours]', options_for_select([1,2,3,4]) %>
   <br>
 
   <%= label :shift_template, :day, 'Day of the week'%>
-  <%= select_tag 'shift[day]', options_for_select(Date::DAYNAMES) %>
+  <%= select_tag 'shift_template[day]', options_for_select(Date::DAYNAMES) %>
   <br>
-
+  
+  <%= label :shift_template, :assigned_user, 'Assigned_user'%>
+  <%= select_tag 'shift_template[assigned_user]', options_for_select(@users) %>
+  <br>
   <%= submit_tag 'Save Shift'%>
   <br>
   
