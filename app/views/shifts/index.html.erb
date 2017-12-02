@@ -42,7 +42,8 @@ End Date: <%= @semester.end_date.strftime("%d %B %Y")%>
     <td><%= sh.user.username || "unassigned"%></td>
     <td><%= sh.is_checked_off|| false %></td>
     <td><%= sh.date.strftime("%d-%B-%Y") %></td>
-    <td><%= link_to 'Edit', edit_semester_shift_path(@semester,sh)%></td>
+    <td><%= link_to 'Edit', edit_semester_shift_path(@semester, sh)%> </td>
+    <td><%= button_to 'Delete', semester_shift_path(@semester, sh), :method => :delete, data: {confirm: "Are you sure?"} %></td>
   </tr>
   <% end %>
 </table>

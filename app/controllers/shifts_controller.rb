@@ -14,35 +14,34 @@ class ShiftsController < ApplicationController
     }
   end
 
-  # GET /semesters/:semester_id/shifts/:id(.:format) 
+  # GET /semesters/:semester_id/shifts/:id(.:format)
   # GET /shifts/1.json
   def show
-    
+
   end
 
-  # GET /semesters/:semester_id/shifts/new(.:format)
-  def new
-    @shift_template = ShiftTemplate.new
-    @shift_detail = ShiftDetail.new
-    @semester = Semester.find(session[:semester]["id"])
-  end
+# GET /semesters/:semester_id/shifts/new(.:format)
+#  def new
+#    @shift_template = ShiftTemplate.new
+#    @shift_detail = ShiftDetail.new
+#    @semester = Semester.find(session[:semester]["id"])
+#  end
 
   # GET /semesters/:semester_id/shifts/:id/edit(.:format)
   def edit
     @users = User.all.collect{ |u| [u.username] }
   end
 
-  # POST /semesters/:semester_id/shifts(.:format) 
-  # POST /shifts.json
-  def create
-    #byebug
-    @semester = Semester.find(session[:semester]["id"])
-    
-    @shift_detail = ShiftDetail.find_by_location_and_description(params[:shift_detail][:location],params[:shift_detail][:description])
-    @shift_template = @shift_detail.shift_templates.create(shift_params)
-    @shift_template.semesters << @semester
-    redirect_to semester_path(@semester)
-    
+# POST /semesters/:semester_id/shifts(.:format)
+# POST /shifts.json
+#  def create
+#    @semester = Semester.find(session[:semester]["id"])
+
+#    @shift_detail = ShiftDetail.find_by_location_and_description(params[:shift_detail][:location],params[:shift_detail][:description])
+#    @shift_template = @shift_detail.shift_templates.create(shift_params)
+#    @shift_template.semesters << @semester
+#    redirect_to semester_path(@semester)
+
     # @shift = Shift.new(shift_params)
 
     # respond_to do |format|
@@ -54,7 +53,7 @@ class ShiftsController < ApplicationController
     #     format.json { render json: @shift.errors, status: :unprocessable_entity }
     #   end
     # end
-  end
+ # end
 
   # PATCH/PUT /semesters/:semester_id/shifts/:id(.:format)
   # PATCH/PUT /semesters/:semester_id/shifts/:id(.:format)
@@ -89,14 +88,14 @@ class ShiftsController < ApplicationController
     #   format.json { head :no_content }
     # end
   end
-  
+
   def add_new_shift_user
     @shift = Shift.find params[:id]
     @user = User.where(:email => params[:shift][:users]).first
     @shift.users << @user
     redirect_to(semester_shift_path(@shift))
   end
-  
+
   def delete_new_shift_user
     @shift = Shift.find params[:id]
     @user = User.find params[:user_id]
@@ -109,7 +108,7 @@ class ShiftsController < ApplicationController
     def set_semester
       @semester = Semester.find(params[:semester_id])
     end
-    
+
     def set_shift
       @shift = Shift.find(params[:id])
     end
@@ -118,11 +117,11 @@ class ShiftsController < ApplicationController
     def shift_params
       params.require(:shift).permit(:is_checked_off,:user_id,:date)
     end
-    
+
     def shift_template_params
       params.require(:shift_template).permit(:description, :location, :semester)
     end
-    
+
     def shift_detail_params
       params.require(:shift_detail).permit(:description, :location)
     end

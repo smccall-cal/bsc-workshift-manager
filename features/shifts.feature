@@ -58,3 +58,9 @@ Scenario: I should be able to edit shifts
   And I select "Yes" from "Is checked off?"
   And I press "Save Shift"
   Then I should see "true"
+
+Scenario: I should be able to delete shifts
+  Given I am on the semester page for "Spring 2017"
+  When I follow "View all shifts from this semester"
+  And I click on the first "Delete"
+  Then I should not see "true"
