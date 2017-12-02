@@ -13,7 +13,7 @@ class ShiftTemplate < ApplicationRecord
         #FIXME
         return ShiftTemplate.all.collect
     end
-    
+
     def generate
         @shift_day = Date.parse(self.day).wday
         @next_shift_date = Date.today.wday> @shift_day ? Date.parse(self.day)+7 : Date.parse(self.day)
@@ -24,5 +24,13 @@ class ShiftTemplate < ApplicationRecord
             @next_shift_date += 7
         end
     end
-    
+
+    def name
+        return ShiftDetail.find(self.shift_detail_id).to_sym
+    end
+
+    def time
+        return "1:00"
+    end
+
 end

@@ -1,4 +1,3 @@
-@wip
 Feature: Default assignment for shifts
 
     As a manager,
@@ -9,9 +8,11 @@ Background: A manager is logging in for the first time
     Given manager "Manager" exists with password "ManagerBar"
     And I am on the home page
     And I log in as "Manager" with password "ManagerBar"
+
+    And some shift details exist
+    And some shifts exist
     And four users exist
     And everyone has preferences
-    And some shifts exist
 
 
 Scenario: The matcher runs (basic integration test)
