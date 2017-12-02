@@ -9,6 +9,13 @@ Start Date: <%= @semester.start_date.strftime("%d %B %Y")%>
 <br>
 End Date: <%= @semester.end_date.strftime("%d %B %Y")%>
 <br>
+<%= link_to 'Edit Semester Details', edit_semester_path(@semester)%>
+<%= button_to "Delete this Semester", { action: "destroy", id: @semester.id },method: :delete, data: { confirm: "Are you sure?" } %>
+<br>
+<br>
+<h2>Weekly Shift Schedule</h2>
+<%= link_to "View all shifts from this semester", semester_shifts_path(@semester) %>
+<br>
 
 <table class="table">
   <thead>
@@ -19,6 +26,7 @@ End Date: <%= @semester.end_date.strftime("%d %B %Y")%>
       <th>Details</th>
       <th>Day</th>
       <th>Hours</th>
+      <th>Assigned User</th>
     </tr>
   </thead>
 
@@ -30,13 +38,16 @@ End Date: <%= @semester.end_date.strftime("%d %B %Y")%>
     <td><%= sh.details %></td>
     <td><%= sh.day %></td>
     <td><%= sh.hours %></td>
-    <td><%= sh.user.username %></td>
+    <td><%= sh.user.username unless sh.user.nil?%></td>
+    <td><%= link_to 'Edit', edit_semester_shift_template_path(@semester,sh)%></td>
+    <td><%= button_to "Delete", semester_shift_template_path(@semester,sh), :method => :delete, data: {confirm: "Are you sure?"} %></td>
   </tr>
   <% end %>
 </table>
-
+<br>
+<%= button_to "Generate Shifts", semester_generate_shifts_path(@semester) %>
 
 <br>
-<%= link_to 'Create New Shift', new_semester_shift_path(@semester) %>
+<%= link_to 'Create New Shift', new_semester_shift_template_path(@semester) %>
 <br>
 <%= link_to 'Back', semesters_path %>

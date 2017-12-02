@@ -1,6 +1,7 @@
 <h1>Semesters Page!!</h1>
 
 <%= notice %>
+<br>
 
 <% @semesters.each do |sem| %>
   <%= link_to "#{sem.semester_name}", semester_path(sem) %>
@@ -10,5 +11,5 @@
 <br>
 
 <!--to be replaced by personal page path-->
-<%= link_to 'Create new semester', new_semester_path %> 
-<%= link_to 'Back', user_path(@current_user) %> 
+<%= link_to 'Create new semester', new_semester_path %>
+<%= link_to 'Back', user_path(@current_user) %>

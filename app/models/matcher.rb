@@ -9,7 +9,7 @@ class Matcher
     end
 
     def match
-        while self.users.length > 0
+        while self.users.length > 0 && self.shifts.length > 0
             graph = generate_graph
             additional_matches = bipartite_matching graph
             update_lists_with additional_matches
@@ -31,8 +31,14 @@ class Matcher
         return graph
     end
 
+<<<<<<< HEAD
     def preference user, shift, time
         stored = User.find(user).preference_for(shift, time)
+=======
+    def preference user, shift
+        stored = User.find(user).preference_for(shift)
+        stored ||= 0
+>>>>>>> e239769ab995ba7b08862ccf9bb4a7c2523eb288
         return - (stored)
     end
 
