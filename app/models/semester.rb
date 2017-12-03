@@ -5,7 +5,6 @@ class Semester < ApplicationRecord
         new_semester = Semester.new(semester_name: semester[:semester_name], start_date: semester[:start_date], end_date: semester[:end_date])
         return new_semester.save
     end
-<<<<<<< HEAD
 
     def assign matches
         success = true
@@ -17,15 +16,14 @@ class Semester < ApplicationRecord
             }
         }
         return success
-=======
-    
+    end
+
     def self.current
         @semesters = Semester.all
-        @semesters.each{|sem| 
+        @semesters.each{|sem|
             if(Date.today>sem.start_date && Date.today<sem.end_date)
                 return sem
             end
         }
->>>>>>> e239769ab995ba7b08862ccf9bb4a7c2523eb288
     end
 end

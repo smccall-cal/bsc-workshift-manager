@@ -17,12 +17,12 @@ describe Matcher, type: :model do
 
     it "finds the user's preference, if it exists" do
         allow(@user).to receive(:preference_for).and_return(5)
-        expect(@matcher.preference 1, 0, 0).to eq(-5)
+        expect(@matcher.preference 1, 0).to eq(-5)
     end
 
     it "gives a valid user a default preference of 0" do
         allow(@user).to receive(:preference_for).and_return(0)
-        expect(@matcher.preference 1, 0, 0).to eq(0)
+        expect(@matcher.preference 1, 0).to eq(0)
     end
 
     it "generates the proper number of null_users" do

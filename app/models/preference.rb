@@ -33,7 +33,7 @@ class Preference < ApplicationRecord
     end
 
     def self.days
-        @@days = %i{Monday Tueday Wednesday Thursday Friday Saturday Sunday}
+        @@days = %i{Monday Tueday Wednesday Thursday Friday Saturday Sunday}.map{|day| day.upcase}
     end
 
     def self.times
@@ -51,8 +51,12 @@ class Preference < ApplicationRecord
         eval(schedule).symbolize_keys
     end
 
-    def availability time
+    def availability day, time
+        if time == nil
+            return 1
+        end
+
         translate = {"X" => 0, "+" => 1, "-" => 0.5, "?" => 0.5}
-        return translate[self.schedule_hash[time]]
+        return translate[self.schedule_hash[day.upcase.to_sym][time]]
     end
 end

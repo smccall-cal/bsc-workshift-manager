@@ -33,7 +33,7 @@ class ShiftTemplate < ApplicationRecord
 
     def unique
         @details ||= ShiftDetail.find(self.shift_detail_id)
-        return (@details.to_s + " " + self.specifics " : "  + self.date_time).to_sym
+        return (@details.to_s + " " + self.specifics + " : "  + self.date_time).to_sym
     end
 
     def specifics
@@ -42,10 +42,6 @@ class ShiftTemplate < ApplicationRecord
 
     def date_time
         return self.day + " " + self.time
-    end
-
-    def time
-        return "1pm"
     end
 
 end

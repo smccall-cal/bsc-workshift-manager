@@ -38,8 +38,8 @@ class User < ActiveRecord::Base
         return self
     end
 
-    def preference_for shift_name, shift_time
-        return self.preference.shift_hash[shift_name] * self.preference.availability(shift_time)
+    def preference_for shift
+        return self.preference.shift_hash[shift.name] * self.preference.availability(shift.day, shift.time)
     end
 
     def manage?
