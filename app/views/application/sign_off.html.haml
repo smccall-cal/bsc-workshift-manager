@@ -1,3 +1,5 @@
+%h1 Sign Off
+
 =notice
 
 =form_tag sign_off_path, method: "post" do
@@ -8,9 +10,9 @@
     %tr
       %td= label_tag "Verifier"
       %td= select_tag :verifier, options_for_select(@verifiers)
-    -if user_signed_in?
-      %td= label_tag "Password"
-      %td= text_field_tag :password
+      -if !user_signed_in?
+        %td= label_tag "Password"
+        %td= text_field_tag :password
     %tr
       %td= label_tag "Notes"
       %td= text_area_tag :notes
