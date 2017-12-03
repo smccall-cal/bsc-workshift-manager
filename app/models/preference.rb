@@ -33,7 +33,7 @@ class Preference < ApplicationRecord
     end
 
     def self.days
-        @@days = %i{Monday Tueday Wednesday Thursday Friday Saturday Sunday}.map{|day| day.upcase}
+        @@days = %i{Monday Tueday Wednesday Thursday Friday Saturday Sunday}
     end
 
     def self.times
@@ -57,6 +57,10 @@ class Preference < ApplicationRecord
         end
 
         translate = {"X" => 0, "+" => 1, "-" => 0.5, "?" => 0.5}
-        return translate[self.schedule_hash[day.upcase.to_sym][time]]
+        return translate[self.schedule_hash[standardize(day).to_sym][time]]
+    end
+
+    def standardize string
+        string.upcase[0] + string.downcase[1..-1]
     end
 end
