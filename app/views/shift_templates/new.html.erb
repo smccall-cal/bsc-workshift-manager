@@ -8,36 +8,41 @@
   <%= text_field :shift_detail, :location%>
   i.e. "Bathroom", "Kitchen"
   <br>
-  
-  <%= label :shift_detail, :description, 'Shift Description'%>
+
+  <%= label :shift_detail, :description, 'Description'%>
   <%= text_field :shift_detail, :description%>
   i.e. "Deep Clean", "Pots"
-  <br>
-  
-  <%= label :shift_template, :details, 'Shift Details'%>
+  <br><br>
+
+  <%= label :shift_template, :details, 'Details'%>
   <%= text_field :shift_template, :details%>
   i.e. "After Dinner", "Pots"
   <br>
-  
+
   <%= label :shift_template, :floor, 'Floor'%>
   <%= text_field :shift_template, :floor%>
   i.e. "10s", "100s"
-  <br>
-  
-  <%= label :shift_template, :hours, 'Hours'%>
-  <%= select_tag 'shift_template[hours]', options_for_select([1,2,3,4]) %>
+  <br><br>
+
+  <%= label :shift_template, :day, 'Day of the Week'%>
+  <%= select_tag 'shift[day]', options_for_select(Preference.days) %>
   <br>
 
-  <%= label :shift_template, :day, 'Day of the week'%>
-  <%= select_tag 'shift_template[day]', options_for_select(Date::DAYNAMES) %>
+  <%= label :shift_template, :time, 'Time of Day'%>
+  <%= select_tag 'shift[time]', options_for_select(Preference.times), {:include_blank => "Any"} %>
+  <br><br>
+
+  <%= label :shift_template, :hours, 'Hours'%>
+  <%= select_tag 'shift_template[hours]', options_for_select([1,2,3,4,5]) %>
   <br>
-  
+
   <%= label :shift_template, :assigned_user, 'Assigned_user'%>
-  <%= select_tag 'shift_template[assigned_user]', options_for_select(@users) %>
-  <br>
+  <%= select_tag 'shift_template[assigned_user]', options_for_select(@users), {:include_blank => "TBD"} %>
+  <br><br>
+
   <%= submit_tag 'Save Shift'%>
   <br>
-  
+
 <% end %>
 
-<%= link_to 'Back', semester_path(@semester) %> 
+<%= link_to 'Back', semester_path(@semester) %>

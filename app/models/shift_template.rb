@@ -41,7 +41,8 @@ class ShiftTemplate < ApplicationRecord
     end
 
     def date_time
-        return self.day + " " + self.time
+        time = self.time || "(Flexible)"
+        return self.day + " " + time
     end
 
 end

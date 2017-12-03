@@ -22,6 +22,7 @@ End Date: <%= @semester.end_date.strftime("%d %B %Y")%>
     <tr>
       <th>Location</th>
       <th>Description</th>
+      <th>Time</th>
       <th>Floor</th>
       <th>Details</th>
       <th>Day</th>
@@ -34,6 +35,7 @@ End Date: <%= @semester.end_date.strftime("%d %B %Y")%>
   <tr>
     <td><%= sh.shift_detail.location %></td>
     <td><%= sh.shift_detail.description %></td>
+    <td><%= sh.date_time %></td>
     <td><%= sh.floor %></td>
     <td><%= sh.details %></td>
     <td><%= sh.day %></td>
