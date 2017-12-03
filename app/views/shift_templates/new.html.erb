@@ -4,40 +4,48 @@
 
 <%= form_tag semester_shift_templates_path, :method => "post" do %>
 
-  <%= label :shift_detail, :location, 'Shift Location'%>
-  <%= text_field :shift_detail, :location%>
-  i.e. "Bathroom", "Kitchen"
-  <br>
-  
-  <%= label :shift_detail, :description, 'Shift Description'%>
-  <%= text_field :shift_detail, :description%>
-  i.e. "Deep Clean", "Pots"
-  <br>
-  
-  <%= label :shift_template, :details, 'Shift Details'%>
-  <%= text_field :shift_template, :details%>
-  i.e. "After Dinner", "Pots"
-  <br>
-  
-  <%= label :shift_template, :floor, 'Floor'%>
-  <%= text_field :shift_template, :floor%>
-  i.e. "10s", "100s"
-  <br>
-  
-  <%= label :shift_template, :hours, 'Hours'%>
-  <%= select_tag 'shift_template[hours]', options_for_select([1,2,3,4]) %>
-  <br>
+<table class="table">
 
-  <%= label :shift_template, :day, 'Day of the week'%>
-  <%= select_tag 'shift_template[day]', options_for_select(Date::DAYNAMES) %>
-  <br>
-  
-  <%= label :shift_template, :assigned_user, 'Assigned_user'%>
-  <%= select_tag 'shift_template[assigned_user]', options_for_select(@users) %>
-  <br>
+  <tr>
+      <td> <%= label :shift_detail, :prior, 'Location / Description'%> </td>
+      <td> <%= select_tag 'shift_detail[prior]', options_for_select(@details), include_blank: "Other (type below)" %> </td>
+  </tr>
+
+  <tr>
+      <td> </td>
+      <td> <%= text_field :shift_detail, :location, value: "i.e. \"Bathroom\"", id: "Location"%>
+      <%= text_field :shift_detail, :description, value: "i.e. \"Deep Clean\"", id: "Description"%> </td>
+  </tr>
+
+  <tr>
+      <td> <%= label :shift_template, :details, 'Details'%> </td>
+      <td> <%= text_field :shift_template, :details, value: "i.e. \"After Dinner\""%> </td>
+  </tr>
+
+  <tr>
+      <td> <%= label :shift_template, :floor, 'Floor'%> </td>
+      <td> <%= text_field :shift_template, :floor, value: "i.e. \"10's\""%> </td>
+  </tr>
+
+  <tr>
+      <td> <%= label :shift_template, :day, 'Day / Time'%> </td>
+      <td> <%= select_tag 'shift_template[day]', options_for_select(Preference.days), id: "Day of the week" %>
+      <%= select_tag 'shift_template[time]', options_for_select(Preference.times), include_blank: "Any", id: "Time of the day" %> </td>
+  </tr>
+
+  <tr>
+      <td> <%= label :shift_template, :hours, 'Hours'%> </td>
+      <td> <%= select_tag 'shift_template[hours]', options_for_select([1,2,3,4,5]) %> </td>
+  </tr>
+  <tr>
+      <td> <%= label :shift_template, :assigned_user, 'Assigned_user'%> </td>
+      <td> <%= select_tag 'shift_template[assigned_user]', options_for_select(@users), {:include_blank => "TBD"} %> </td>
+  </tr>
+</table>
+
   <%= submit_tag 'Save Shift'%>
   <br>
-  
+
 <% end %>
 
-<%= link_to 'Back', semester_path(@semester) %> 
+<%= link_to 'Back', semester_path(@semester) %>

@@ -9,13 +9,15 @@ class ShiftTemplatesController < ApplicationController
   #   @shifts = Shift.all
   # end
 
-  # GET /semesters/:semester_id/shifts/:id(.:format) 
+  # GET /semesters/:semester_id/shifts/:id(.:format)
   # GET /shifts/1.json
   def show
   end
 
   # GET /semesters/:semester_id/shifts/new(.:format)
   def new
+    @details = ShiftDetail.all
+
     @users = User.all.collect{ |u| [u.username] }
   end
 
@@ -25,17 +27,22 @@ class ShiftTemplatesController < ApplicationController
     @shift_detail = @shift_template.shift_detail
   end
 
-  # POST /semesters/:semester_id/shifts(.:format) 
+  # POST /semesters/:semester_id/shifts(.:format)
   # POST /shifts.json
   def create
-    @shift_detail = ShiftDetail.find_by_location_and_description(params[:shift_detail][:location],params[:shift_detail][:description])
+    prior = params[:shift_detail][:prior].split("--")
+    location = prior[0] || params[:shift_detail][:location]
+    description = prior[1] || params[:shift_detail][:description]
+
+    @shift_detail = ShiftDetail.find_by_location_and_description(location, description)
     @shift_template = @shift_detail.shift_templates.create(shift_template_params)
     @user = User.where(username: params[:shift_template][:assigned_user]).take
+
     @shift_template.user = @user
     @shift_template.semesters << @semester
     @shift_template.save
     redirect_to semester_path(@semester)
-    
+
     # @shift = Shift.new(shift_params)
 
     # respond_to do |format|
@@ -93,7 +100,7 @@ class ShiftTemplatesController < ApplicationController
     def set_shift_template
       @shift_template = ShiftTemplate.find(params[:id])
     end
-    
+
     def set_semester
       @semester = Semester.find(params[:semester_id])
     end
@@ -102,8 +109,8 @@ class ShiftTemplatesController < ApplicationController
     def shift_template_params
       params.require(:shift_template).permit(:day,:hours,:floor,:details)
     end
-    
+
     def shift_detail_params
-      params.require(:shift_detail).permit(:description, :location)
+      params.require(:shift_detail).permit(:description, :location, :prior)
     end
 end

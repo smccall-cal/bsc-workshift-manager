@@ -26,11 +26,27 @@ class ShiftTemplate < ApplicationRecord
     end
 
     def name
-        return ShiftDetail.find(self.shift_detail_id).to_sym
+        @details ||= ShiftDetail.find(self.shift_detail_id)
+        return @details.to_sym
     end
 
-    def time
-        return "1:00"
+    def unique
+        @details ||= ShiftDetail.find(self.shift_detail_id)
+        return (@details.to_s + " " + self.specifics + " : "  + self.date_time).to_sym
+    end
+
+    def specifics
+        return "(" + self.details + " " + self.floor + ")"
+     end
+
+    def date_time
+        time = self.time || "(Flexible)"
+        return self.day + " " + time
+    end
+
+    def requires_generation
+        representative = Shift.order(:date).where(shift_template_id: self.id).last
+        return representative == nil || representative.date < Date.today
     end
 
 end
