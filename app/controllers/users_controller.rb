@@ -6,11 +6,11 @@ class UsersController < ApplicationController
     def user_params
         params.require(:user).permit(:email, :username, :building)
     end
-    
+
     def set_user
         @user = User.find(params[:id])
     end
-    
+
     include SortFilter
 
     def index
@@ -49,5 +49,5 @@ class UsersController < ApplicationController
             redirect_to user_path(current_user.id)
         end
     end
-    
+
 end

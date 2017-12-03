@@ -35,8 +35,6 @@ Rails.application.routes.draw do
         resources :shift_templates, :except => [:index]
     end
 
-
-    #resources :shifts_users
-
+    get "/signoff", :to => "shifts#sign_off", :as => "sign_off"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

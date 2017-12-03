@@ -1,7 +1,7 @@
 class ShiftsController < ApplicationController
-  before_action :manager?
-  before_action :set_semester
-  before_action :set_shift, except: [:index]
+  before_action :manager?, except: [:sign_off]
+  before_action :set_semester, except: [:sign_off]
+  before_action :set_shift, except: [:index, :sign_off]
 
   # GET /shifts
   # GET /shifts.json
@@ -18,6 +18,16 @@ class ShiftsController < ApplicationController
   # GET /shifts/1.json
   def show
 
+  end
+
+  def sign_off
+    @users = User.all.map{ |user| [user.username, user.id]}
+    if user_signed_in?
+        @verifiers = [[current_user.username, current_user.id]]
+    else
+        @verifiers = @users
+    end
+    @shifts = Shift.where(:date => (Date.today - 4)..(Date.today + 4)).map{ |shift| [shift.unique, shift.id]}
   end
 
 # GET /semesters/:semester_id/shifts/new(.:format)

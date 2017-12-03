@@ -1,0 +1,22 @@
+=notice
+
+=form_tag sign_off_path, method: "post" do
+  %table
+    %tr
+      %td= label_tag "Workshifter"
+      %td= select_tag :workshifter, options_for_select(@users)
+    %tr
+      %td= label_tag "Verifier"
+      %td= select_tag :verifier, options_for_select(@verifiers)
+    -if user_signed_in?
+      %td= label_tag "Password"
+      %td= text_field_tag :password
+    %tr
+      %td= label_tag "Notes"
+      %td= text_area_tag :notes
+    %tr
+      %td= label_tag "Shift"
+      %td= select_tag :shift, options_for_select(@shifts)
+    %tr
+      %td
+      %td= submit_tag "Sign off!"

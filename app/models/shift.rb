@@ -11,4 +11,7 @@ class Shift < ApplicationRecord
     def to_s
         return shift.time + " " + shift.name + " " + shift.location
     end
+
+    delegate :name, to: :shift_template
+    delegate :unique, to: :shift_template
 end
