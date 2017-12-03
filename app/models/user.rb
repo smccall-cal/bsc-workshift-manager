@@ -21,6 +21,12 @@ class User < ActiveRecord::Base
         return User.where(:building == building)
     end
 
+    def self.all_complete(building)
+        complete = true
+        User.from(building).each{ |user| complete = complete & !user.init }
+        return complete
+    end
+
     def current_shifts
         all = self.shifts
         return all.select{ |shift| shift.shift_template == Semester.current }

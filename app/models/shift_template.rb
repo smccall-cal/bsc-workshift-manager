@@ -3,7 +3,6 @@ class ShiftTemplate < ApplicationRecord
     has_many :shifts
     belongs_to :shift_detail
     belongs_to :user, optional: true
-
     def self.init(template)
         shift_detail = ShiftDetail.where(location: template[:location], description: template[:description]).take
         @shift_template = shift_detail.shift_templates.create!(hours: template[:hours], day: template[:day], floor: template[:floor], details: template[:details], user_id: template[:user_id])
@@ -38,11 +37,16 @@ class ShiftTemplate < ApplicationRecord
 
     def specifics
         return "(" + self.details + " " + self.floor + ")"
-    end
+     end
 
     def date_time
         time = self.time || "(Flexible)"
         return self.day + " " + time
+    end
+
+    def requires_generation
+        representative = Shift.order(:date).where(shift_template_id: self.id).last
+        return representative == nil || representative.date < Date.today
     end
 
 end

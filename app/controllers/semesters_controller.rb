@@ -35,7 +35,11 @@ class SemestersController < ApplicationController
   def generate
     @semester = Semester.find(params[:semester_id])
     @shift_templates = @semester.shift_templates
-    @shift_templates.each{|template| template.generate}
+    @shift_templates.each{ |template|
+        if template.requires_generation && template.user
+            template.generate
+        end
+    }
     redirect_to semester_path(@semester)
   end
 
@@ -43,16 +47,19 @@ class SemestersController < ApplicationController
       if current_user.admin?
           flash[:notice] = "Sorry, this functionality is building-specific"
           redirect_to user_path current_user.id
+      elsif !User.all_complete current_user.building
+          flash[:notice] = "Sorry, some of your users haven't filled out their preferences"
+          redirect_to semester_path(params[:semester_id])
+      else
+          default = Matcher.new current_user.building
+          matches = default.match
+
+          if !Semester.find(params[:semester_id]).assign(matches)
+              flash[:notice] = "Something went wrong, please try again"
+          end
+
+          redirect_to semester_shifts_path params[:semester_id]
       end
-
-      default = Matcher.new current_user.building
-      matches = default.match
-
-      if !Semester.find(params[:semester_id]).assign(matches)
-          flash[:notice] = "Something went wrong, please try again"
-      end
-
-      redirect_to semester_shifts_path params[:semester_id]
   end
 
   # def create
