@@ -7,14 +7,14 @@
 <table class="table">
 
   <tr>
-      <td> <%= label :shift_detail, :detail, 'Location / Description'%> </td>
-      <td> <%= select_tag 'shift_detail', options_for_select(@details), include_blank: "Other (type below)" %> </td>
+      <td> <%= label :shift_detail, :prior, 'Location / Description'%> </td>
+      <td> <%= select_tag 'shift_detail[prior]', options_for_select(@details), include_blank: "Other (type below)" %> </td>
   </tr>
 
   <tr>
       <td> </td>
-      <td> <%= text_field :shift_detail, :new_location, value: "i.e. \"Bathroom\""%>
-      <%= text_field :shift_detail, :new_description, value: "i.e. \"Deep Clean\""%> </td>
+      <td> <%= text_field :shift_detail, :location, value: "i.e. \"Bathroom\"", id: "Location"%>
+      <%= text_field :shift_detail, :description, value: "i.e. \"Deep Clean\"", id: "Description"%> </td>
   </tr>
 
   <tr>
@@ -29,8 +29,8 @@
 
   <tr>
       <td> <%= label :shift_template, :day, 'Day / Time'%> </td>
-      <td> <%= select_tag 'shift_template[day]', options_for_select(Preference.days) %>
-      <%= select_tag 'shift_template[time]', options_for_select(Preference.times), include_blank: "Any" %> </td>
+      <td> <%= select_tag 'shift_template[day]', options_for_select(Preference.days), id: "Day of the week" %>
+      <%= select_tag 'shift_template[time]', options_for_select(Preference.times), include_blank: "Any", id: "Time of the day" %> </td>
   </tr>
 
   <tr>

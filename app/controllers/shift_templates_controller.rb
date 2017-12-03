@@ -30,8 +30,9 @@ class ShiftTemplatesController < ApplicationController
   # POST /semesters/:semester_id/shifts(.:format)
   # POST /shifts.json
   def create
-    location = params[:shift_detail][:new_location] || params[:shift_detail][:location]
-    description = params[:shift_detail][:new_description] || params[:shift_detail][:description]
+    prior = params[:shift_detail][:prior].split("--")
+    location = prior[0] || params[:shift_detail][:location]
+    description = prior[1] || params[:shift_detail][:description]
 
     @shift_detail = ShiftDetail.find_by_location_and_description(location, description)
     @shift_template = @shift_detail.shift_templates.create(shift_template_params)
@@ -110,6 +111,6 @@ class ShiftTemplatesController < ApplicationController
     end
 
     def shift_detail_params
-      params.require(:shift_detail).permit(:description, :location)
+      params.require(:shift_detail).permit(:description, :location, :prior)
     end
 end
