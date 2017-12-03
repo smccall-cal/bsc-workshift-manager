@@ -16,6 +16,8 @@ class ShiftTemplatesController < ApplicationController
 
   # GET /semesters/:semester_id/shifts/new(.:format)
   def new
+    @details = ShiftDetail.all
+
     @users = User.all.collect{ |u| [u.username] }
   end
 
@@ -28,7 +30,10 @@ class ShiftTemplatesController < ApplicationController
   # POST /semesters/:semester_id/shifts(.:format)
   # POST /shifts.json
   def create
-    @shift_detail = ShiftDetail.find_by_location_and_description(params[:shift_detail][:location], params[:shift_detail][:description])
+    location = params[:shift_detail][:new_location] || params[:shift_detail][:location]
+    description = params[:shift_detail][:new_description] || params[:shift_detail][:description]
+
+    @shift_detail = ShiftDetail.find_by_location_and_description(location, description)
     @shift_template = @shift_detail.shift_templates.create(shift_template_params)
     @user = User.where(username: params[:shift_template][:assigned_user]).take
 
