@@ -6,6 +6,11 @@ class ShiftTemplate < ApplicationRecord
 
     def self.init(template)
         shift_detail = ShiftDetail.where(location: template[:location], description: template[:description]).take
+        if shift_detail == nil
+            shift_detail = ShiftDetail.new(location: template[:location], description: template[:description])
+            shift_detail.save
+        end
+        
         @shift_template = shift_detail.shift_templates.create!(hours: template[:hours], day: template[:day], floor: template[:floor], details: template[:details], user_id: template[:user_id])
         @shift_template.semesters << Semester.find(template[:semester_id])
     end
