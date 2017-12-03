@@ -31,7 +31,7 @@ class SemestersController < ApplicationController
       flash[:notice] = "#{@semester.semester_name} was successfully created."
       redirect_to semesters_path
   end
-  
+
   def generate
     @semester = Semester.find(params[:semester_id])
     @shift_templates = @semester.shift_templates
