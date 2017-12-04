@@ -6,8 +6,7 @@ https://workshift.bsc.coop/caz/
 Our project is currently deployed at:
 https://bsc-workshift-manager.herokuapp.com
 
-
-[![Maintainability](https://api.codeclimate.com/v1/badges/98f4fd2b4774b4306c1f/maintainability)](https://codeclimate.com/github/Celia0/bsc-workshift-manager/maintainability)
+{<img src="https://api.codeclimate.com/v1/badges/98f4fd2b4774b4306c1f/maintainability" />}[https://codeclimate.com/github/Celia0/bsc-workshift-manager/maintainability]
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/98f4fd2b4774b4306c1f/test_coverage)](https://codeclimate.com/github/Celia0/bsc-workshift-manager/test_coverage)
 
