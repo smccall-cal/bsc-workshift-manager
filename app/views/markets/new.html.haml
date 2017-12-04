@@ -1,0 +1,15 @@
+%h1 Send my shift to market
+
+#marketPage
+  %h3
+    Username:
+    = @user.username
+
+  = form_tag(user_markets_path, :method=> :post) do
+    -# = label :market, :username, 'Username'
+    -# = text_field :market, 'username'
+    = label :market, :shift, 'Shift'
+    = select :market, :shift, ['Kitchen','Bathroom']
+
+
+    = submit_tag 'Submit shift'

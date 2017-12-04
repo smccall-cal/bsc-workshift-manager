@@ -1,0 +1,60 @@
+<h1><%= @semester.semester_name%> Semester </h1>
+
+<%= notice %>
+<br>
+  <div class = 'semesterPage'>
+  Semester Name: <%= @semester.semester_name%>
+  <br>
+  Start Date: <%= @semester.start_date.strftime("%d %B %Y")%>
+  <br>
+  End Date: <%= @semester.end_date.strftime("%d %B %Y")%>
+  <br>
+  <%= link_to 'Edit Semester Details', edit_semester_path(@semester)%>
+  <%= button_to "Delete this Semester", { action: "destroy", id: @semester.id },method: :delete, data: { confirm: "Are you sure?" } %>
+  <br>
+  <br>
+  <h2>Weekly Shift Schedule</h2>
+  <%= link_to "View all shifts from this semester", semester_shifts_path(@semester) %>
+  <br>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Location</th>
+      <th>Description</th>
+      <th>Time</th>
+      <th>Floor</th>
+      <th>Details</th>
+      <th>Day</th>
+      <th>Hours</th>
+      <th>Assigned User</th>
+    </tr>
+  </thead>
+
+  <% @shift_templates.each do |sh| %>
+  <tr>
+    <td><%= sh.shift_detail.location %></td>
+    <td><%= sh.shift_detail.description %></td>
+    <td><%= sh.date_time %></td>
+    <td><%= sh.floor %></td>
+    <td><%= sh.details %></td>
+    <td><%= sh.day %></td>
+    <td><%= sh.hours %></td>
+    <td><%= sh.user.username unless sh.user.nil?%></td>
+    <td><%= link_to 'Edit', edit_semester_shift_template_path(@semester,sh)%></td>
+    <td><%= button_to "Delete", semester_shift_template_path(@semester,sh), :method => :delete, data: {confirm: "Are you sure?"} %></td>
+  </tr>
+  <% end %>
+</table>
+<br>
+
+<div class = 'semesterPage'>
+  <%= button_to "Generate Shifts", semester_generate_shifts_path(@semester) %>
+  <%= button_to "Automatically Assign Shifts", semester_default_assignment_path(@semester) %>
+    
+  <br>
+  <%= link_to 'Create New Shift', new_semester_shift_template_path(@semester) %>
+  <br>
+  <%= link_to 'Back', semesters_path %>
+</div>

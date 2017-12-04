@@ -1,0 +1,15 @@
+%h1 Sign Off
+
+=notice
+
+= form_tag sign_off_path(:format => :js), :method => :get, remote: true do
+  %table.table
+    %tr
+      %td
+        =label_tag "Workshifter", nil, :style => "width:#{@size}px"
+      %td
+        =select_tag :filter, options_for_select([[@selected, @filter]] + @users)
+        =submit_tag "Filter"
+
+%div#sign
+  =render "sign"

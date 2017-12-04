@@ -1,0 +1,15 @@
+$("select[name=key]").val("<%== escape_javascript(@key) %>");
+$("input[name=query]").val("<%== escape_javascript(@query_) %>");
+
+<% Preference.shifts.each do |sh| %>
+    <% if @shifts.include? sh %>
+        $("#<%== to_id sh.to_s %>").removeClass("hide");
+        $("#<%== to_id sh.to_s %>").addClass("show");
+    <% else %>
+        $("#<%== to_id sh.to_s %>").removeClass("show");
+        $("#<%== to_id sh.to_s %>").addClass("hide");
+    <% end %>
+<% end %>
+<% if @rank %>
+    $(".show .rank").val("<%== escape_javascript(@rank) %>");
+<% end %>

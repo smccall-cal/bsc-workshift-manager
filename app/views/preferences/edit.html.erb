@@ -1,22 +1,26 @@
 <h1>Editing Preference</h1>
-
-<%= form_tag preference_path(@preference), :method => "put" do %>
-  <% Preference.shifts.each do |sh| %>
-    <%= label_tag "shift[#{sh}]", sh %>
-    <%= select_tag "shift[#{sh}]", options_for_select(Array 0..5) %>
-  <% end %>
-  <% Preference.days.each do |d| %>
-    <br>
-    <%= d %>
-    <% Preference.times.each do |t| %>
-      <%= label_tag "schedule[#{d}][#{t}]", t %>
-      <%= select_tag "schedule[#{d}][#{t}]", options_for_select(["+", "-", "x", "?", " "]) %>
-    <% end %>
-  <% end %>
-  <br>
-  <%= submit_tag "Save Preferences" %>
+<p id="error"><%= alert %></p>
+<%= form_with :url => edit_user_preference_path(@user, @preference, :format => :js), :method => :get do |f| %>
+  <%= f.label :key, "Filter by" %>
+  <%= f.select :key, ["location", "description"], selected: @key %>
+  <%= f.text_field :query, autofocus: true, placeholder: "Query", value: @query_ %>
+  <%= f.submit "Filter" %>
+<% end %>
+<%= form_with :url => edit_user_preference_path(@user, @preference, :format => :js), :method => :get do |f| %>
+  <%= f.select :rank, (Array 0..5) %>
+  <%= f.submit "Apply on all displayed" %>
+<% end %>
+<%= form_tag user_preference_path(@user, @preference), :method => "put", :id => "preference" do %>
+  <!--<ul class="nav nav-pills nav-stacked">-->
+  <!--  <li><a href="#">Exterior Cleaning</a></li>-->
+  <!--  <li><a href="#">Interior Cleaning</a></li>-->
+  <!--  <li><a href="#">Kitchen</a></li>-->
+  <!--  <li><a href="#">Rotating Shift</a></li>-->
+  <!--  <li><a href="#">WR</a></li>-->
+  <!--</ul>-->
+  <%= render "shifts" %>
 <% end %>
 
 
-<%= link_to 'Show', @preference %> |
-<%= link_to 'Back', preferences_path %>
+<%= link_to 'Show', user_preference_path(@user, @preference) %> |
+<%= link_to 'Back', user_path(@user) %>
