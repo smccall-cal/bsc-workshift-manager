@@ -7,8 +7,6 @@
   #menuContainer
     %ul
       %li
-        = link_to "My preferences", user_preferences_path(params[:id])
-      %li
         = link_to "Shift Market",  user_markets_path(params[:id])
       - if !current_user.manage?
         %li
@@ -23,8 +21,6 @@
           = link_to "View Semester Workshift", semesters_path
         %li
           = link_to "Manage Workshift Policy Document", policies_path
-      %li
-        = link_to "Shift Market",  user_markets_path(params[:id])
 
 
 
