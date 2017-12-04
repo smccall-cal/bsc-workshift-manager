@@ -1,0 +1,12 @@
+= form_for @policy, :url => local_assigns[:url] do |f|
+  - if @policy.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@policy.errors.count, "error")} prohibited this policy from being saved:"
+      %ul
+        - @policy.errors.full_messages.each do |message|
+          %li= message
+
+  = f.file_field :policy_file, :accept => accept_types
+
+  .actions
+    = f.submit 'Save'
