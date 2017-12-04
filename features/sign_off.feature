@@ -25,7 +25,6 @@ Scenario: I can sign someone off
     When I follow "Sign Off"
     And I select "Xin Qin" from "filter"
     And I press "Filter"
-    And I press "Sign off!"
 
 Scenario: I can sign someone off when not signed in
     When I follow "Sign Out"
