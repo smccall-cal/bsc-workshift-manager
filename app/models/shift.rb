@@ -8,7 +8,6 @@ class Shift < ApplicationRecord
         user.shifts.create!(date: shift[:date], is_checked_off: shift[:is_checked_off], shift_template_id: shift[:shift_template_id])
     end
 
-    def to_s
-        return shift.time + " " + shift.name + " " + shift.location
-    end
+    delegate :name, to: :shift_template
+    delegate :unique, to: :shift_template
 end

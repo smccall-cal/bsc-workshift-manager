@@ -41,8 +41,7 @@ Rails.application.routes.draw do
         end
     end
 
-
-    #resources :shifts_users
-
+    get "/signoff", :to => "shifts#sign_off", :as => "sign_off"
+    post "/signoff", :to => "shifts#complete_sign_off", :as => "complete_sign_off"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

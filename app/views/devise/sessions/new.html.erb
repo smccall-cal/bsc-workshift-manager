@@ -25,11 +25,17 @@
         <%= f.label :remember_me %>
       </div>
     <% end -%>
-    
+
     <br>
 
     <div class="actions">
       <%= f.submit "Log in", class: 'actions_button' %>
+    </div>
+
+    <br>
+
+    <div class="actions" >
+      <%= link_to "Sign Off", sign_off_path, class: 'actions_button' %>
     </div>
 
   <% end %>

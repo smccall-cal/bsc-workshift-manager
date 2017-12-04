@@ -32,11 +32,19 @@ class ShiftTemplate < ApplicationRecord
 
     def unique
         @details ||= ShiftDetail.find(self.shift_detail_id)
-        return (@details.to_s + " " + self.specifics + " : "  + self.date_time).to_sym
+        return (@details.to_s + self.specifics + ": "  + self.date_time).to_sym
     end
 
     def specifics
-        return "(" + self.details + " " + self.floor + ")"
+        if self.details && self.floor
+            return " (" + self.details + " " + self.floor + ")"
+        elsif self.details
+            return " (" + self.details + ")"
+        elsif self.floor
+            return " (" + self.floor + ")"
+        else
+            return ""
+        end
      end
 
     def date_time

@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20171130232120) do
   create_table "shifts", force: :cascade do |t|
     t.datetime "date"
     t.boolean "is_checked_off"
+    t.integer "checked_off_by"
     t.integer "shift_template_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
