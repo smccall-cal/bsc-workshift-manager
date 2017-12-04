@@ -1,19 +1,19 @@
-%table.table
-  %tr
-  =form_tag complete_sign_off_path, method: "post" do
-    %td= text_field_tag :workshifter, @filter, hidden: true
-  %tr
-    %td= label_tag "Verifier"
-    %td= select_tag :verifier, options_for_select(@verifiers)
-    -if !user_signed_in?
-      %td= label_tag "Password"
-      %td= password_field_tag :password
-  %tr
-    %td= label_tag "Notes"
-    %td= text_area_tag :notes
-  %tr
-    %td= label_tag "Shift"
-    %td= select_tag :shift, options_for_select(@shifts), :style => "width:400px"
-  %tr
-    %td
-    %td= submit_tag "Sign off!", :id => "Sign off!", :data => { :confirm => "Confirm sign off?" }
+=form_tag complete_sign_off_path, method: "post" do
+  %table.table
+    %tr
+      %td= text_field_tag :workshifter, @filter, hidden: true
+    %tr
+      %td= label_tag "Verifier"
+      %td= select_tag :verifier, options_for_select(@verifiers)
+      -if !user_signed_in?
+        %td= label_tag "Password"
+        %td= password_field_tag :password
+    %tr
+      %td= label_tag "Notes"
+      %td= text_area_tag :notes
+    %tr
+      %td= label_tag "Shift"
+      %td= select_tag :shift, options_for_select(@shifts), :style => "width:400px"
+    %tr
+      %td
+      %td= submit_tag "Sign off!", :id => "Sign off!", :data => { :confirm => "Confirm sign off?" }
