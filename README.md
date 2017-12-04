@@ -1,8 +1,7 @@
 # BSC-Workshift-Manager
 
-<a href="https://codeclimate.com/github/Celia0/bsc-workshift-manager/maintainability"><img src="https://api.codeclimate.com/v1/badges/98f4fd2b4774b4306c1f/maintainability"/></a>
-
-<a href="https://codeclimate.com/github/Celia0/bsc-workshift-manager/test_coverage"><img src="https://api.codeclimate.com/v1/badges/98f4fd2b4774b4306c1f/test_coverage"/></a>
+<a href="https://codeclimate.com/github/Celia0/bsc-workshift-manager/maintainability"><img src="https://api.codeclimate.com/v1/badges/98f4fd2b4774b4306c1f/maintainability"></a>
+<a href="https://codeclimate.com/github/Celia0/bsc-workshift-manager/test_coverage"><img src="https://api.codeclimate.com/v1/badges/98f4fd2b4774b4306c1f/test_coverage"></a>
 
 <a href="https://travis-ci.org/Celia0/bsc-workshift-manager"><image src="https://travis-ci.org/Celia0/bsc-workshift-manager.svg?branch=master"/></a>
 
@@ -71,3 +70,13 @@ Then you're all set.
 
 Finally, we recommend you to add your own badges for CodeClimate and Travis CI.
 And you don't have to worry about PhantomJS on Travis CI, it's built-in.
+
+# Demo
+
+- Screenshot
+
+<img src="/screenshot.png"/>
+
+- Screencast
+
+<a href="https://www.youtube.com/watch?v=EeBIa189Lis" target="_blank">Youtube Video</a>
