@@ -2,20 +2,21 @@
 
 <%= notice %>
 <br>
-
-Semester Name: <%= @semester.semester_name%>
-<br>
-Start Date: <%= @semester.start_date.strftime("%d %B %Y")%>
-<br>
-End Date: <%= @semester.end_date.strftime("%d %B %Y")%>
-<br>
-<%= link_to 'Edit Semester Details', edit_semester_path(@semester)%>
-<%= button_to "Delete this Semester", { action: "destroy", id: @semester.id },method: :delete, data: { confirm: "Are you sure?" } %>
-<br>
-<br>
-<h2>Weekly Shift Schedule</h2>
-<%= link_to "View all shifts from this semester", semester_shifts_path(@semester) %>
-<br>
+  <div class = 'semesterPage'>
+  Semester Name: <%= @semester.semester_name%>
+  <br>
+  Start Date: <%= @semester.start_date.strftime("%d %B %Y")%>
+  <br>
+  End Date: <%= @semester.end_date.strftime("%d %B %Y")%>
+  <br>
+  <%= link_to 'Edit Semester Details', edit_semester_path(@semester)%>
+  <%= button_to "Delete this Semester", { action: "destroy", id: @semester.id },method: :delete, data: { confirm: "Are you sure?" } %>
+  <br>
+  <br>
+  <h2>Weekly Shift Schedule</h2>
+  <%= link_to "View all shifts from this semester", semester_shifts_path(@semester) %>
+  <br>
+</div>
 
 <table class="table">
   <thead>
@@ -47,10 +48,13 @@ End Date: <%= @semester.end_date.strftime("%d %B %Y")%>
   <% end %>
 </table>
 <br>
-<%= button_to "Generate Shifts", semester_generate_shifts_path(@semester) %>
-<%= button_to "Automatically Assign Shifts", semester_default_assignment_path(@semester) %>
 
-<br>
-<%= link_to 'Create New Shift', new_semester_shift_template_path(@semester) %>
-<br>
-<%= link_to 'Back', semesters_path %>
+<div class = 'semesterPage'>
+  <%= button_to "Generate Shifts", semester_generate_shifts_path(@semester) %>
+  <%= button_to "Automatically Assign Shifts", semester_default_assignment_path(@semester) %>
+    
+  <br>
+  <%= link_to 'Create New Shift', new_semester_shift_template_path(@semester) %>
+  <br>
+  <%= link_to 'Back', semesters_path %>
+</div>

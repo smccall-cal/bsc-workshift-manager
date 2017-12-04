@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+    
     devise_for :users, :controllers => { :registrations => :registrations }
     devise_scope :user do
         get "/users/delete" => "registrations#delete", :as => "delete"
@@ -33,6 +33,12 @@ Rails.application.routes.draw do
         post "/default", :to => "semesters#default", :as => "default_assignment"
 
         resources :shift_templates, :except => [:index]
+    end
+    
+    resources :policies do
+        member do
+            get "/download", :to => "policies#download", :as => "download"
+        end
     end
 
     get "/signoff", :to => "shifts#sign_off", :as => "sign_off"

@@ -51,6 +51,12 @@ module NavigationHelpers
 
     when /^the no preferences page for "(.*)"/
         no_user_preferences_path(User.find_by_username($1).id)
+        
+    when /^the new policy page/
+        new_policy_path
+        
+    when /^the policy page/
+        policy_path(Policy.first)
 
     when /^the semesters page/
         semesters_path
