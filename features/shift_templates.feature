@@ -75,3 +75,10 @@ Scenario: I should be able to delete shifts
   Then I should not see "Lounge"
   And I should not see "Mopping"
   And I should not see "Bathroom"
+
+ Scenario: I can generate shifts
+
+    Given I am on the semester page for "Spring 2017"
+    When I press "Generate Shifts"
+    And I follow "View all shifts from this semester"
+    Then I should see "Freezer Clean/Organize"

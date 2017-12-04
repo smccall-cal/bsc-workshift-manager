@@ -18,3 +18,8 @@ Background: A manager is logging in for the first time
 Scenario: The matcher runs (basic integration test)
     When I generate default assignments
     Then I should be on the personal page for "Manager"
+
+Scenario: The matcher runs from the website
+    When I am on the semester page for "Fall 2017"
+    And I press "Automatically Assign Shifts"
+    Then I should be on the semester page for "Fall 2017"
