@@ -7,7 +7,8 @@ Our project is currently deployed at:
 https://bsc-workshift-manager.herokuapp.com
 
 
-<a href="https://codeclimate.com/github/Celia0/bsc-workshift-manager/maintainability"><img src="https://api.codeclimate.com/v1/badges/98f4fd2b4774b4306c1f/maintainability" /></a>
+<a href="https://codeclimate.com/github/Celia0/bsc-workshift-manager/maintainability">test</a>
+<img src="https://api.codeclimate.com/v1/badges/98f4fd2b4774b4306c1f/maintainability"/>
 
 <a href="https://codeclimate.com/github/Celia0/bsc-workshift-manager/test_coverage"><img src="https://api.codeclimate.com/v1/badges/98f4fd2b4774b4306c1f/test_coverage" /></a>
 
