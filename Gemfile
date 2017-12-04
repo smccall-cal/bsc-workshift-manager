@@ -79,6 +79,7 @@ group :test do
   gem 'factory_girl_rails' # if using FactoryGirl
   gem 'metric_fu'        # collect code metrics
   gem 'rails-controller-testing'
+  gem 'timecop'
 end
 
 group :production do

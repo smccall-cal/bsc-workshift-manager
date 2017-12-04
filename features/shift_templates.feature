@@ -1,3 +1,4 @@
+@timecop
 Feature: Managers should be able to perform CRUD functions on shifts resources
 
   As a manager,
@@ -76,9 +77,21 @@ Scenario: I should be able to delete shifts
   And I should not see "Mopping"
   And I should not see "Bathroom"
 
- Scenario: I can generate shifts
+Scenario: I can generate shifts
 
     Given I am on the semester page for "Spring 2017"
     When I press "Generate Shifts"
     And I follow "View all shifts from this semester"
     Then I should see "Freezer Clean/Organize"
+
+Scenario: I should be able to generate shifts
+
+  Given I am on the semesters page
+  And today is "2017/01/11"
+  When I follow "Spring 2017"
+  And I follow "Edit Semester Details"
+  And I fill in "End Date" date field with "30" days from today's date
+  And I fill in "Start Date" date field with today's date
+  And I press "Save Semester"
+  And I press "Generate Shift"
+  Then More than "1" shift should exist
