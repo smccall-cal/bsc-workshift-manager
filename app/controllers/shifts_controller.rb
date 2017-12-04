@@ -20,15 +20,22 @@ class ShiftsController < ApplicationController
 
   end
 
+  include SortFilter
+
   def sign_off
-    @users = User.all.map{ |user| [user.username, user.id]}
+    clear_sessions if request.format.symbol == :html
+    get_filter
+
+    @users = User.all.map{ |user| [user.username, user.id] }.delete_if{ |name, id| id == @filter.to_i }
+
     if user_signed_in?
         @verifiers = [[current_user.username, current_user.id]]
     else
         @verifiers = @users
     end
+
     @shifts = Shift.where(:date => (Date.today - 4)..(Date.today + 3))
-    @shifts = @shifts.to_a.delete_if{ |shift| shift.is_checked_off }.map{ |shift| [shift.unique, shift.id]}
+    @shifts = @shifts.to_a.delete_if{ |shift| shift.is_checked_off || shift.user_id != @filter.to_i}.map{ |shift| [shift.unique, shift.id]}
   end
 
   def complete_sign_off
