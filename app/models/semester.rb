@@ -21,7 +21,7 @@ class Semester < ApplicationRecord
     def self.current
         @semesters = Semester.all
         @semesters.each{|sem|
-            if(Date.today>sem.start_date && Date.today<sem.end_date)
+            if(Date.today>=sem.start_date && Date.today<=sem.end_date)
                 return sem
             end
         }

@@ -31,6 +31,11 @@ Then /(.*) shift_templates should exist/ do | n_seeds |
   ShiftTemplate.count.should be n_seeds.to_i
 end
 
+Given /today is "(.*)"/ do |date|
+  dates = date.split "/"
+  Timecop.travel(Time.local(dates[0], dates[1], dates[2]))
+end
+
 #found on hashrocket.com
 When /^I fill in "(.*?)" time field with "(.*?)"$/ do |field_name, time_components|
   label = find("label", text: field_name)
