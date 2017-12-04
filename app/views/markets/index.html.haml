@@ -35,8 +35,9 @@
 - 3.times do
   %br
 
-= link_to 'Add shift to market', new_user_market_path(current_user)
-%br
--# = link_to 'Delete my shift',  edit_user_market_path(current_user)
-%br
-= link_to 'Back', user_path(current_user)
+#shiftFooterContainer
+  = link_to 'Add shift to market', new_user_market_path(current_user)
+  %br
+  -# = link_to 'Delete my shift',  edit_user_market_path(current_user)
+  %br
+  = link_to 'Back', user_path(current_user)
