@@ -6,7 +6,7 @@
   %tr
   = form_tag sign_off_path(:format => :js), :method => :get, remote: true do
     %td
-      =label_tag "Workshifter", nil, :style => "width:19px"
+      =label_tag "Workshifter", nil, :style => "width:#{@size}px"
     %td
       =select_tag :filter, options_for_select([[@selected, @filter]] + @users)
       =submit_tag "Filter"

@@ -30,8 +30,10 @@ class ShiftsController < ApplicationController
 
     if user_signed_in?
         @verifiers = [[current_user.username, current_user.id]]
+        @size = 19
     else
         @verifiers = @users
+        @size = 6
     end
 
     @shifts = Shift.where(:date => (Date.today - 4)..(Date.today + 3))
