@@ -21,15 +21,15 @@ First of all, you have to fork this repo, and then clone it onto your local comp
 - Local
 
 To run and test the app locally, you have to install the required gems
-```
+```bash
 bundle install --without production
 ```
 Then you need to initialize the database tables with seeds
-```
+```bash
 ./database_reset
 ```
 Which runs the following three commands at once
-```
+```bash
 rake db:drop
 rake db:migrate
 rake db:seed
@@ -41,7 +41,7 @@ You can find guides to install it <a href="https://github.com/teampoltergeist/po
 
 Then you're all set.
 You can run the tests by using the following commands
-```
+```bash
 bundle exec rspec
 bundle exec cucumber
 ```
@@ -49,20 +49,20 @@ bundle exec cucumber
 - Deploy
 
 To deploy onto heroku, you have to login and create an app for it on heroku
-```
+```bash
 heroku login
 heroku create <name-of-the-app-you-want>
 ```
 Then you can just push it onto heroku to deploy
-```
+```bash
 git push heroku master
 ```
 Again, you need to initialize the database
-```
+```bash
 ./heroku_database_reset
 ```
 Which runs the following three commands at once
-```
+```bash
 heroku pg:reset DATABASE --confirm bsc-workshift-manager # replace this with your app name
 heroku run rake db:migrate
 heroku run rake db:seed
