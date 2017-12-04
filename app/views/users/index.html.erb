@@ -6,8 +6,42 @@
         <%= f.submit "Search" %>
     <% end %>
 </div>
-<table class="table" id="users">
-    <%= render "users" %>
+<table class="table">
+    <thead id="users_header">
+        <%= render "users_header" %>
+    </thead>
+    <tbody>
+        <tr>
+            <%= form_for :user, :url => mass_create_path do |f| %>
+            <td>
+                <%= f.text_area :username, autofocus: true %>
+            </td>
+    
+            <td>
+                <%= f.select :building, current_user.buildings %>
+            </td>
+    
+            <td>
+                <%= f.text_area :email, autofocus: true %>
+            </td>
+    
+            <td>
+                User
+            </td>
+    
+            <td>
+                <%= f.text_field :redirect, :value => users_path, :style => "display:none;" %>
+                <%= f.submit "Add" %>
+            </td>
+        
+            <td>
+            </td>
+            <% end %>
+        </tr>
+    </tbody>
+    <tbody id="users">
+        <%= render "users" %>
+    </tbody>
 </table>
 
 <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>

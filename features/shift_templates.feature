@@ -45,16 +45,6 @@ Scenario: I should be able to create shifts_templates
   And I should see "After Dinner"
   And I should see "Wednesday"
 
-Scenario: I should be able to generate shifts
-
-  Given I am on the semesters page
-  When I follow "Spring 2017"
-  And I follow "Edit Semester Details"
-  And I fill in "End Date" date field with "30" days from today's date
-  And I fill in "Start Date" date field with today's date
-  And I press "Save Semester"
-  And I press "Generate Shift"
-  Then More than "1" shift should exist
 
 Scenario: I should be able to edit shifts
 
@@ -85,3 +75,10 @@ Scenario: I should be able to delete shifts
   Then I should not see "Lounge"
   And I should not see "Mopping"
   And I should not see "Bathroom"
+
+ Scenario: I can generate shifts
+
+    Given I am on the semester page for "Spring 2017"
+    When I press "Generate Shifts"
+    And I follow "View all shifts from this semester"
+    Then I should see "Freezer Clean/Organize"
