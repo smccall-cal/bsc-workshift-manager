@@ -4,7 +4,7 @@ The customers needed to revamp their workshift management system to a more user-
 https://workshift.bsc.coop/caz/
 
 Our project is currently deployed at:
-bsc-workshift-manager.herokuapp.com
+https://bsc-workshift-manager.herokuapp.com
 
 
 <a href="https://codeclimate.com/github/Celia0/bsc-workshift-manager/maintainability"><img src="https://api.codeclimate.com/v1/badges/98f4fd2b4774b4306c1f/maintainability" /></a>
