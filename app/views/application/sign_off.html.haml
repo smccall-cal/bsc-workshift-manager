@@ -4,11 +4,12 @@
 
 %table.table
   %tr
-  = form_tag sign_off_path(:format => :js), :method => :get do
+  = form_tag sign_off_path(:format => :js), :method => :get, remote: true do
     %td
-      =label_tag "Workshifter"
+      =label_tag "Workshifter", nil, :style => "width:19px"
     %td
       =select_tag :filter, options_for_select([[@selected, @filter]] + @users)
       =submit_tag "Filter"
 
-=render "mini_sign"
+%div#sign
+  =render "sign"
