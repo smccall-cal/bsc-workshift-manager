@@ -1,0 +1,32 @@
+<h1>Editing Shift_Template</h1>
+
+<%= notice %>
+
+<%= form_for :shift_template, :url => semester_shift_template_path(@semester,@shift_template), :method => "patch" do %>
+
+  <%= label :shift_detail, :location, 'Shift Location'%>
+  <%= text_field :shift_detail, :location, :value => @shift_detail.location%>
+  
+  <%= label :shift_detail, :description, 'Shift Description'%>
+  <%= text_field :shift_detail, :description, :value => @shift_detail.description%>
+  
+  <%= label :shift_template, :floor, 'Floor'%>
+  <%= text_field :shift_template, :floor, :value => @shift_template.floor%>
+  
+  <%= label :shift_template, :details, 'Shift Details'%>
+  <%= text_field :shift_template, :details, :value => @shift_template.details%>
+
+  <%= label :shift_template, :day, 'Day of the week'%>
+  <%= select_tag 'shift_template[day]', options_for_select(Date::DAYNAMES,@shift_template.day) %>
+  
+  <%= label :shift_template, :hours, 'Hours'%>
+  <%= select_tag 'shift_template[hours]', options_for_select([1,2,3,4],@shift_template.hours) %>
+  
+  <%= label :shift_template, :assigned_user, 'Assigned_user'%>
+  <%= select_tag 'shift_template[assigned_user]', options_for_select(@users) %>
+
+  <%= submit_tag 'Save Shift'%>
+  
+<% end %>
+
+<%= link_to 'Back', semester_path(@semester) %> 

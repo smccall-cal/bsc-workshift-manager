@@ -7,9 +7,14 @@
       = link_to "Sign Out", destroy_user_session_path, method: :delete
   #menuContainer
     %ul
+      %li
+        = link_to "Shift Market",  user_markets_path(params[:id])
       - if !current_user.manage?
         %li
           = link_to "My preferences", user_preferences_path(params[:id])
+        - if Policy.first
+          %li
+            = link_to "Download Workshift Policy Document", download_policy_path(Policy.first)
       - if current_user.manage?
         %li
           = link_to "Manage Residents", users_path
@@ -21,7 +26,13 @@
           = link_to "Delete Residents", delete_path
         %li
           = link_to "View Semester Workshift", semesters_path
+        %li
+          = link_to "Manage Workshift Policy Document", policies_path
 
+
+
+%h1 Welcome #{current_user.username}
+= notice
 
 - 3.times do
   %br

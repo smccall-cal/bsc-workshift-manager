@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171118050004) do
+ActiveRecord::Schema.define(version: 20171130232120) do
+
+  create_table "markets", force: :cascade do |t|
+    t.string "username"
+    t.string "shift"
+    t.boolean "be_taken"
+    t.string "taker_username"
+  end
+
+  create_table "policies", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "filename"
+  end
 
   create_table "preferences", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -44,25 +57,26 @@ ActiveRecord::Schema.define(version: 20171118050004) do
   end
 
   create_table "shift_templates", force: :cascade do |t|
+    t.string "floor"
+    t.string "details"
     t.integer "hours"
     t.string "day"
+    t.string "time"
     t.integer "shift_detail_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "floor"
-    t.string "details"
     t.index ["shift_detail_id"], name: "index_shift_templates_on_shift_detail_id"
     t.index ["user_id"], name: "index_shift_templates_on_user_id"
   end
 
   create_table "shifts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.datetime "date"
     t.boolean "is_checked_off"
     t.integer "shift_template_id"
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["shift_template_id"], name: "index_shifts_on_shift_template_id"
     t.index ["user_id"], name: "index_shifts_on_user_id"
   end

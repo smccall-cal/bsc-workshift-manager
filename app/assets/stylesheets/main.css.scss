@@ -30,7 +30,7 @@ body {
   cursor: pointer;
   color: white;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2), 0 3px 3px 0 rgba(0, 0, 0, 0.24);
-  
+
 }
 
 .password_field {
@@ -126,7 +126,7 @@ header {
         color: white;
         text-transform: capitalize;
         &:hover {
-          background: white;
+          background: black;
           color: grey;
           border-radius: 4px;
         }
@@ -136,7 +136,7 @@ header {
       }
     }
   }
-  
+
 }
 
 
@@ -146,4 +146,8 @@ header {
 
 .selected {
   text-decoration: underline;
+}
+
+.hide {
+  display: none;
 }

@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
     has_one :preference, :dependent => :destroy
     has_many :shifts, :dependent => :destroy
     has_many :shift_templates, :dependent => :destroy
+    has_many :market
+
 
     def self.init(username, email, password, building)
         new_user = User.new(username: username, password: password, email: email, building: building)
@@ -17,6 +19,12 @@ class User < ActiveRecord::Base
 
     def self.from(building)
         return User.where(:building == building)
+    end
+
+    def self.all_complete(building)
+        complete = true
+        User.from(building).each{ |user| complete = complete & !user.init }
+        return complete
     end
 
     def current_shifts
@@ -36,8 +44,8 @@ class User < ActiveRecord::Base
         return self
     end
 
-    def preference_for shift_name
-        return self.preference.shift_hash[shift_name]
+    def preference_for shift
+        return self.preference.shift_hash[shift.name] * self.preference.availability(shift.day, shift.time)
     end
 
     def manage?

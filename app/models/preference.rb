@@ -13,7 +13,7 @@ class Preference < ApplicationRecord
         check_schedule_day_keys
         check_schedule_time_keys
     end
-    
+
     def check_shift_keys
         errors.add(:shift, "must contain all and only the shifts as keys") if shift && shift_hash.keys != Preference.shifts
     end
@@ -23,13 +23,13 @@ class Preference < ApplicationRecord
     def check_schedule_time_keys
         errors.add(:schedule, "inner day hash must contain all and only the times as keys") if schedule && schedule_hash.values.inject(false) {|res, time| res = res || (time.keys != Preference.times)}
     end
-    
+
     def available_time_more_than_5
         errors.add(:schedule, "Available time should be at least 5 hours.") if schedule && (schedule_hash.values.inject(0) {|coun, d| coun+=d.values.count("+")}) < 5
     end
 
     def self.shifts
-        @@shifts = ShiftDetail.all.map {|sh| (sh.location + "--" + sh.description).to_sym}
+        @@shifts = ShiftDetail.all.map {|sh| sh.to_sym}
     end
 
     def self.days
@@ -37,7 +37,7 @@ class Preference < ApplicationRecord
     end
 
     def self.times
-        @@times = (8..23).map {|t| "#{t%12}#{(t < 12)? 'am' : 'pm' }"}
+        @@times = (8..23).map {|t| "#{ (t-1) % 12 + 1 }#{(t < 12)? 'am' : 'pm' }"}
     end
 
     # When setting colomns, rails stringifies hash automatically.
@@ -49,5 +49,18 @@ class Preference < ApplicationRecord
 
     def schedule_hash
         eval(schedule).symbolize_keys
+    end
+
+    def availability day, time
+        if time == nil
+            return 1
+        end
+
+        translate = {"X" => 0, "+" => 1, "-" => 0.5, "?" => 0.5}
+        return translate[self.schedule_hash[standardize(day).to_sym][time]]
+    end
+
+    def standardize string
+        string.upcase[0] + string.downcase[1..-1]
     end
 end

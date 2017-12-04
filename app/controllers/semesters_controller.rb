@@ -1,6 +1,6 @@
 class SemestersController < ApplicationController
   before_action :manager?
-  #before_action :set_semester, only: [:show, :edit, :update, :destroy]
+  before_action :set_semester, only: [:show, :edit, :update, :destroy]
 
   # GET /semesters
   # GET /semesters.json
@@ -11,7 +11,6 @@ class SemestersController < ApplicationController
   # GET /semesters/1
   # GET /semesters/1.json
   def show
-      @semester = Semester.find(params[:id])
       session[:semester] = @semester
       @shift_templates = @semester.shift_templates.all
   end
@@ -33,6 +32,36 @@ class SemestersController < ApplicationController
       redirect_to semesters_path
   end
 
+  def generate
+    @semester = Semester.find(params[:semester_id])
+    @shift_templates = @semester.shift_templates
+    @shift_templates.each{ |template|
+        if template.requires_generation && template.user
+            template.generate
+        end
+    }
+    redirect_to semester_path(@semester)
+  end
+
+  def default
+      if current_user.admin?
+          flash[:notice] = "Sorry, this functionality is building-specific"
+          redirect_to user_path current_user.id
+      elsif !User.all_complete current_user.building
+          flash[:notice] = "Sorry, some of your users haven't filled out their preferences"
+          redirect_to semester_path(params[:semester_id])
+      else
+          default = Matcher.new current_user.building
+          matches = default.match
+
+          if !Semester.find(params[:semester_id]).assign(matches)
+              flash[:notice] = "Something went wrong, please try again"
+          end
+
+          redirect_to semester_shifts_path params[:semester_id]
+      end
+  end
+
   # def create
   #   @semester = Semester.new(semester_params)
 
@@ -49,33 +78,26 @@ class SemestersController < ApplicationController
 
   # PATCH/PUT /semesters/1
   # PATCH/PUT /semesters/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @semester.update(semester_params)
-  #       format.html { redirect_to @semester, notice: 'Semester was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @semester }
-  #     else
-  #       format.html { render :edit }
-  #       format.json { render json: @semester.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
+  def update
+    if @semester.update(semester_params)
+        redirect_to semester_path(@semester), notice: 'Semester was successfully updated.'
+    else
+        redirect_to semesters_path, alert: @semester.errors.full_messages[0]
+    end
+  end
 
   # DELETE /semesters/1
   # DELETE /semesters/1.json
-  # def destroy
-  #   @semester.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to semesters_url, notice: 'Semester was successfully destroyed.' }
-  #     format.json { head :no_content }
-  #   end
-  # end
+  def destroy
+    @semester.destroy
+    redirect_to semesters_path
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    # def set_semester
-    #   @semester = Semester.find(params[:id])
-    # end
+    def set_semester
+      @semester = Semester.find(params[:id])
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     # def semester_params

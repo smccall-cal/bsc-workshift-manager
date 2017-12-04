@@ -13,4 +13,40 @@ class ShiftTemplate < ApplicationRecord
         #FIXME
         return ShiftTemplate.all.collect
     end
+
+    def generate
+        @shift_day = Date.parse(self.day).wday
+        @next_shift_date = Date.today.wday> @shift_day ? Date.parse(self.day)+7 : Date.parse(self.day)
+        while @next_shift_date < Semester.current.end_date
+            if self.shifts.where(date: Date.today).take == nil
+                Shift.init({:user_email => self.user.email, :date => @next_shift_date, :is_checked_off => false, :shift_template_id => self.id})
+            end
+            @next_shift_date += 7
+        end
+    end
+
+    def name
+        @details ||= ShiftDetail.find(self.shift_detail_id)
+        return @details.to_sym
+    end
+
+    def unique
+        @details ||= ShiftDetail.find(self.shift_detail_id)
+        return (@details.to_s + " " + self.specifics + " : "  + self.date_time).to_sym
+    end
+
+    def specifics
+        return "(" + self.details + " " + self.floor + ")"
+     end
+
+    def date_time
+        time = self.time || "(Flexible)"
+        return self.day + " " + time
+    end
+
+    def requires_generation
+        representative = Shift.order(:date).where(shift_template_id: self.id).last
+        return representative == nil || representative.date < Date.today
+    end
+
 end

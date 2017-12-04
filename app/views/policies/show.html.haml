@@ -1,0 +1,12 @@
+%p#notice= notice
+
+= link_to 'Download Policy', download_policy_path(@policy)
+\|
+
+- if current_user.manage?
+    = link_to 'Edit', edit_policy_path(@policy)
+    \|
+    = link_to 'Delete', policy_path(@policy), :method => :delete
+    \|
+
+= link_to 'Back', user_path(current_user)

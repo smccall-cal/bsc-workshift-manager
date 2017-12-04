@@ -1,26 +1,17 @@
 <h1>Editing Shift</h1>
+<h2>Editing of other details should be done on the weekly shift page</h2>
 
-<%= notice %>
-
-Shift ID: <%= @shift.id%>
-<br>
-Start Date: <%= @semester.start_date.strftime("%d %B %Y")%>
-<br>
-End Date: <%= @semester.end_date.strftime("%d %B %Y")%>
 
 <%= form_tag semester_shift_path, :method => "patch" do %>
 
-  <%= label :shift, :location, 'Shift Location'%>
-  <%= text_field :shift, :location%>
+  <%= label :shift, :is_checked_off, 'Is checked off?'%>
+  <%= select_tag 'shift[is_checked_off]', options_for_select(["Yes", "No"]) %>
   
-  <%= label :shift, :description, 'Shift Description'%>
-  <%= text_field :shift, :description%>
-
-  <%= label :shift, :day, 'Day of the week'%>
-  <%= select_tag 'shift[day]', options_for_select(Date::DAYNAMES) %>
+  <%= label :shift, :assigned_user, 'Assigned_user'%>
+  <%= select_tag 'shift[user_id]', options_for_select(@users) %>
   
-  <%= label :shift, :time, 'Time of shift'%>
-  <%= time_select("shift", "time")%>
+  <%= label :shift, :date, 'Date of shift'%>
+  <%= date_select("shift", "date")%>
 
   <%= submit_tag 'Save Shift'%>
   

@@ -3,7 +3,7 @@
 
 <div id="preference">
   <% Preference.shifts.each do |sh| %>
-    <span class="shift" id="<%= "preference[shift][#{sh}]" %>" >
+    <span class="shift" id="<%= "preference_shift_#{sh}" %>" >
         <%= @preference.shift_hash[sh] %>
     </span>
     <%= label_tag "preference[shift][#{sh}]", sh %>
@@ -25,7 +25,7 @@
         <%= d %>
         </td>
         <% Preference.times.each do |t| %>
-          <td id="<%= "preference[schedule][#{d}][#{t}]" %>">
+          <td id="<%= "preference_schedule_#{d}_#{t}" %>">
           <%= @preference.schedule_hash[d][t] %>
           </td>
         <% end %>

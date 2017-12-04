@@ -1,0 +1,24 @@
+<h1>Editing semester</h1> 
+
+<%= form_for :semester, :url => semester_path(@semester), :method => "patch" do %>
+
+  <%= label :semester, :semester_name, 'Semester Name'%>
+  <%= text_field :semester, :semester_name%>
+  <br>
+  
+  <%= label :semester, :start_date, 'Start Date'%>
+  <%= date_select :semester, :start_date%>
+  <br>
+  
+  <%= label :semester, :end_date, 'End Date'%>
+  <%= date_select :semester, :end_date%>
+  <br>
+  
+  <%= submit_tag 'Save Semester'%>
+  <br>
+  <br>
+<% end %>
+
+<%= link_to 'Back', @semester %> 
+
+

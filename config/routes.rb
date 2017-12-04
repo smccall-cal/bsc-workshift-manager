@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+    
     devise_for :users, :controllers => { :registrations => :registrations }
     devise_scope :user do
         get "/users/delete" => "registrations#delete", :as => "delete"
@@ -15,17 +15,29 @@ Rails.application.routes.draw do
         resources :preferences, :except => [:destroy] do
             collection do
               get "/none" , :to => "preferences#no", :as => "no"
-              get "/notlogged", :to => "preferences#notlogged", :as => "notlogged"
             end
         end
+        resources :markets
+
     end
 
     resources :semesters do
-        resources :shifts, :except => [:index] do
+        post "/generate" , :to => "semesters#generate", :as => "generate_shifts"
+        resources :shifts do
             collection do
+
               post "/:id/addshiftuser" , :to => "shifts#add_new_shift_user", :as => "add_user"
               delete ":id/user/:user_id" , :to => "shifts#delete_new_shift_user", :as => "delete_shift_user"
             end
+        end
+        post "/default", :to => "semesters#default", :as => "default_assignment"
+
+        resources :shift_templates, :except => [:index]
+    end
+    
+    resources :policies do
+        member do
+            get "/download", :to => "policies#download", :as => "download"
         end
     end
 
